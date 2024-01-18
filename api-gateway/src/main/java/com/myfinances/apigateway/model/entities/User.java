@@ -15,4 +15,9 @@ public class User {
         this.userName = userName;
         this.password = password;
     }
+
+    public User(String userName, String password, boolean active) {
+        this(userName, password);
+        this.active = active;
+    }
 }
