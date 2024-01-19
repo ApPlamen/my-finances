@@ -1,7 +1,7 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.auth.JwtUtil;
-import com.myfinances.apigateway.model.entities.User;
+import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.model.request.LoginReq;
 import com.myfinances.apigateway.model.response.LoginRes;
 import org.springframework.security.authentication.AuthenticationManager;

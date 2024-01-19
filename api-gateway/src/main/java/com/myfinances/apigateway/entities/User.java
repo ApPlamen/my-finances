@@ -1,11 +1,11 @@
-package com.myfinances.apigateway.model.entities;
+package com.myfinances.apigateway.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class User {
+public class User implements EntityModel {
     private int id;
     private String userName;
     private String password;

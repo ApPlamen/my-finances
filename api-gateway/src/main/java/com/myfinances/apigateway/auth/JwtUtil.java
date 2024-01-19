@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.auth;
 
-import com.myfinances.apigateway.model.entities.User;
+import com.myfinances.apigateway.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParser;
