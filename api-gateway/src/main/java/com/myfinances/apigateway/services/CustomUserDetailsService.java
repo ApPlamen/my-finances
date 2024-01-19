@@ -1,7 +1,6 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.model.entities.User;
-import com.myfinances.apigateway.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,20 +8,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private final UserRepository userRepository;
+    private final AuthUserService authUserService;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(AuthUserService authUserService) {
+        this.authUserService = authUserService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUserName(userName);
+        Optional<User> user = authUserService.findUserByUserName(userName);
 
-        if(user == null) {
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("Username Not Found");
         }
 
@@ -30,9 +30,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         roles.add("USER");
         UserDetails userDetails =
                 org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getUserName())
-                        .password(user.getPassword())
-                        .disabled(!user.isActive())
+                        .username(user.get().getUserName())
+                        .password(user.get().getPassword())
+                        .disabled(!user.get().isActive())
                         .roles(roles.toArray(new String[0]))
                         .build();
         return userDetails;
