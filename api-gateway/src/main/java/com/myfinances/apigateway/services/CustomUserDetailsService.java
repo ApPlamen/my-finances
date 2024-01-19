@@ -12,15 +12,15 @@ import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private final AuthUserService authUserService;
+    private final UserService userService;
 
-    public CustomUserDetailsService(AuthUserService authUserService) {
-        this.authUserService = authUserService;
+    public CustomUserDetailsService(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<User> user = authUserService.findUserByUserName(userName);
+        Optional<User> user = userService.findUserByUserName(userName);
 
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Username Not Found");

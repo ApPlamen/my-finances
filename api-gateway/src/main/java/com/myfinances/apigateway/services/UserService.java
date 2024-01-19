@@ -8,10 +8,10 @@ import org.springframework.web.client.RestClient;
 import java.util.Optional;
 
 @Service
-public class AuthUserService {
+public class UserService {
     private final RestClient restClient;
 
-    AuthUserService(@Value("${users.service.baseUrl}") String baseUrl) {
+    UserService(@Value("${users.service.baseUrl}") String baseUrl) {
         restClient = RestClient.builder().baseUrl(baseUrl + "users").build();
     }
 
