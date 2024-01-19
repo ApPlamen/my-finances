@@ -5,6 +5,7 @@ import com.myfinances.apigateway.model.entities.User;
 import com.myfinances.apigateway.model.request.LoginReq;
 import com.myfinances.apigateway.model.response.ErrorRes;
 import com.myfinances.apigateway.model.response.LoginRes;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/api/auth")
+@Tag(name = "Auth Controller")
 public class AuthController {
     private final AuthenticationManager authenticationManager;
 
