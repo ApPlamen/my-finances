@@ -32,4 +32,11 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
 
         return Optional.of(authUserView);
     }
+
+    @Override
+    public void deleteById(Integer userId) {
+        User user = this.repo.findById(userId).get();
+        user.setActive(false);
+        this.repo.save(user);
+    }
 }

@@ -45,4 +45,11 @@ public class UserService {
 
         return result;
     }
+
+    public void deleteById(int userId) {
+        restClient.delete()
+                .uri("/delete/" + userId)
+                .retrieve()
+                .toBodilessEntity();
+    }
 }
