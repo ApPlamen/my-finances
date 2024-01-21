@@ -5,7 +5,6 @@ import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthUserView;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,7 +13,6 @@ import java.util.Optional;
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO> {
     private final UserRepo repo;
 
-    @Autowired
     public UserService(UserRepo repo) {
         super(repo);
         this.repo = repo;

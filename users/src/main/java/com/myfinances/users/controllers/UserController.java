@@ -5,7 +5,6 @@ import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthUserView;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,6 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
 
     private final UserService service;
 
-    @Autowired
     public UserController(UserService service) {
         super(service);
         this.service = service;

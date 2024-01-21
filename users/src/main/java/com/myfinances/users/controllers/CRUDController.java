@@ -4,7 +4,6 @@ import com.myfinances.users.dtos.inputs.InputDTO;
 import com.myfinances.users.dtos.inputs.UpdateDTO;
 import com.myfinances.users.entities.EntityModel;
 import com.myfinances.users.services.CRUDService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,6 @@ public class CRUDController<Entity extends EntityModel, EntityId, InputDTOImp ex
 
     protected final CRUDService<Entity, EntityId, InputDTOImp, UpdateDTOImp> service;
 
-    @Autowired
     public CRUDController(CRUDService<Entity, EntityId, InputDTOImp, UpdateDTOImp> service) {
         this.service = service;
     }
