@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.dtos.inputs;
+package com.myfinances.apigateway.model.request;
 
 import com.myfinances.apigateway.entities.User;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserUpdateDTO extends UpdateDTO<User, Integer> {
+public class UserUpdateRequest extends UpdateRequest<User, Integer> {
 
     private String userName;
     private String password;

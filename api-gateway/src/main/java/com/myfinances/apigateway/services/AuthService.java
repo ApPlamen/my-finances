@@ -2,8 +2,8 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.auth.JwtUtil;
 import com.myfinances.apigateway.entities.User;
-import com.myfinances.apigateway.model.request.LoginReq;
-import com.myfinances.apigateway.model.response.LoginRes;
+import com.myfinances.apigateway.model.request.LoginRequest;
+import com.myfinances.apigateway.model.response.LoginResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,12 +19,12 @@ public class AuthService {
         this.jwtUtil = jwtUtil;
     }
 
-    public LoginRes login(LoginReq loginReq){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getUserName(), loginReq.getPassword()));
+    public LoginResponse login(LoginRequest loginRequest){
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
         String userName = authentication.getName();
         User user = new User(userName, "");
         String token = jwtUtil.createToken(user);
-        LoginRes loginRes = new LoginRes(userName, token);
-        return  loginRes;
+        LoginResponse loginResponse = new LoginResponse(userName, token);
+        return loginResponse;
     }
 }

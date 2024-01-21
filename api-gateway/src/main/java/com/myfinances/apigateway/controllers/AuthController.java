@@ -1,7 +1,7 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.model.request.LoginReq;
-import com.myfinances.apigateway.model.response.LoginRes;
+import com.myfinances.apigateway.model.request.LoginRequest;
+import com.myfinances.apigateway.model.response.LoginResponse;
 import com.myfinances.apigateway.services.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +21,8 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<LoginRes> login(@RequestBody LoginReq loginReq) {
-        LoginRes loginRes = authService.login(loginReq);
-        return ResponseEntity.ok(loginRes);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        LoginResponse loginResponse = authService.login(loginRequest);
+        return ResponseEntity.ok(loginResponse);
     }
 }
