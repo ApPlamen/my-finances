@@ -1,4 +1,4 @@
-FROM openjdk:21 as builder
+FROM eclipse-temurin:21.0.1_12-jdk-alpine as builder
 WORKDIR /opt/app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -6,7 +6,7 @@ RUN ./mvnw dependency:go-offline
 COPY ./src ./src
 RUN ./mvnw clean install
 
-FROM openjdk:21
+FROM eclipse-temurin:21.0.1_12-jdk-alpine
 WORKDIR /opt/app
 EXPOSE 8082
 ENV USER_SERVICE_URL="http://host.docker.internal:8083/api/"

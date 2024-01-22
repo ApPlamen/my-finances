@@ -1,4 +1,4 @@
-FROM openjdk:21 as builder
+FROM eclipse-temurin:21.0.1_12-jdk-alpine as builder
 WORKDIR /opt/app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -7,7 +7,7 @@ COPY ./src ./src
 ARG DATABASE_URL="jdbc:mysql://host.docker.internal:3307/my_finances_users"
 RUN ./mvnw clean install
 
-FROM openjdk:21
+FROM eclipse-temurin:21.0.1_12-jdk-alpine
 WORKDIR /opt/app
 ENV DATABASE_URL="jdbc:mysql://host.docker.internal:3307/my_finances_users"
 EXPOSE 8082
