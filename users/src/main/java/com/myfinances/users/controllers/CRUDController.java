@@ -4,7 +4,7 @@ import com.myfinances.users.dtos.inputs.InputDTO;
 import com.myfinances.users.dtos.inputs.UpdateDTO;
 import com.myfinances.users.entities.EntityModel;
 import com.myfinances.users.services.CRUDService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,29 +14,32 @@ public class CRUDController<Entity extends EntityModel, EntityId, InputDTOImp ex
 
     protected final CRUDService<Entity, EntityId, InputDTOImp, UpdateDTOImp> service;
 
-    @Autowired
     public CRUDController(CRUDService<Entity, EntityId, InputDTOImp, UpdateDTOImp> service) {
         this.service = service;
     }
 
     @GetMapping("get/{entityId}")
-    public Optional<Entity> getById(@PathVariable EntityId entityId) {
-        return this.service.getById(entityId);
+    public ResponseEntity<Optional<Entity>> getById(@PathVariable EntityId entityId) {
+        Optional<Entity> response = this.service.getById(entityId);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("get-all")
-    public List<Entity> getAll() {
-        return this.service.getAll();
+    public ResponseEntity<List<Entity>> getAll() {
+        List<Entity> response = this.service.getAll();
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("create")
-    public Entity create(@RequestBody InputDTOImp dto) {
-        return this.service.create(dto);
+    public ResponseEntity<Entity> create(@RequestBody InputDTOImp dto) {
+        Entity response = this.service.create(dto);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("update")
-    public Entity update(@RequestBody UpdateDTOImp dto) {
-        return this.service.update(dto);
+    public ResponseEntity<Entity> update(@RequestBody UpdateDTOImp dto) {
+        Entity response = this.service.update(dto);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("delete/{entityId}")

@@ -5,6 +5,7 @@ import com.myfinances.apigateway.model.request.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,13 +19,15 @@ public class UserController {
     }
 
     @PostMapping("create")
-    public User create(@RequestBody UserInputRequest user) {
-        return this.userService.create(user);
+    public ResponseEntity<User> create(@RequestBody UserInputRequest user) {
+        User userResponse = this.userService.create(user);
+        return ResponseEntity.ok(userResponse);
     }
 
     @PutMapping("update")
-    public User update(@RequestBody UserUpdateRequest user) {
-        return this.userService.update(user);
+    public ResponseEntity<User> update(@RequestBody UserUpdateRequest user) {
+        User userResponse =  this.userService.update(user);
+        return ResponseEntity.ok(userResponse);
     }
 
     @DeleteMapping("delete/{userId}")
