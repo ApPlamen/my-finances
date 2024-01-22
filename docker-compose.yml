@@ -5,9 +5,9 @@ services:
       context: ./users
       dockerfile: Dockerfile
       args:
-        DATABASE_URL: "jdbc:mysql://host.docker.internal:3307/my_finances_users"
-        DATABASE_USERNAME: "root"
-        DATABASE_PASSWORD: "root"
+        DATABASE_URL: "jdbc:postgresql://host.docker.internal:5434/my_finances_users"
+        DATABASE_USERNAME: "postgres"
+        DATABASE_PASSWORD: "postgres"
     image: my_finances_users_service
     env_file: ./users/environments/dev-docker.env
     ports:
