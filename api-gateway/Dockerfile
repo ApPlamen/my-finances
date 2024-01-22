@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21.0.1_12-jdk-alpine as builder
+FROM sapmachine:latest as builder
 ARG USER_SERVICE_URL
 WORKDIR /opt/app
 COPY .mvn/ .mvn
@@ -7,7 +7,7 @@ RUN ./mvnw dependency:go-offline
 COPY ./src ./src
 RUN ./mvnw clean install
 
-FROM eclipse-temurin:21.0.1_12-jdk-alpine
+FROM sapmachine:latest
 WORKDIR /opt/app
 EXPOSE 8082
 COPY --from=builder /opt/app/target/my_finances_api_gateway.jar /opt/app/my_finances_api_gateway.jar
