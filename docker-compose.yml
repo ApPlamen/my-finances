@@ -23,3 +23,11 @@ services:
     env_file: ./api-gateway/environments/dev-docker.env
     ports:
       - "8082:8082"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: my_finances_frontend
+    ports:
+      - "4200:4200"
