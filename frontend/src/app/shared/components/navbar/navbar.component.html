@@ -18,40 +18,42 @@
 
         <!-- <li class="nav-item">
           <a class="nav-link active"
-             *ngIf="hasAccessRole([rolesEnum.admin])"
-             routerLink="users">
-            <i class="bi bi-people"></i>
-            Users
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active"
-             *ngIf="hasAccessRole([rolesEnum.admin, rolesEnum.companyOwner])"
-             routerLink="companies">
-            Companies
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active"
-             *ngIf="hasAccessRole([rolesEnum.admin,
-              rolesEnum.companyOwner,
-              rolesEnum.restaurantAdmin,
-              rolesEnum.restaurant])"
-             routerLink="restaurants-management">
-            Restaurants
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active"
              *ngIf="hasAccessRole([rolesEnum.client])"
              routerLink="order">
             <i class="bi bi-basket2"></i>
             Order
           </a>
         </li> -->
+
+        <li class="nav-item">
+          <a class="nav-link disabled"
+             *ngIf="isLoggedIn"
+             aria-current="page"
+             routerLink="finances">
+            <i class="bi bi-receipt"></i>
+            Finances
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled"
+             *ngIf="isLoggedIn"
+             aria-current="page"
+             routerLink="statistics">
+            <i class="bi bi-graph-up"></i>
+            Statistics
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled"
+             *ngIf="isLoggedIn"
+             aria-current="page"
+             routerLink="users">
+            <i class="bi bi-people"></i>
+            Users
+          </a>
+        </li>
 
       </ul>
 
@@ -63,20 +65,20 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userNavbarDropdown">
             <li>
-              <a class="dropdown-item" routerLink="profile">
+              <a class="dropdown-item disabled" aria-current="page" routerLink="profile">
                 <i class="bi bi-person"></i>
                 Profile
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="change-password">
+              <a class="dropdown-item disabled" aria-current="page" routerLink="change-password">
                 <i class="bi bi-shield-lock"></i>
                 Change password
               </a>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
-              <a class="dropdown-item" routerLink="logout">
+              <a class="dropdown-item" aria-current="page" routerLink="logout">
                 <i class="bi bi-box-arrow-in-left"></i>
                 Logout
               </a>
@@ -89,7 +91,7 @@
         </li>
 
         <li *ngIf="!isLoggedIn" class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="register">Register</a>
+          <a class="nav-link disabled" aria-current="page" routerLink="register">Register</a>
         </li>
 
       </ul>
