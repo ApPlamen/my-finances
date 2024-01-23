@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-// import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { StoreModule } from '@ngrx/store';
@@ -22,9 +22,9 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    // ToastrModule.forRoot({
-    //   positionClass: 'toast-bottom-right',
-    // }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
     NgbModule,
     // StoreModule.forRoot({}),
     // StoreDevtoolsModule.instrument({
