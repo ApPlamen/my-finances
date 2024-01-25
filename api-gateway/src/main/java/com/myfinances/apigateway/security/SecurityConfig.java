@@ -1,5 +1,6 @@
-package com.myfinances.apigateway.auth;
+package com.myfinances.apigateway.security;
 
+import com.myfinances.apigateway.auth.JwtAuthorizationFilter;
 import com.myfinances.apigateway.services.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,19 +37,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http.cors()
-                .and().csrf().disable()
-                .authorizeRequests()
-                .requestMatchers("swagger-ui", "swagger-ui/**").permitAll()
-                .requestMatchers("v3/api-docs", "v3/api-docs/**").permitAll()
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/users/**").permitAll()
-                .anyRequest().authenticated()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
+        return http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("swagger-ui", "swagger-ui/**").permitAll()
+                        .requestMatchers("v3/api-docs", "v3/api-docs/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/users/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean

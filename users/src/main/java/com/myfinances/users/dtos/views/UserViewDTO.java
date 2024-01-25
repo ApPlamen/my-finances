@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.entities;
+package com.myfinances.users.dtos.views;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,10 +9,10 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class User implements EntityModel {
+public class UserViewDTO implements ViewDTO {
     private int id;
     private String userName;
     private String password;
     private boolean active;
-    private List<Authority> authorities;
+    private List<AuthorityViewDTO> authorities;
 }

@@ -1,7 +1,7 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.model.request.UserInputRequest;
-import com.myfinances.apigateway.model.request.UserUpdateRequest;
+import com.myfinances.apigateway.models.request.UserInputRequest;
+import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.model.request;
+package com.myfinances.apigateway.models.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.myfinances.apigateway.entities.EntityModel;
@@ -11,7 +11,5 @@ public abstract class UpdateRequest<Entity extends EntityModel, EntityId> {
 
     @JsonProperty
     private EntityId id;
-
-    public abstract Entity toEntity(Entity entity);
 
 }

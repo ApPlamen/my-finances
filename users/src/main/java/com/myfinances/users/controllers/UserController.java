@@ -2,7 +2,7 @@ package com.myfinances.users.controllers;
 
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
-import com.myfinances.users.dtos.views.AuthUserView;
+import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/users")
-public class UserController extends CRUDController<User, Integer, UserInputDTO, UserUpdateDTO> {
+public class UserController extends CRUDController<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
 
     private final UserService service;
 
@@ -25,8 +25,8 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     }
 
     @GetMapping("findUserByUserName/{userName}")
-    public ResponseEntity<Optional<AuthUserView>> findUserByUserName(@PathVariable String userName) {
-        Optional<AuthUserView> authUserView = service.findUserByUserName(userName);
+    public ResponseEntity<Optional<UserViewDTO>> findUserByUserName(@PathVariable String userName) {
+        Optional<UserViewDTO> authUserView = service.findUserByUserName(userName);
         return ResponseEntity.ok(authUserView);
     }
 }
