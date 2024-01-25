@@ -2,13 +2,14 @@ package com.myfinances.users.services;
 
 import com.myfinances.users.dtos.inputs.InputDTO;
 import com.myfinances.users.dtos.inputs.UpdateDTO;
+import com.myfinances.users.dtos.views.ViewDTO;
 import com.myfinances.users.entities.EntityModel;
 import com.myfinances.users.infrastructure.Repo;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CRUDService<Entity extends EntityModel, EntityId, InputDTOImp extends InputDTO<Entity>, UpdateDTOImp extends UpdateDTO<Entity, EntityId>> {
+public abstract class CRUDService<Entity extends EntityModel, EntityId, InputDTOImp extends InputDTO<Entity>, UpdateDTOImp extends UpdateDTO<Entity, EntityId>, ViewDTOImp extends ViewDTO> {
 
     protected final Repo<Entity, EntityId> repo;
 
@@ -16,12 +17,14 @@ public class CRUDService<Entity extends EntityModel, EntityId, InputDTOImp exten
         this.repo = repo;
     }
 
-    public Optional<Entity> getById(EntityId entityId) {
-        return this.repo.findById(entityId);
+    public Optional<ViewDTOImp> getById(EntityId entityId) {
+        Optional<Entity> entity = this.repo.findById(entityId);
+        return entity.map(e -> toView(e));
     }
 
-    public List<Entity> getAll() {
-        return this.repo.findAll();
+    public List<ViewDTOImp> getAll() {
+        List<Entity> entities = this.repo.findAll();
+        return entities.stream().map(entity ->  toView(entity)).toList();
     }
 
     public Entity create(InputDTOImp dto) {
@@ -36,4 +39,6 @@ public class CRUDService<Entity extends EntityModel, EntityId, InputDTOImp exten
     public void deleteById(EntityId entityId) {
         this.repo.deleteById(entityId);
     }
+
+    protected abstract ViewDTOImp toView(Entity entity);
 }
