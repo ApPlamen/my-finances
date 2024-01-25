@@ -2,9 +2,9 @@ package com.myfinances.users.services;
 
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
-import com.myfinances.users.dtos.views.AuthUserView;
 import com.myfinances.users.dtos.views.AuthorityViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
+import com.myfinances.users.entities.Authority;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
 import org.springframework.stereotype.Service;
@@ -21,17 +21,10 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
         this.repo = repo;
     }
 
-    public Optional<AuthUserView> findUserByUserName(String userName) {
+    public Optional<UserViewDTO> findUserByUserName(String userName) {
         Optional<User> result = repo.findByUserName(userName);
 
-        if (result.isEmpty()) {
-            return Optional.empty();
-        }
-
-        User user = result.get();
-        AuthUserView authUserView = new AuthUserView(user.getUserName(), user.getPassword(), user.isActive());
-
-        return Optional.of(authUserView);
+        return result.map(user -> toView(user));
     }
 
     @Override
@@ -44,11 +37,7 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
     @Override
     protected UserViewDTO toView(User user) {
         List<AuthorityViewDTO> authorities = user.getAuthorities()
-                .stream().map(authority ->
-                        AuthorityViewDTO.builder()
-                                .id(authority.getId())
-                                .name(authority.getName())
-                                .build())
+                .stream().map(authority -> getAuthorityView(authority))
                 .toList();
 
         UserViewDTO view = UserViewDTO.builder()
@@ -60,5 +49,12 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .build();
 
         return view;
+    }
+
+    private AuthorityViewDTO getAuthorityView(Authority authority) {
+        return AuthorityViewDTO.builder()
+                .id(authority.getId())
+                .name(authority.getName())
+                .build();
     }
 }
