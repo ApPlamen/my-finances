@@ -1,7 +1,7 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.model.request.LoginRequest;
-import com.myfinances.apigateway.model.response.LoginResponse;
+import com.myfinances.apigateway.models.request.LoginRequest;
+import com.myfinances.apigateway.models.response.LoginResponse;
 import com.myfinances.apigateway.services.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;

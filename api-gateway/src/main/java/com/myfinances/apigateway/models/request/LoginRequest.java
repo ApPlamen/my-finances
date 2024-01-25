@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.model.request;
+package com.myfinances.apigateway.models.request;
 
 import lombok.Getter;
 import lombok.Setter;

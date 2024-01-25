@@ -1,7 +1,7 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.model.request.UserInputRequest;
-import com.myfinances.apigateway.model.request.UserUpdateRequest;
+import com.myfinances.apigateway.models.request.UserInputRequest;
+import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

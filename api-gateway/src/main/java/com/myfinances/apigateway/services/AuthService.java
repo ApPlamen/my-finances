@@ -2,8 +2,8 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.auth.JwtUtil;
 import com.myfinances.apigateway.entities.User;
-import com.myfinances.apigateway.model.request.LoginRequest;
-import com.myfinances.apigateway.model.response.LoginResponse;
+import com.myfinances.apigateway.models.request.LoginRequest;
+import com.myfinances.apigateway.models.response.LoginResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
