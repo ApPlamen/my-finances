@@ -1,5 +1,6 @@
-package com.myfinances.apigateway.auth;
+package com.myfinances.apigateway.security;
 
+import com.myfinances.apigateway.auth.JwtAuthorizationFilter;
 import com.myfinances.apigateway.services.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

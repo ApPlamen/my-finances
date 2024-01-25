@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.security.SecurityUser;
+import com.myfinances.apigateway.security.models.SecurityUser;
 import com.myfinances.apigateway.entities.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
