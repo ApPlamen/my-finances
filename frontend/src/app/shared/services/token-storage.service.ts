@@ -37,7 +37,12 @@ export class TokenStorageService {
   }
 
   public getUserRoles(): string[] {
-    return this.getUser().roles ?? [];
+    var roles = this.getUser()
+      .authorities
+      ?.filter((authority: string) => authority.startsWith("ROLE_"))
+      .map((authority: string) => authority.replace("ROLE_","").toLowerCase());
+
+    return roles ?? [];
   }
 
   public isUserLoggedIn(): boolean {

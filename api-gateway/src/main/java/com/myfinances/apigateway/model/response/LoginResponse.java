@@ -12,5 +12,5 @@ import java.util.List;
 public class LoginResponse {
     private String userName;
     private String token;
-    private List<String> roles;
+    private List<String> authorities;
 }

@@ -26,7 +26,7 @@ public class AuthService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
         String userName = authentication.getName();
 
-        List<String> roles = authentication.getAuthorities().stream()
+        List<String> authorities = authentication.getAuthorities().stream()
                 .map(r -> r.getAuthority()).collect(Collectors.toList());
 
         User user = User.builder()
@@ -34,7 +34,7 @@ public class AuthService {
                 .build();
 
         String token = jwtUtil.createToken(user);
-        LoginResponse loginResponse = new LoginResponse(userName, token, roles);
+        LoginResponse loginResponse = new LoginResponse(userName, token, authorities);
         return loginResponse;
     }
 }

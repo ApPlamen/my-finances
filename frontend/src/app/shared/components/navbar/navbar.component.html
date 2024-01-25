@@ -16,18 +16,8 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto">
 
-        <!-- <li class="nav-item">
-          <a class="nav-link active"
-             *ngIf="hasAccessRole([rolesEnum.client])"
-             routerLink="order">
-            <i class="bi bi-basket2"></i>
-            Order
-          </a>
-        </li> -->
-
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="hasAccessRole([rolesEnum.user])">
           <a class="nav-link disabled"
-             *ngIf="isLoggedIn"
              aria-current="page"
              routerLink="finances">
             <i class="bi bi-receipt"></i>
@@ -35,9 +25,8 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="hasAccessRole([rolesEnum.user])">
           <a class="nav-link disabled"
-             *ngIf="isLoggedIn"
              aria-current="page"
              routerLink="statistics">
             <i class="bi bi-graph-up"></i>
@@ -45,9 +34,8 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="hasAccessRole([rolesEnum.admin])">
           <a class="nav-link disabled"
-             *ngIf="isLoggedIn"
              aria-current="page"
              routerLink="users">
             <i class="bi bi-people"></i>
