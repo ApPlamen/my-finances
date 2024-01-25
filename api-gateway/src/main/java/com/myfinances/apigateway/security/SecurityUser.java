@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.auth;
+package com.myfinances.apigateway.security;
 
 import com.myfinances.apigateway.entities.User;
 import lombok.AllArgsConstructor;
@@ -6,10 +6,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
-public class AuthUser implements UserDetails {
+public class SecurityUser implements UserDetails {
     private final User user;
 
     public int getId() {
@@ -18,7 +18,10 @@ public class AuthUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_USER");
+        return user.getAuthorities()
+                .stream()
+                .map(SecurityAuthority::new)
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -9,6 +9,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AuthService {
     private final AuthenticationManager authenticationManager;
@@ -22,9 +25,16 @@ public class AuthService {
     public LoginResponse login(LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
         String userName = authentication.getName();
-        User user = new User(userName, "");
+
+        List<String> roles = authentication.getAuthorities().stream()
+                .map(r -> r.getAuthority()).collect(Collectors.toList());
+
+        User user = User.builder()
+                .userName(userName)
+                .build();
+
         String token = jwtUtil.createToken(user);
-        LoginResponse loginResponse = new LoginResponse(userName, token);
+        LoginResponse loginResponse = new LoginResponse(userName, token, roles);
         return loginResponse;
     }
 }

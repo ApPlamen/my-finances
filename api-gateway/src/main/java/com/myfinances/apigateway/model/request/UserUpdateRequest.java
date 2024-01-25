@@ -12,14 +12,4 @@ public class UserUpdateRequest extends UpdateRequest<User, Integer> {
     private String password;
     private boolean active;
 
-    @Override
-    public User toEntity(User entity) {
-        entity.setId(this.getId());
-        entity.setUserName(this.getUserName());
-        entity.setPassword(this.getPassword());
-        entity.setActive(this.isActive());
-
-        return entity;
-    }
-
 }

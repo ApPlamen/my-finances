@@ -12,6 +12,4 @@ public abstract class UpdateRequest<Entity extends EntityModel, EntityId> {
     @JsonProperty
     private EntityId id;
 
-    public abstract Entity toEntity(Entity entity);
-
 }

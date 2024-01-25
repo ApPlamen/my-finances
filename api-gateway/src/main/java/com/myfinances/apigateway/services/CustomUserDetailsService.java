@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.auth.AuthUser;
+import com.myfinances.apigateway.security.SecurityUser;
 import com.myfinances.apigateway.entities.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<User> user = userService.findUserByUserName(userName);
 
-        return user.map(AuthUser::new)
+        return user.map(SecurityUser::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found" + userName));
     }
 }
