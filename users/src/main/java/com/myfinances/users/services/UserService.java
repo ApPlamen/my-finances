@@ -28,7 +28,14 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
     public Optional<UserViewDTO> findUserByUserName(String userName) {
         Optional<User> result = repo.findByUserName(userName);
 
-        return result.map(user -> toView(user));
+        return result.map(this::toView);
+    }
+
+    public void register(RegisterInputDTO registerRequest) {
+        User newUser = registerRequest.toEntity();
+        Authority userAuthority = authorityService.getUserAuthority();
+        newUser.setAuthorities(Set.of(userAuthority));
+        this.repo.save(newUser);
     }
 
     @Override
@@ -41,12 +48,13 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
     @Override
     protected UserViewDTO toView(User user) {
         List<AuthorityViewDTO> authorities = user.getAuthorities()
-                .stream().map(authority -> getAuthorityView(authority))
+                .stream().map(this::getAuthorityView)
                 .toList();
 
         UserViewDTO view = UserViewDTO.builder()
                 .id(user.getId())
                 .userName(user.getUserName())
+                .fullName(user.getFullName())
                 .password(user.getPassword())
                 .active(user.isActive())
                 .authorities(authorities)
@@ -60,12 +68,5 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .id(authority.getId())
                 .name(authority.getName())
                 .build();
-    }
-
-    public void register(RegisterInputDTO registerRequest) {
-        User newUser = registerRequest.toEntity();
-        Authority userAuthority = authorityService.getUserAuthority();
-        newUser.setAuthorities(Set.of(userAuthority));
-        this.repo.save(newUser);
     }
 }
