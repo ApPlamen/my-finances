@@ -4,6 +4,7 @@ import com.myfinances.apigateway.auth.JwtUtil;
 import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.models.request.LoginRequest;
 import com.myfinances.apigateway.models.response.LoginResponse;
+import com.myfinances.apigateway.security.models.SecurityUser;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,8 +27,11 @@ public class AuthService {
         List<String> authorities = authentication.getAuthorities().stream()
                 .map(r -> r.getAuthority()).collect(Collectors.toList());
 
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = User.builder()
-                .userName(userName)
+                .id(securityUser.getId())
+                .userName(securityUser.getUsername())
+                .active(securityUser.isEnabled())
                 .build();
 
         String token = jwtUtil.createToken(user);

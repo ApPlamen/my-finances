@@ -1,6 +1,8 @@
 package com.myfinances.apigateway.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.security.models.SecurityUser;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -40,10 +42,18 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             Claims claims = jwtUtil.resolveClaims(request);
 
             if (claims != null & jwtUtil.validateClaims(claims)) {
+                String userId = claims.getId();
                 String userName = claims.getSubject();
+
+                User user = User.builder()
+                        .id(Integer.parseInt(userId))
+                        .userName(userName)
+                        .build();
+                SecurityUser securityUser = new SecurityUser(user);
+
                 System.out.println("userName : " + userName);
                 Authentication authentication =
-                        new UsernamePasswordAuthenticationToken(userName, "", new ArrayList<>());
+                        new UsernamePasswordAuthenticationToken(securityUser, "", new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 
