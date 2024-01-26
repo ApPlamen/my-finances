@@ -12,14 +12,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
     private final UserRepo repo;
+    private final AuthorityService authorityService;
 
-    public UserService(UserRepo repo) {
+    public UserService(UserRepo repo, AuthorityService authorityService) {
         super(repo);
         this.repo = repo;
+        this.authorityService = authorityService;
     }
 
     public Optional<UserViewDTO> findUserByUserName(String userName) {
@@ -61,6 +64,8 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
 
     public void register(RegisterInputDTO registerRequest) {
         User newUser = registerRequest.toEntity();
+        Authority userAuthority = authorityService.getUserAuthority();
+        newUser.setAuthorities(Set.of(userAuthority));
         this.repo.save(newUser);
     }
 }
