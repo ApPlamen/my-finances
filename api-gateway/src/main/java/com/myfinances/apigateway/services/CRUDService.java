@@ -16,7 +16,7 @@ public class CRUDService<Entity extends EntityModel, EntityId, InputImp extends 
     private final Class<Entity> entityTypeParameterClass;
     private final Class<ViewImp> viewTypeParameterClass;
 
-    CRUDService(String baseUrl, String controllerPath) {
+    public CRUDService(String baseUrl, String controllerPath) {
         restClient = RestClient.builder().baseUrl(baseUrl + controllerPath).build();
 
         Type[] types = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments();

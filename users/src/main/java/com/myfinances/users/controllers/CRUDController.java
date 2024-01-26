@@ -5,19 +5,17 @@ import com.myfinances.users.dtos.inputs.UpdateDTO;
 import com.myfinances.users.dtos.views.ViewDTO;
 import com.myfinances.users.entities.EntityModel;
 import com.myfinances.users.services.CRUDService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class CRUDController<Entity extends EntityModel, EntityId, InputDTOImp extends InputDTO<Entity>, UpdateDTOImp extends UpdateDTO<Entity, EntityId>, ViewDTOImp extends ViewDTO> {
 
     protected final CRUDService<Entity, EntityId, InputDTOImp, UpdateDTOImp, ViewDTOImp> service;
-
-    public CRUDController(CRUDService<Entity, EntityId, InputDTOImp, UpdateDTOImp, ViewDTOImp> service) {
-        this.service = service;
-    }
 
     @GetMapping("get/{entityId}")
     public ResponseEntity<Optional<ViewDTOImp>> getById(@PathVariable EntityId entityId) {

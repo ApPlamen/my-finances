@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 @Tag(name = "Users Controller")
 public class UserController extends CRUDController<User, Integer, UserInputRequest, UserUpdateRequest, UserViewResponse> {
-    private final UserService userService;
-
     public UserController(UserService userService) {
         super(userService);
-        this.userService = userService;
     }
 }

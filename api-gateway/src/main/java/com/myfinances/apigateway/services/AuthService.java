@@ -4,6 +4,7 @@ import com.myfinances.apigateway.auth.JwtUtil;
 import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.models.request.LoginRequest;
 import com.myfinances.apigateway.models.response.LoginResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,14 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
-
-    public AuthService(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
-    }
 
     public LoginResponse login(LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
