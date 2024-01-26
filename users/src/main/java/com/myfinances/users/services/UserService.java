@@ -1,5 +1,6 @@
 package com.myfinances.users.services;
 
+import com.myfinances.users.dtos.inputs.RegisterInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthorityViewDTO;
@@ -56,5 +57,10 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .id(authority.getId())
                 .name(authority.getName())
                 .build();
+    }
+
+    public void register(RegisterInputDTO registerRequest) {
+        User newUser = registerRequest.toEntity();
+        this.repo.save(newUser);
     }
 }

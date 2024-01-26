@@ -4,13 +4,13 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { LogInComponent } from './components/login/login.component';
 import { LogOutComponent } from './components/logout/logout.component';
 import { ProfileComponent } from './components/profile/profile.component';
-// import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { RolesEnum } from './enums/roles.enum';
 import { canActivate } from 'src/app/shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
-  // { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'logout',
     canActivate: [canActivate],

@@ -1,6 +1,7 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.models.request.RegisterRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.models.response.UserViewResponse;
@@ -23,5 +24,13 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
                 .body(User.class);
 
         return result != null ? Optional.of(result) : Optional.empty();
+    }
+
+    public void register(RegisterRequest registerRequest) {
+        restClient.post()
+                .uri("/register")
+                .body(registerRequest)
+                .retrieve()
+                .toBodilessEntity();
     }
 }
