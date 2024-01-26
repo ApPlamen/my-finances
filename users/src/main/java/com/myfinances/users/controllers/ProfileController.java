@@ -1,5 +1,6 @@
 package com.myfinances.users.controllers;
 
+import com.myfinances.users.dtos.inputs.ChangePasswordUpdateDTO;
 import com.myfinances.users.dtos.inputs.ProfileUpdateDTO;
 import com.myfinances.users.dtos.views.ProfileViewDTO;
 import com.myfinances.users.services.ProfileService;
@@ -27,5 +28,10 @@ public class ProfileController {
     @PutMapping("")
     public void saveProfile(@RequestBody ProfileUpdateDTO profile) {
         this.service.saveProfile(profile);
+    }
+
+    @PutMapping("change-password")
+    public void changePassword(@RequestBody ChangePasswordUpdateDTO passwordModel) {
+        this.service.changePassword(passwordModel);
     }
 }

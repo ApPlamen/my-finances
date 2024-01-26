@@ -22,7 +22,7 @@ export class ProfileService {
     return this.http.put<void> (BASE_URL, model);
   }
 
-  changePasswordUser(model: ChangePasswordModel): Observable<void>  {
+  changePassword(model: ChangePasswordModel): Observable<void>  {
     return this.http.put<void> (BASE_URL + '/change-password', model);
   }
 }

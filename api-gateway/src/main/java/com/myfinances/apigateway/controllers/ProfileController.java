@@ -1,5 +1,6 @@
 package com.myfinances.apigateway.controllers;
 
+import com.myfinances.apigateway.models.request.ChangePasswordRequest;
 import com.myfinances.apigateway.models.request.ProfileRequest;
 import com.myfinances.apigateway.models.response.ProfileResponse;
 import com.myfinances.apigateway.services.ProfileService;
@@ -26,5 +27,10 @@ public class ProfileController {
     @PutMapping("")
     public void saveProfile(@RequestBody ProfileRequest profile) {
         this.service.saveProfile(profile);
+    }
+
+    @PutMapping("change-password")
+    public void changePassword(@RequestBody ChangePasswordRequest passwordModel) {
+        this.service.changePassword(passwordModel);
     }
 }

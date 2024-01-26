@@ -1,6 +1,8 @@
 package com.myfinances.apigateway.services;
 
+import com.myfinances.apigateway.models.internal.ChangePasswordInternalRequest;
 import com.myfinances.apigateway.models.internal.ProfileInternalRequest;
+import com.myfinances.apigateway.models.request.ChangePasswordRequest;
 import com.myfinances.apigateway.models.request.ProfileRequest;
 import com.myfinances.apigateway.models.response.ProfileResponse;
 import com.myfinances.apigateway.security.models.SecurityUser;
@@ -44,6 +46,25 @@ public class ProfileService {
 
         restClient.put()
                 .uri("")
+                .body(body)
+                .retrieve()
+                .toBodilessEntity();
+    }
+
+    public void changePassword(ChangePasswordRequest passwordModel) {
+        int userId = ((SecurityUser) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getId();
+
+        ChangePasswordInternalRequest body = ChangePasswordInternalRequest.builder()
+                .id(userId)
+                .currentPassword(passwordModel.getCurrentPassword())
+                .newPassword(passwordModel.getNewPassword())
+                .build();
+
+        restClient.put()
+                .uri("/change-password")
                 .body(body)
                 .retrieve()
                 .toBodilessEntity();

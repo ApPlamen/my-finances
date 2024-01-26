@@ -1,5 +1,6 @@
 package com.myfinances.users.services;
 
+import com.myfinances.users.dtos.inputs.ChangePasswordUpdateDTO;
 import com.myfinances.users.dtos.inputs.ProfileUpdateDTO;
 import com.myfinances.users.dtos.views.ProfileViewDTO;
 import com.myfinances.users.entities.User;
@@ -28,5 +29,15 @@ public class ProfileService {
     public void saveProfile(ProfileUpdateDTO profile) {
         User user = this.repo.findById(profile.getId()).get();
         this.repo.save(profile.toEntity(user));
+    }
+
+    public void changePassword(ChangePasswordUpdateDTO passwordModel) {
+        User user = this.repo.findById(passwordModel.getId()).get();
+
+        if (!passwordModel.getCurrentPassword().equals(user.getPassword())) {
+            throw new RuntimeException("Current password does not match the user password!");
+        }
+
+        this.repo.save(passwordModel.toEntity(user));
     }
 }
