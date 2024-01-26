@@ -7,9 +7,9 @@
             [formGroup]="profileForm.formGroup"
             novalidate >
 
-        <tmc-input type="text" label="Username" placeholder="User name" formControlName="userName"></tmc-input>
+        <tmc-input type="text" label="Username" placeholder="User name" [value]="userName" [disabled]="true"></tmc-input>
 
-        <tmc-input type="text" label="Fullname" placeholder="Name" formControlName="fullname"></tmc-input>
+        <tmc-input type="text" label="Fullname" placeholder="Name" formControlName="fullName"></tmc-input>
 
         <div class="form-group">
           <tmc-button type='submit'

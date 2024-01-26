@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     if (this.profileForm.formGroup.valid) {
-      this.profileService.saveUserProfile(this.profileForm.model)
+      this.profileService.saveUserProfile(this.profileForm.formGroup.value)
         .subscribe(_ => {
           this.fillForm();
 
@@ -30,5 +30,9 @@ export class ProfileComponent implements OnInit {
   private fillForm(): void {
     this.profileService.getUserProfile()
       .subscribe(profile => this.profileForm.setModel(profile));
+  }
+
+  get userName(): string {
+    return this.profileForm.model.userName
   }
 }

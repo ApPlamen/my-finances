@@ -10,6 +10,7 @@ import java.util.List;
 public class UserViewResponse extends ViewResponse {
     private int id;
     private String userName;
+    private String fullName;
     private String password;
     private boolean active;
     private List<AuthorityViewResponse> authorities;

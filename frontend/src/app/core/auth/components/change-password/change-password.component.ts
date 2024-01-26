@@ -14,7 +14,7 @@ export class ChangePasswordComponent {
 
   onSubmit(): void {
     if (this.changePasswordForm.formGroup.valid) {
-      this.profileService.changePasswordUser(this.changePasswordForm.model)
+      this.profileService.changePasswordUser(this.changePasswordForm.formGroup.value)
         .subscribe(_ => {
           this.changePasswordForm.clear();
 

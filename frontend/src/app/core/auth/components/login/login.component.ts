@@ -25,7 +25,7 @@ export class LogInComponent implements OnInit {
 
   onSubmit(): void {
     if (this.logInForm.formGroup.valid) {
-      this.authService.login(this.logInForm.model).subscribe(
+      this.authService.login(this.logInForm.formGroup.value).subscribe(
         data => {
           this.tokenStorageService.saveToken(data.token);
           this.tokenStorageService.saveUser(data);

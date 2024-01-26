@@ -12,6 +12,7 @@ import java.util.List;
 public class UserViewDTO implements ViewDTO {
     private int id;
     private String userName;
+    private String fullName;
     private String password;
     private boolean active;
     private List<AuthorityViewDTO> authorities;

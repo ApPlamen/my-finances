@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class ProfileResponse {
     private String userName;
-    private String fullname;
+    private String fullName;
 }

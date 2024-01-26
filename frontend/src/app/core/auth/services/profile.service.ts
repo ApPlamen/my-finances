@@ -19,7 +19,7 @@ export class ProfileService {
   }
 
   saveUserProfile(model: ProfileModel): Observable<void>  {
-    return this.http.post<void> (BASE_URL, model);
+    return this.http.put<void> (BASE_URL, model);
   }
 
   changePasswordUser(model: ChangePasswordModel): Observable<void>  {

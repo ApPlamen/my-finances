@@ -9,8 +9,7 @@ export class ProfileForm extends BaseFormModel<ProfileModel> {
     super();
 
     this.formGroup = this.formBuilder.group({
-      userName: ['', Validators.required],
-      fullname: ['', Validators.required],
+      fullName: ['', Validators.required],
     });
   }
 }

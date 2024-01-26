@@ -1,5 +1,7 @@
 package com.myfinances.apigateway.services;
 
+import com.myfinances.apigateway.models.internal.ProfileInternalRequest;
+import com.myfinances.apigateway.models.request.ProfileRequest;
 import com.myfinances.apigateway.models.response.ProfileResponse;
 import com.myfinances.apigateway.security.models.SecurityUser;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,5 +29,23 @@ public class ProfileService {
                 .body(ProfileResponse.class);
 
         return result;
+    }
+
+    public void saveProfile(ProfileRequest profile) {
+        int userId = ((SecurityUser) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getId();
+
+        ProfileInternalRequest body = ProfileInternalRequest.builder()
+                .id(userId)
+                .fullName(profile.getFullName())
+                .build();
+
+        restClient.put()
+                .uri("")
+                .body(body)
+                .retrieve()
+                .toBodilessEntity();
     }
 }

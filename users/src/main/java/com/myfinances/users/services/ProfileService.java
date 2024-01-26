@@ -1,5 +1,6 @@
 package com.myfinances.users.services;
 
+import com.myfinances.users.dtos.inputs.ProfileUpdateDTO;
 import com.myfinances.users.dtos.views.ProfileViewDTO;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
@@ -20,6 +21,12 @@ public class ProfileService {
 
         return ProfileViewDTO.builder()
                 .userName(user.getUserName())
+                .fullName(user.getFullName())
                 .build();
+    }
+
+    public void saveProfile(ProfileUpdateDTO profile) {
+        User user = this.repo.findById(profile.getId()).get();
+        this.repo.save(profile.toEntity(user));
     }
 }
