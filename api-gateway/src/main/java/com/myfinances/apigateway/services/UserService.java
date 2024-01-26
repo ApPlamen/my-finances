@@ -1,20 +1,19 @@
 package com.myfinances.apigateway.services;
 
+import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
-import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.models.response.UserViewResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 
 import java.util.Optional;
 
 @Service
-public class UserService {
-    private final RestClient restClient;
+public class UserService extends CRUDService<User, Integer, UserInputRequest, UserUpdateRequest, UserViewResponse> {
 
     UserService(@Value("${users.service.baseUrl}") String baseUrl) {
-        restClient = RestClient.builder().baseUrl(baseUrl + "users").build();
+        super(baseUrl, "users");
     }
 
     public Optional<User> findUserByUserName(String userName) {
@@ -24,32 +23,5 @@ public class UserService {
                 .body(User.class);
 
         return result != null ? Optional.of(result) : Optional.empty();
-    }
-
-    public User create(UserInputRequest user) {
-        User result = restClient.post()
-                .uri("/create")
-                .body(user)
-                .retrieve()
-                .body(User.class);
-
-        return result;
-    }
-
-    public User update(UserUpdateRequest user) {
-        User result = restClient.put()
-                .uri("/update")
-                .body(user)
-                .retrieve()
-                .body(User.class);
-
-        return result;
-    }
-
-    public void deleteById(int userId) {
-        restClient.delete()
-                .uri("/delete/" + userId)
-                .retrieve()
-                .toBodilessEntity();
     }
 }
