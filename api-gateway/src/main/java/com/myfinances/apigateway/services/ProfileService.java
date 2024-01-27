@@ -5,7 +5,7 @@ import com.myfinances.apigateway.models.internal.ProfileInternalRequest;
 import com.myfinances.apigateway.models.request.ChangePasswordRequest;
 import com.myfinances.apigateway.models.request.ProfileRequest;
 import com.myfinances.apigateway.models.response.ProfileResponse;
-import com.myfinances.apigateway.security.models.SecurityUser;
+import com.myfinances.apigateway.security.SecurityUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

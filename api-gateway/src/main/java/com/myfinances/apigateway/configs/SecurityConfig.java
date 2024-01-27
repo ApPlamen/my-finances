@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.security;
+package com.myfinances.apigateway.configs;
 
 import com.myfinances.apigateway.auth.JwtAuthorizationFilter;
 import com.myfinances.apigateway.services.CustomUserDetailsService;
@@ -44,7 +44,6 @@ public class SecurityConfig {
                         .requestMatchers("swagger-ui", "swagger-ui/**").permitAll()
                         .requestMatchers("v3/api-docs", "v3/api-docs/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/users/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

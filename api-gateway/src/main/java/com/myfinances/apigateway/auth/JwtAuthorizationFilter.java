@@ -2,7 +2,7 @@ package com.myfinances.apigateway.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myfinances.apigateway.entities.User;
-import com.myfinances.apigateway.security.models.SecurityUser;
+import com.myfinances.apigateway.security.SecurityUser;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
