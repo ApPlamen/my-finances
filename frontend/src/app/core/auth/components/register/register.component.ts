@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
-import { LogInForm } from '../../forms/login.form';
+import { RegisterForm } from '../../forms/register.form';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  templateUrl: './login.component.html',
+  templateUrl: './register.component.html',
 })
-export class LogInComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   roles: string[] = [];
-  logInForm: LogInForm = new LogInForm();
+  registerForm: RegisterForm = new RegisterForm();
 
   constructor(private authService: AuthService,
               private tokenStorageService: TokenStorageService,
@@ -20,21 +20,19 @@ export class LogInComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorageService.getToken()) {
       this.roles = this.tokenStorageService.getUser().roles;
+    } else {
+      this.registerForm = new RegisterForm();
     }
   }
 
   onSubmit(): void {
-    if (this.logInForm.formGroup.valid) {
-      this.authService.login(this.logInForm.formGroup.value).subscribe(
-        data => {
-          this.tokenStorageService.saveToken(data.token);
-          this.tokenStorageService.saveUser(data);
-
+    if (this.registerForm.formGroup.valid) {
+      this.authService.register(this.registerForm.model)
+        .subscribe(_ => {
           this.toastr.success('Success!');
 
-          this.router.navigate(['/home']);
-        },
-      );
+          this.router.navigate(['/login']);
+        });
     }
   }
 

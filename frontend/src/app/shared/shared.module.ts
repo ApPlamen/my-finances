@@ -10,7 +10,7 @@ import { NumberInputComponent } from './components/number-input/number-input.com
 import { SimpleTableComponent } from './components/simple-table/simple-table.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 // import { ManageRolesComponent } from './dialogs/manage-roles/manage-roles.component';
-// import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { authInterceptorProviders } from './interceptors/auth.interceptor';
 // import { sharedRecuder } from './store/shared.store.reducer';
 
 
@@ -40,7 +40,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
     NavbarComponent,
   ],
   providers: [
-    // authInterceptorProviders,
+    authInterceptorProviders,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

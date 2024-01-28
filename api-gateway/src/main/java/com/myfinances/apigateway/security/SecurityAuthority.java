@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.security.models;
+package com.myfinances.apigateway.security;
 
 import com.myfinances.apigateway.entities.Authority;
 import lombok.AllArgsConstructor;

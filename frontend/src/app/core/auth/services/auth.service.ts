@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LogInModel } from '../models/login.model';
-// import { RegisterModel } from '../models/register.model';
+import { RegisterModel } from '../models/register.model';
 import { environment } from 'src/environments/environment';
 
 const CONTROLER_URL = 'auth';
@@ -18,7 +18,7 @@ export class AuthService {
     return this.http.post(BASE_URL + '/login', model);
   }
 
-  // register(model: RegisterModel): Observable<any> {
-  //   return this.http.post(BASE_URL + '/register', model);
-  // }
+  register(model: RegisterModel): Observable<any> {
+    return this.http.post(BASE_URL + '/register', model);
+  }
 }

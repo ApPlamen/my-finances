@@ -1,19 +1,17 @@
-package com.myfinances.users.dtos.views;
+package com.myfinances.apigateway.models.response;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
-@Builder
 @Getter
 @Setter
-public class UserViewDTO implements ViewDTO {
+public class UserViewResponse extends ViewResponse {
     private int id;
     private String userName;
     private String fullName;
     private String password;
     private boolean active;
-    private List<AuthorityViewDTO> authorities;
+    private List<AuthorityViewResponse> authorities;
 }

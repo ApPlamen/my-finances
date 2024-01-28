@@ -26,6 +26,8 @@ public class User implements EntityModel {
     private int id;
     @Column(name = "userName")
     private String userName;
+    @Column(name = "fullName")
+    private String fullName;
     @Column(name = "password")
     private String password;
     @Column(name = "active")

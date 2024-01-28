@@ -3,35 +3,19 @@ package com.myfinances.apigateway.controllers;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.models.response.UserViewResponse;
+import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("api/users")
 @Tag(name = "Users Controller")
-public class UserController {
-    private final UserService userService;
-
+@SecurityRequirement(name = OpenAPI30Config.securitySchemeName)
+public class UserController extends CRUDController<User, Integer, UserInputRequest, UserUpdateRequest, UserViewResponse> {
     public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @PostMapping("create")
-    public ResponseEntity<User> create(@RequestBody UserInputRequest user) {
-        User userResponse = this.userService.create(user);
-        return ResponseEntity.ok(userResponse);
-    }
-
-    @PutMapping("update")
-    public ResponseEntity<User> update(@RequestBody UserUpdateRequest user) {
-        User userResponse =  this.userService.update(user);
-        return ResponseEntity.ok(userResponse);
-    }
-
-    @DeleteMapping("delete/{userId}")
-    public void deleteById(@PathVariable int userId) {
-        this.userService.deleteById(userId);
+        super(userService);
     }
 }

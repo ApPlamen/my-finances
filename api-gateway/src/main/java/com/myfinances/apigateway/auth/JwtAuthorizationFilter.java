@@ -1,11 +1,14 @@
 package com.myfinances.apigateway.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.security.SecurityUser;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,14 +23,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@AllArgsConstructor
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final ObjectMapper mapper;
-
-    public JwtAuthorizationFilter(JwtUtil jwtUtil, ObjectMapper mapper) {
-        this.jwtUtil = jwtUtil;
-        this.mapper = mapper;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -43,10 +42,18 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             Claims claims = jwtUtil.resolveClaims(request);
 
             if (claims != null & jwtUtil.validateClaims(claims)) {
+                String userId = claims.getId();
                 String userName = claims.getSubject();
+
+                User user = User.builder()
+                        .id(Integer.parseInt(userId))
+                        .userName(userName)
+                        .build();
+                SecurityUser securityUser = new SecurityUser(user);
+
                 System.out.println("userName : " + userName);
                 Authentication authentication =
-                        new UsernamePasswordAuthenticationToken(userName, "", new ArrayList<>());
+                        new UsernamePasswordAuthenticationToken(securityUser, "", new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 
