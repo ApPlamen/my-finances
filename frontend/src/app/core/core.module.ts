@@ -8,7 +8,6 @@ import { ChangePasswordComponent } from './auth/components/change-password/chang
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-// import { BoardUsersComponent } from './auth/components/board-users/board-users.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { ErrorsRoutingModule } from './auth/errors-routing.module';
 
@@ -19,7 +18,6 @@ import { ErrorsRoutingModule } from './auth/errors-routing.module';
     RegisterComponent,
     ProfileComponent,
     ChangePasswordComponent,
-    // BoardUsersComponent,
   ],
   imports: [
     CommonModule,
