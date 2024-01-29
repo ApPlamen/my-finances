@@ -13,10 +13,11 @@ import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
@@ -43,18 +44,12 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
     }
 
     public List<UserBoardItemViewDTO> getBoard() {
-        List<UserBoardItemViewDTO> test = this.repo.getBoard().stream()
-                .map(values -> UserBoardItemViewDTO.builder()
-                        .id((Integer) ((Object[])values)[0])
-                        .userName((String) ((Object[])values)[1])
-                        .fullName((String) ((Object[])values)[2])
-                        .active((Boolean) ((Object[])values)[3])
-                        .roles(Arrays.stream((String[])(((Object[])values)[4])).toList())
-                        .build()
-                )
-                .toList();
+        List<UserBoardItemViewDTO> board = this.repo.findAll().stream()
+                .map(UserBoardItemViewDTO::create)
+                .sorted(Comparator.comparingInt(UserBoardItemViewDTO::getId))
+                .collect(Collectors.toList());
 
-        return test;
+        return board;
     }
 
     public void setActive(UserActiveInputDTO request) {
@@ -63,6 +58,14 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
         user.setActive(request.isActive());
 
         this.repo.save(user);
+    }
+
+    public UserEditViewDTO getEditUser(int userId) {
+        UserEditViewDTO user = this.repo.findById(userId)
+                .map(UserEditViewDTO::create)
+                .get();
+
+        return user;
     }
 
     @Override
@@ -87,15 +90,6 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
         return AuthorityViewDTO.builder()
                 .id(authority.getId())
                 .name(authority.getName())
-                .build();
-    }
-
-    public UserEditViewDTO getEditUser(int userId) {
-        Object[][] user = this.repo.getEditUserBy(userId);
-        return UserEditViewDTO.builder()
-                .id((Integer)user[0][0])
-                .userName((String)user[0][1])
-                .fullName((String)user[0][2])
                 .build();
     }
 }
