@@ -44,9 +44,8 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
     }
 
     public List<UserBoardItemViewDTO> getBoard() {
-        List<UserBoardItemViewDTO> board = this.repo.findAll().stream()
+        List<UserBoardItemViewDTO> board = this.repo.findAllByOrderByIdAsc().stream()
                 .map(UserBoardItemViewDTO::create)
-                .sorted(Comparator.comparingInt(UserBoardItemViewDTO::getId))
                 .collect(Collectors.toList());
 
         return board;

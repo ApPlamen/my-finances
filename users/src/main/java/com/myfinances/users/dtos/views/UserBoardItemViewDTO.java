@@ -5,6 +5,7 @@ import com.myfinances.users.entities.Authority;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -21,6 +22,7 @@ public class UserBoardItemViewDTO {
 
         List<String> roles = user.getAuthorities()
                 .stream()
+                .sorted(Comparator.comparingInt(Authority::getId))
                 .map(Authority::getName)
                 .filter(r -> r.startsWith("ROLE_"))
                 .map(r -> r.replace("ROLE_", ""))
