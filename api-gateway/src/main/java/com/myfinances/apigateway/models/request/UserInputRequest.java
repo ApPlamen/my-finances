@@ -8,6 +8,7 @@ import lombok.Setter;
 public class UserInputRequest extends InputRequest {
 
     private String userName;
+    private String fullName;
     private String password;
 
 }

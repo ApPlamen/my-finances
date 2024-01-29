@@ -1,11 +1,13 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
 import { UsersService } from '../../services/users.service';
 import { UsersViewModel } from '../../viewmodels/user.viewmodel';
 import { JoinPipe } from 'src/app/shared/pipes/join.pipe';
 import { UserActiveModel } from '../../models/user-active.model';
+import { UsersStoreService } from '../../store/users.store.service';
+import { CreateEditUserComponent } from '../../dialogs/create-edit-user/create-edit-user.component';
 
 @Component({
   templateUrl: './board-users.component.html',
@@ -32,7 +34,8 @@ export class BoardUsersComponent implements OnInit {
   ];
 
   constructor(private usersService: UsersService,
-              // private modalService: NgbModal,
+              private usersStoreService: UsersStoreService,
+              private modalService: NgbModal,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -48,12 +51,12 @@ export class BoardUsersComponent implements OnInit {
   }
 
   openCreate(): void {
-    // this.usersStoreService.setUserId = null;
+    this.usersStoreService.setUserId = null;
     this.openEditModal();
   }
 
-  openEdit(userId: string): void {
-    // this.usersStoreService.setUserId = userId;
+  openEdit(userId: number): void {
+    this.usersStoreService.setUserId = userId;
     this.openEditModal();
   }
 
@@ -71,9 +74,9 @@ export class BoardUsersComponent implements OnInit {
   }
 
   private openEditModal() {
-    // this.modalService.open(CreateEditUserComponent, {size: 'lg'})
-    //   .closed
-    //   .subscribe(_ => this.fillData());
+    this.modalService.open(CreateEditUserComponent, {size: 'lg'})
+      .closed
+      .subscribe(_ => this.fillData());
   }
 
   private fillData(): void {

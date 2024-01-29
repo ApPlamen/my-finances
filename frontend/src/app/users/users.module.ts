@@ -4,13 +4,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { BoardUsersComponent } from './components/board-users/board-users.component';
-// import { StoreModule } from '@ngrx/store';
-// import { companyRecuder } from './store/company.store.reducer';
+import { StoreModule } from '@ngrx/store';
+import { usersRecuder } from './store/users.store.reducer';
 import { UsersRoutingModule } from './users-routing.module';
+import { CreateEditUserComponent } from './dialogs/create-edit-user/create-edit-user.component';
 
 @NgModule({
   declarations: [
     BoardUsersComponent,
+    CreateEditUserComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,7 @@ import { UsersRoutingModule } from './users-routing.module';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    // StoreModule.forFeature('company', companyRecuder),
+    StoreModule.forFeature('users', usersRecuder),
   ],
   exports: [
   ],

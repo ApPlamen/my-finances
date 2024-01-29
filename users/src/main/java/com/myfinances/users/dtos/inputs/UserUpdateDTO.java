@@ -9,6 +9,7 @@ import lombok.Setter;
 public class UserUpdateDTO extends UpdateDTO<User, Integer> {
 
     private String userName;
+    private String fullName;
     private String password;
     private boolean active;
 
@@ -16,6 +17,7 @@ public class UserUpdateDTO extends UpdateDTO<User, Integer> {
     public User toEntity(User entity) {
         entity.setId(this.getId());
         entity.setUserName(this.getUserName());
+        entity.setFullName(this.getFullName());
         entity.setPassword(this.getPassword());
         entity.setActive(this.isActive());
 
