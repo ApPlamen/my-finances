@@ -1,9 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
 import { UsersService } from '../../services/users.service';
 import { UsersViewModel } from '../../viewmodels/user.viewmodel';
+import { JoinPipe } from 'src/app/shared/pipes/join.pipe';
 
 @Component({
   templateUrl: './board-users.component.html',
@@ -21,11 +22,16 @@ export class BoardUsersComponent implements OnInit {
     {
       header: 'Full name',
       field: 'fullName',
+    },
+    {
+      header: 'Roles',
+      field: 'roles',
+      pipe: JoinPipe
     }
   ];
 
   constructor(private usersService: UsersService,
-              private modalService: NgbModal,
+              // private modalService: NgbModal,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -41,12 +47,12 @@ export class BoardUsersComponent implements OnInit {
   }
 
   openCreate(): void {
-    // this.usersStoreService.setMenuItemId = null;
+    // this.usersStoreService.setUserId = null;
     this.openEditModal();
   }
 
-  openEdit(menuItemId: string): void {
-    // this.usersStoreService.setMenuItemId = menuItemId;
+  openEdit(userId: string): void {
+    // this.usersStoreService.setUserId = userId;
     this.openEditModal();
   }
 

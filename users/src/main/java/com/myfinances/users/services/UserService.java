@@ -4,15 +4,18 @@ import com.myfinances.users.dtos.inputs.RegisterInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthorityViewDTO;
+import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.Authority;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
@@ -68,5 +71,20 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .id(authority.getId())
                 .name(authority.getName())
                 .build();
+    }
+
+    public List<UserBoardItemViewDTO> getBoard() {
+        List<UserBoardItemViewDTO> test = this.repo.getBoard().stream()
+                .map(values -> UserBoardItemViewDTO.builder()
+                        .id((Integer) ((Object[])values)[0])
+                        .userName((String) ((Object[])values)[1])
+                        .fullName((String) ((Object[])values)[2])
+                        .active((Boolean) ((Object[])values)[3])
+                        .roles(Arrays.stream((String[])(((Object[])values)[4])).toList())
+                        .build()
+                )
+                .toList();
+
+        return test;
     }
 }

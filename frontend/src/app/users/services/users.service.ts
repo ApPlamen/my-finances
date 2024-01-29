@@ -14,7 +14,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUserBoard(): Observable<UsersViewModel[]> {
-    return this.http.get<UsersViewModel[]>(BASE_URL + '/get-all');
+    return this.http.get<UsersViewModel[]>(BASE_URL + '/board');
   }
 
   deleteUser(userId: string): Observable<void> {

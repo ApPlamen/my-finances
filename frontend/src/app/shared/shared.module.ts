@@ -11,6 +11,7 @@ import { SimpleTableComponent } from './components/simple-table/simple-table.com
 import { TextareaComponent } from './components/textarea/textarea.component';
 // import { ManageRolesComponent } from './dialogs/manage-roles/manage-roles.component';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { JoinPipe } from './pipes/join.pipe';
 // import { sharedRecuder } from './store/shared.store.reducer';
 
 
@@ -41,6 +42,7 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
   ],
   providers: [
     authInterceptorProviders,
+    JoinPipe,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

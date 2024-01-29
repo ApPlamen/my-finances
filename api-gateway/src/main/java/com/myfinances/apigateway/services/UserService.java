@@ -4,10 +4,12 @@ import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.models.request.RegisterRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
+import com.myfinances.apigateway.models.response.UserBoardItemResponse;
 import com.myfinances.apigateway.models.response.UserViewResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +34,14 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
                 .body(registerRequest)
                 .retrieve()
                 .toBodilessEntity();
+    }
+
+    public List<UserBoardItemResponse> getBoard() {
+        List<UserBoardItemResponse> result = restClient.get()
+                .uri("/board")
+                .retrieve()
+                .body(List.class);
+
+        return result;
     }
 }

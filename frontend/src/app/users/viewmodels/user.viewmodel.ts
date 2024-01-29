@@ -1,5 +1,7 @@
 export class UsersViewModel {
-  id: string;
+  id: number;
   userName: string;
   fullname: string;
+  active: boolean;
+  roles: string[];
 }
