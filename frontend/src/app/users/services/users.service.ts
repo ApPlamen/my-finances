@@ -20,7 +20,7 @@ export class UsersService {
   }
 
   getUser(userId: number): Observable<UserModel> {
-    return this.http.get<UserModel>(BASE_URL + '/get/' + userId);
+    return this.http.get<UserModel>(BASE_URL + '/get-edit/' + userId);
   }
 
   saveUser(model: UserModel): Observable<void> {

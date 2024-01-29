@@ -5,6 +5,7 @@ import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.models.response.UserBoardItemResponse;
+import com.myfinances.apigateway.models.response.UserEditViewResponse;
 import com.myfinances.apigateway.models.response.UserViewResponse;
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.UserService;
@@ -36,5 +37,11 @@ public class UserController extends CRUDController<User, Integer, UserInputReque
     @PostMapping("set-active")
     public void setActive(@RequestBody UserActiveRequest request) {
         this.service.setActive(request);
+    }
+
+    @GetMapping("get-edit/{userId}")
+    public ResponseEntity<UserEditViewResponse> getById(@PathVariable int userId) {
+        UserEditViewResponse response = this.service.getEditUser(userId);
+        return ResponseEntity.ok(response);
     }
 }

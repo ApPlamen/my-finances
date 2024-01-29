@@ -6,6 +6,7 @@ import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthorityViewDTO;
 import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
+import com.myfinances.users.dtos.views.UserEditViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.Authority;
 import com.myfinances.users.entities.User;
@@ -86,6 +87,15 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
         return AuthorityViewDTO.builder()
                 .id(authority.getId())
                 .name(authority.getName())
+                .build();
+    }
+
+    public UserEditViewDTO getEditUser(int userId) {
+        Object[][] user = this.repo.getEditUserBy(userId);
+        return UserEditViewDTO.builder()
+                .id((Integer)user[0][0])
+                .userName((String)user[0][1])
+                .fullName((String)user[0][2])
                 .build();
     }
 }

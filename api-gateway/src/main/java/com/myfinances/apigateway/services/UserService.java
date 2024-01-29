@@ -6,6 +6,7 @@ import com.myfinances.apigateway.models.request.UserActiveRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.models.response.UserBoardItemResponse;
+import com.myfinances.apigateway.models.response.UserEditViewResponse;
 import com.myfinances.apigateway.models.response.UserViewResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,14 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
                 .body(request)
                 .retrieve()
                 .toBodilessEntity();
+    }
+
+    public UserEditViewResponse getEditUser(int userId) {
+        UserEditViewResponse result = restClient.get()
+                .uri("/get-edit/" + userId)
+                .retrieve()
+                .body(UserEditViewResponse.class);
+
+        return result;
     }
 }

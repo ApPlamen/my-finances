@@ -5,6 +5,7 @@ import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
+import com.myfinances.users.dtos.views.UserEditViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.services.UserService;
@@ -50,5 +51,11 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     @PostMapping("set-active")
     public void setActive(@RequestBody UserActiveInputDTO request) {
         this.service.setActive(request);
+    }
+
+    @GetMapping("get-edit/{userId}")
+    public ResponseEntity<UserEditViewDTO> getById(@PathVariable int userId) {
+        UserEditViewDTO response = this.service.getEditUser(userId);
+        return ResponseEntity.ok(response);
     }
 }
