@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
@@ -42,10 +41,26 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
         this.repo.save(newUser);
     }
 
-    @Override
-    public void deleteById(Integer userId) {
-        User user = this.repo.findById(userId).get();
-        user.setActive(false);
+    public List<UserBoardItemViewDTO> getBoard() {
+        List<UserBoardItemViewDTO> test = this.repo.getBoard().stream()
+                .map(values -> UserBoardItemViewDTO.builder()
+                        .id((Integer) ((Object[])values)[0])
+                        .userName((String) ((Object[])values)[1])
+                        .fullName((String) ((Object[])values)[2])
+                        .active((Boolean) ((Object[])values)[3])
+                        .roles(Arrays.stream((String[])(((Object[])values)[4])).toList())
+                        .build()
+                )
+                .toList();
+
+        return test;
+    }
+
+    public void setActive(UserActiveInputDTO request) {
+        User user = this.repo.findById(request.getUserId()).get();
+
+        user.setActive(request.isActive());
+
         this.repo.save(user);
     }
 
@@ -72,28 +87,5 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .id(authority.getId())
                 .name(authority.getName())
                 .build();
-    }
-
-    public List<UserBoardItemViewDTO> getBoard() {
-        List<UserBoardItemViewDTO> test = this.repo.getBoard().stream()
-                .map(values -> UserBoardItemViewDTO.builder()
-                        .id((Integer) ((Object[])values)[0])
-                        .userName((String) ((Object[])values)[1])
-                        .fullName((String) ((Object[])values)[2])
-                        .active((Boolean) ((Object[])values)[3])
-                        .roles(Arrays.stream((String[])(((Object[])values)[4])).toList())
-                        .build()
-                )
-                .toList();
-
-        return test;
-    }
-
-    public void setActive(UserActiveInputDTO request) {
-        User user = this.repo.findById(request.getUserId()).get();
-
-        user.setActive(request.isActive());
-
-        this.repo.save(user);
     }
 }
