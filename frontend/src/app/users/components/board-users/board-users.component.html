@@ -24,18 +24,16 @@
                 label="deactive"
                 iconName="person-dash-fill"
                 [hideLabelOnSmall]="true"
-                class="disabled"
                 *ngIf="dataItem.active"
-                (clicked)="delete(dataItem.id)">
+                (clicked)="setActive(dataItem.id, false)">
     </tmc-button>
 
     <tmc-button design="primary"
                 label="Active"
                 iconName="person-check-fill"
                 [hideLabelOnSmall]="true"
-                class="disabled"
                 *ngIf="!dataItem.active"
-                (clicked)="delete(dataItem.id)">
+                (clicked)="setActive(dataItem.id, true)">
     </tmc-button>
   </div>
 </ng-template>

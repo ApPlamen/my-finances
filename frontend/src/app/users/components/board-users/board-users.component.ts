@@ -5,6 +5,7 @@ import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
 import { UsersService } from '../../services/users.service';
 import { UsersViewModel } from '../../viewmodels/user.viewmodel';
 import { JoinPipe } from 'src/app/shared/pipes/join.pipe';
+import { UserActiveModel } from '../../models/user-active.model';
 
 @Component({
   templateUrl: './board-users.component.html',
@@ -56,8 +57,13 @@ export class BoardUsersComponent implements OnInit {
     this.openEditModal();
   }
 
-  delete(userId: string): void {
-    this.usersService.deleteUser(userId)
+  setActive(userId: number, active: boolean): void {
+    const model: UserActiveModel = {
+      userId: userId,
+      active: active
+    }
+
+    this.usersService.setActive(model)
       .subscribe(_ => {
         this.toastr.success('Success!');
         this.fillData();

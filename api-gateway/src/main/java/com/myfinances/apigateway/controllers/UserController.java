@@ -1,5 +1,6 @@
 package com.myfinances.apigateway.controllers;
 
+import com.myfinances.apigateway.models.request.UserActiveRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
@@ -30,5 +31,10 @@ public class UserController extends CRUDController<User, Integer, UserInputReque
     public ResponseEntity<List<UserBoardItemResponse>> getBoard() {
         List<UserBoardItemResponse> response = this.service.getBoard();
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("set-active")
+    public void setActive(@RequestBody UserActiveRequest request) {
+        this.service.setActive(request);
     }
 }

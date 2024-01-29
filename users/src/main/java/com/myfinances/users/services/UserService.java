@@ -1,6 +1,7 @@
 package com.myfinances.users.services;
 
 import com.myfinances.users.dtos.inputs.RegisterInputDTO;
+import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthorityViewDTO;
@@ -86,5 +87,13 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .toList();
 
         return test;
+    }
+
+    public void setActive(UserActiveInputDTO request) {
+        User user = this.repo.findById(request.getUserId()).get();
+
+        user.setActive(request.isActive());
+
+        this.repo.save(user);
     }
 }

@@ -2,6 +2,7 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.User;
 import com.myfinances.apigateway.models.request.RegisterRequest;
+import com.myfinances.apigateway.models.request.UserActiveRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
 import com.myfinances.apigateway.models.response.UserBoardItemResponse;
@@ -43,5 +44,13 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
                 .body(List.class);
 
         return result;
+    }
+
+    public void setActive(UserActiveRequest request) {
+        restClient.post()
+                .uri("/set-active")
+                .body(request)
+                .retrieve()
+                .toBodilessEntity();
     }
 }

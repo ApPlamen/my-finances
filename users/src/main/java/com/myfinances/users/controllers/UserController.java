@@ -1,6 +1,7 @@
 package com.myfinances.users.controllers;
 
 import com.myfinances.users.dtos.inputs.RegisterInputDTO;
+import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
@@ -44,5 +45,10 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     public ResponseEntity<List<UserBoardItemViewDTO>> getBoard() {
         List<UserBoardItemViewDTO> response = this.service.getBoard();
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("set-active")
+    public void setActive(@RequestBody UserActiveInputDTO request) {
+        this.service.setActive(request);
     }
 }
