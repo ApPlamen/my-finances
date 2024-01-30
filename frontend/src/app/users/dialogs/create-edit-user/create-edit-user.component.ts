@@ -22,7 +22,8 @@ export class CreateEditUserComponent implements OnInit {
       userId => {
         if ( userId ) {
           this.isNew = false;
-          this.usersService.getUser(userId).subscribe( user => this.userForm.setModel(user) );
+          this.usersService.getEditUser(userId)
+            .subscribe( user => this.userForm.setModel(user) );
         }
       }
     );
@@ -30,7 +31,7 @@ export class CreateEditUserComponent implements OnInit {
 
   onSubmit(): void {
     if (this.userForm.formGroup.valid) {
-      this.usersService.saveUser(this.userForm.formGroup.value)
+      this.usersService.saveEditUser(this.userForm.formGroup.value)
         .subscribe(_ => {
           this.toastr.success('Success!');
           this.activeModalService.close();

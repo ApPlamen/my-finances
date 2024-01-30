@@ -1,5 +1,6 @@
 package com.myfinances.users.services;
 
+import com.myfinances.users.dtos.inputs.CreateEditUserInputDTO;
 import com.myfinances.users.dtos.inputs.RegisterInputDTO;
 import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
@@ -65,6 +66,11 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
                 .get();
 
         return user;
+    }
+
+    public void createEditUser(CreateEditUserInputDTO request) {
+        User user = request.getId().isPresent() ? this.repo.findById(request.getId().get()).get() : new User();
+        this.repo.save(request.toEntity(user));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.models.request.CreateEditUserRequest;
 import com.myfinances.apigateway.models.request.RegisterRequest;
 import com.myfinances.apigateway.models.request.UserActiveRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
@@ -62,5 +63,13 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
                 .body(UserEditViewResponse.class);
 
         return result;
+    }
+
+    public void createEditUser(CreateEditUserRequest request) {
+        restClient.post()
+                .uri("/create-edit-user")
+                .body(request)
+                .retrieve()
+                .toBodilessEntity();
     }
 }

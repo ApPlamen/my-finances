@@ -1,5 +1,6 @@
 package com.myfinances.apigateway.controllers;
 
+import com.myfinances.apigateway.models.request.CreateEditUserRequest;
 import com.myfinances.apigateway.models.request.UserActiveRequest;
 import com.myfinances.apigateway.models.request.UserInputRequest;
 import com.myfinances.apigateway.models.request.UserUpdateRequest;
@@ -43,5 +44,10 @@ public class UserController extends CRUDController<User, Integer, UserInputReque
     public ResponseEntity<UserEditViewResponse> getById(@PathVariable int userId) {
         UserEditViewResponse response = this.service.getEditUser(userId);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("create-edit-user")
+    public void createEditUser(@RequestBody CreateEditUserRequest request) {
+        this.service.createEditUser(request);
     }
 }

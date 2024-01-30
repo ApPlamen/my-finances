@@ -1,5 +1,6 @@
 package com.myfinances.users.controllers;
 
+import com.myfinances.users.dtos.inputs.CreateEditUserInputDTO;
 import com.myfinances.users.dtos.inputs.RegisterInputDTO;
 import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
@@ -57,5 +58,10 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     public ResponseEntity<UserEditViewDTO> getById(@PathVariable int userId) {
         UserEditViewDTO response = this.service.getEditUser(userId);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("create-edit-user")
+    public void createEditUser(@RequestBody CreateEditUserInputDTO request) {
+        this.service.createEditUser(request);
     }
 }

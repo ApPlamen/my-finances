@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UsersViewModel } from '../viewmodels/user.viewmodel';
 import { UserActiveModel } from '../models/user-active.model';
-import { UserModel } from '../models/user.model';
+import { CreateEditUserModel } from '../models/create-edit-user.model';
 
 const CONTROLER_URL = 'users';
 const BASE_URL = environment.apiUrl + CONTROLER_URL;
@@ -19,12 +19,12 @@ export class UsersService {
     return this.http.get<UsersViewModel[]>(BASE_URL + '/board');
   }
 
-  getUser(userId: number): Observable<UserModel> {
-    return this.http.get<UserModel>(BASE_URL + '/get-edit/' + userId);
+  getEditUser(userId: number): Observable<CreateEditUserModel> {
+    return this.http.get<CreateEditUserModel>(BASE_URL + '/get-edit/' + userId);
   }
 
-  saveUser(model: UserModel): Observable<void> {
-    return this.http.put<void>(BASE_URL + '/update', model);
+  saveEditUser(model: CreateEditUserModel): Observable<void> {
+    return this.http.post<void>(BASE_URL + '/create-edit-user', model);
   }
 
   setActive(model: UserActiveModel): Observable<void> {
