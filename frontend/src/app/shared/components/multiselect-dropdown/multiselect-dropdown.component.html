@@ -1,15 +1,16 @@
 <div class="mb-3">
     <div class="form-floating" (click)="toggleCheckboxArea()">
-        <select [id]="id" class="form-select">
+        <select [id]="id"
+                class="form-select {{ displayError && getErrorMessage() ? 'is-invalid' : '' }}">
             <option>{{getSelectedItemsDisplayValue}}</option>
         </select>
         <label [for]="id"
-            [hidden]="!label"
-            class="form-label">
+               [hidden]="!label"
+               class="form-label">
             {{ label }}
         </label>
         <div class="invalid-feedback"
-            [class.d-none]="">
+             [class.d-none]="">
             {{ getErrorMessage() }}
         </div>
         <div class="overSelect"></div>

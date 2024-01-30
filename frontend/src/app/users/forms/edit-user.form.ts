@@ -13,7 +13,7 @@ export class EditUserForm extends BaseFormModel<CreateEditUserModel> {
       userName: ['', Validators.required],
       fullName: ['', Validators.required],
       newPassword: ['', Validators.minLength(6)],
-      roles: [''],
+      roles: [[], Validators.required],
     });
   }
 }

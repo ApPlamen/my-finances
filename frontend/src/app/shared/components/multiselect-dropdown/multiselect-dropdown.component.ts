@@ -13,12 +13,17 @@ import { CustomControlDirective } from '../../services/base/custom-control.direc
     @Input() label = '';
 
     checkboxStatusChange(newValue: any): void {
-        if(this.value.includes(newValue)) {
-            this.value = this.value.filter((i: any) => i != newValue)
+        var values = this.value;
+
+        const index = values.indexOf(newValue);
+        if(index > -1) {
+            values.splice(index, 1);
         }
         else {
-            this.value.push(newValue);
+            values.push(newValue);
         }
+
+        this.value = values;
     }
 
     toggleCheckboxArea(): void {
