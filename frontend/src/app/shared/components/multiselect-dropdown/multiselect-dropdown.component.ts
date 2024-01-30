@@ -28,7 +28,8 @@ import { MultiselectDropdown } from '../../models/multiselect-dropdown.model';
     }
 
     get getSelectedItemsDisplayValue() {
-        return this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
+        var selected = this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
+        return selected ? selected : "No option has been selected";
     }
   }
   
