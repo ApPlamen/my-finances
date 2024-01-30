@@ -3,6 +3,7 @@ package com.myfinances.apigateway.models.request;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Optional;
 
 @Getter
@@ -12,4 +13,5 @@ public class CreateEditUserRequest {
     private String userName;
     private String fullName;
     private String newPassword;
+    private List<Integer> roles;
 }

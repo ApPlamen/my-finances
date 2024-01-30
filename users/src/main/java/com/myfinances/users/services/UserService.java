@@ -14,6 +14,7 @@ import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -69,7 +70,12 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
 
     public void createEditUser(CreateEditUserInputDTO request) {
         User user = request.getId().isPresent() ? this.repo.findById(request.getId().get()).get() : new User();
-        this.repo.save(request.toEntity(user));
+        User entity = request.toEntity(user);
+
+        List<Authority> authorities = authorityService.findAllById(request.getRoles());
+        entity.setAuthorities(new HashSet<>(authorities));
+
+        this.repo.save(entity);
     }
 
     @Override

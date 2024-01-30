@@ -36,4 +36,8 @@ public class AuthorityService {
 
         return options;
     }
+
+    public List<Authority> findAllById(List<Integer> ids) {
+        return this.repo.findAllById(ids);
+    }
 }
