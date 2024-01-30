@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { EditUserForm } from '../../forms/edit-user.form';
 import { UsersService } from '../../services/users.service';
 import { UsersStoreService } from '../../store/users.store.service';
+import { AuthoritiesService } from '../../services/authorities.service';
+import { MultiselectDropdown } from 'src/app/shared/models/multiselect-dropdown.model';
 
 @Component({
   templateUrl: './create-edit-user.component.html',
@@ -11,9 +13,10 @@ import { UsersStoreService } from '../../store/users.store.service';
 export class CreateEditUserComponent implements OnInit {
   isNew = true;
   userForm: EditUserForm = new EditUserForm();
-  roles = [{value: 1, displayValue: "Option 1", checked: true}, {value: 2, displayValue: "Option 2", checked: false}]
+  roles: MultiselectDropdown[]
 
   constructor(private usersService: UsersService,
+              private authoritiesService: AuthoritiesService,
               private usersStoreService: UsersStoreService,
               private activeModalService: NgbActiveModal,
               private toastr: ToastrService) { }
@@ -28,6 +31,9 @@ export class CreateEditUserComponent implements OnInit {
         }
       }
     );
+
+    this.authoritiesService.getRolesOptions()
+      .subscribe(rolesOptions => this.roles = rolesOptions)
   }
 
   onSubmit(): void {
