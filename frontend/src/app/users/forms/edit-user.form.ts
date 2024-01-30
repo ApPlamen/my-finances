@@ -4,7 +4,7 @@ import { BaseFormModel } from 'src/app/shared/models/base-form.model';
 import { CreateEditUserModel } from '../models/create-edit-user.model';
 
 @Injectable()
-export class UserForm extends BaseFormModel<CreateEditUserModel> {
+export class EditUserForm extends BaseFormModel<CreateEditUserModel> {
   constructor() {
     super();
 
@@ -13,6 +13,7 @@ export class UserForm extends BaseFormModel<CreateEditUserModel> {
       userName: ['', Validators.required],
       fullName: ['', Validators.required],
       newPassword: ['', Validators.minLength(6)],
+      roles: [''],
     });
   }
 }

@@ -1,18 +1,24 @@
 import { Component, Input } from '@angular/core';
 import { MultiselectDropdown } from '../../models/multiselect-dropdown.model';
+import { CustomControlDirective } from '../../services/base/custom-control.directive';
 
 @Component({
     selector: 'tmc-multiselect-dropdown',
     templateUrl: './multiselect-dropdown.component.html',
     styleUrl: './multiselect-dropdown.component.css',
   })
-  export class MultiselectDropdownComponent {
+  export class MultiselectDropdownComponent extends CustomControlDirective {
     @Input() items: MultiselectDropdown[];
     @Input() menuHidden: boolean = true;
+    @Input() label = '';
 
-    checkboxStatusChange(value: any): void {
-        var item = this.items.find(i => i.value === value);
-        item.checked = !item.checked;
+    checkboxStatusChange(newValue: any): void {
+        if(this.value.includes(newValue)) {
+            this.value = this.value.filter((i: any) => i != newValue)
+        }
+        else {
+            this.value.push(newValue);
+        }
     }
 
     toggleCheckboxArea(): void {
@@ -24,12 +30,16 @@ import { MultiselectDropdown } from '../../models/multiselect-dropdown.model';
     }
 
     get getSelectedItems() {
-        return this.items.filter(i => i.checked);
+        return this.items.filter(item => this.value.includes(item.value));
     }
 
     get getSelectedItemsDisplayValue() {
-        var selected = this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
-        return selected ? selected : "No option has been selected";
+        var selectedItems = this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
+        return selectedItems ? selectedItems : "No option has been selected";
+    }
+
+    isItemChecked(value: any) {
+        return this.value.includes(value);
     }
   }
   

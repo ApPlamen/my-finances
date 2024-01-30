@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { UserForm } from '../../forms/user.form';
+import { EditUserForm } from '../../forms/edit-user.form';
 import { UsersService } from '../../services/users.service';
 import { UsersStoreService } from '../../store/users.store.service';
 
@@ -10,7 +10,8 @@ import { UsersStoreService } from '../../store/users.store.service';
 })
 export class CreateEditUserComponent implements OnInit {
   isNew = true;
-  userForm: UserForm = new UserForm();
+  userForm: EditUserForm = new EditUserForm();
+  roles = [{value: 1, displayValue: "Option 1", checked: true}, {value: 2, displayValue: "Option 2", checked: false}]
 
   constructor(private usersService: UsersService,
               private usersStoreService: UsersStoreService,

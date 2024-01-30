@@ -3,4 +3,5 @@ export class CreateEditUserModel {
   userName: string;
   fullName: string;
   newPassword: string | null;
+  roles: number[]
 }

@@ -1,8 +1,17 @@
-<div id="myMultiselect">
-    <div id="mySelectLabel" class="selectBox" (click)="toggleCheckboxArea()">
-        <select class="form-select">
+<div class="mb-3">
+    <div class="form-floating" (click)="toggleCheckboxArea()">
+        <select [id]="id" class="form-select">
             <option>{{getSelectedItemsDisplayValue}}</option>
         </select>
+        <label [for]="id"
+            [hidden]="!label"
+            class="form-label">
+            {{ label }}
+        </label>
+        <div class="invalid-feedback"
+            [class.d-none]="">
+            {{ getErrorMessage() }}
+        </div>
         <div class="overSelect"></div>
     </div>
     <div class="list-group" [style.display]="isMenuHidden">
@@ -12,7 +21,7 @@
                        class="form-check-input me-1"
                        id="{{item.value}}"
                        (click)="checkboxStatusChange(item.value)"
-                       [checked]="item.checked"
+                       [checked]="isItemChecked(item.value)"
                        value="{{item.value}}" />
                 {{item.displayValue}}
             </label>
