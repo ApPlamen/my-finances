@@ -12,6 +12,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 // import { ManageRolesComponent } from './dialogs/manage-roles/manage-roles.component';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { JoinPipe } from './pipes/join.pipe';
+import { MultiselectDropdownComponent } from './components/multiselect-dropdown/multiselect-dropdown.component';
 // import { sharedRecuder } from './store/shared.store.reducer';
 
 
@@ -23,6 +24,7 @@ import { JoinPipe } from './pipes/join.pipe';
     TextareaComponent,
     ButtonComponent,
     NavbarComponent,
+    MultiselectDropdownComponent,
     // ManageRolesComponent,
   ],
   imports: [
@@ -39,6 +41,7 @@ import { JoinPipe } from './pipes/join.pipe';
     TextareaComponent,
     ButtonComponent,
     NavbarComponent,
+    MultiselectDropdownComponent,
   ],
   providers: [
     authInterceptorProviders,

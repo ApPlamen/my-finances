@@ -1,0 +1,20 @@
+<div id="myMultiselect">
+    <div id="mySelectLabel" class="selectBox" (click)="toggleCheckboxArea()">
+    <select class="form-select">
+        <option>{{getSelectedItemsDisplayValue}}</option>
+    </select>
+    <div class="overSelect"></div>
+    </div>
+    <div [style.display]="isMenuHidden" id="mySelectOptions">
+        <ng-template ngFor let-item [ngForOf]="items" let-i="index">
+            <label for="{{item.value}}">
+                <input type="checkbox"
+                       id="{{item.value}}"
+                       (click)="checkboxStatusChange(item.value)"
+                       [checked]="item.checked"
+                       value="{{item.value}}" />
+                       {{item.displayValue}}
+            </label>
+        </ng-template>
+    </div>
+</div>
