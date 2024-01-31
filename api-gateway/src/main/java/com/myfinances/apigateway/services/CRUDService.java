@@ -11,13 +11,13 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-public class CRUDService<Entity extends EntityModel, EntityId, InputImp extends InputRequest, UpdateImp extends UpdateRequest<EntityId>, ViewImp extends ViewResponse> {
-    protected final RestClient restClient;
+public class CRUDService<Entity extends EntityModel, EntityId, InputImp extends InputRequest, UpdateImp extends UpdateRequest<EntityId>, ViewImp extends ViewResponse>
+        extends BaseRestService{
     private final Class<Entity> entityTypeParameterClass;
     private final Class<ViewImp> viewTypeParameterClass;
 
     public CRUDService(String baseUrl, String controllerPath) {
-        restClient = RestClient.builder().baseUrl(baseUrl + controllerPath).build();
+        super(baseUrl, controllerPath);
 
         Type[] types = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments();
         this.entityTypeParameterClass = (Class<Entity>) types[0];

@@ -1,8 +1,12 @@
 package com.myfinances.users.controllers;
 
+import com.myfinances.users.dtos.inputs.CreateEditUserInputDTO;
 import com.myfinances.users.dtos.inputs.RegisterInputDTO;
+import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
+import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
+import com.myfinances.users.dtos.views.UserEditViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.services.UserService;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -36,5 +41,27 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     @PostMapping("register")
     public void register(@RequestBody RegisterInputDTO registerRequest) {
         this.service.register(registerRequest);
+    }
+
+    @GetMapping("board")
+    public ResponseEntity<List<UserBoardItemViewDTO>> getBoard() {
+        List<UserBoardItemViewDTO> response = this.service.getBoard();
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("set-active")
+    public void setActive(@RequestBody UserActiveInputDTO request) {
+        this.service.setActive(request);
+    }
+
+    @GetMapping("get-edit/{userId}")
+    public ResponseEntity<UserEditViewDTO> getById(@PathVariable int userId) {
+        UserEditViewDTO response = this.service.getEditUser(userId);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("create-edit-user")
+    public void createEditUser(@RequestBody CreateEditUserInputDTO request) {
+        this.service.createEditUser(request);
     }
 }

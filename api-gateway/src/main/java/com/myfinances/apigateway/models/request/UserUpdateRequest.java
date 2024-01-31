@@ -8,6 +8,7 @@ import lombok.Setter;
 public class UserUpdateRequest extends UpdateRequest<Integer> {
 
     private String userName;
+    private String fullName;
     private String password;
     private boolean active;
 

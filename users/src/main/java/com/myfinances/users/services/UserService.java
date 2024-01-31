@@ -1,18 +1,24 @@
 package com.myfinances.users.services;
 
+import com.myfinances.users.dtos.inputs.CreateEditUserInputDTO;
 import com.myfinances.users.dtos.inputs.RegisterInputDTO;
+import com.myfinances.users.dtos.inputs.UserActiveInputDTO;
 import com.myfinances.users.dtos.inputs.UserInputDTO;
 import com.myfinances.users.dtos.inputs.UserUpdateDTO;
 import com.myfinances.users.dtos.views.AuthorityViewDTO;
+import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
+import com.myfinances.users.dtos.views.UserEditViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.Authority;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.infrastructure.UserRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
@@ -38,11 +44,38 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
         this.repo.save(newUser);
     }
 
-    @Override
-    public void deleteById(Integer userId) {
-        User user = this.repo.findById(userId).get();
-        user.setActive(false);
+    public List<UserBoardItemViewDTO> getBoard() {
+        List<UserBoardItemViewDTO> board = this.repo.findAllByOrderByIdAsc().stream()
+                .map(UserBoardItemViewDTO::create)
+                .collect(Collectors.toList());
+
+        return board;
+    }
+
+    public void setActive(UserActiveInputDTO request) {
+        User user = this.repo.findById(request.getUserId()).get();
+
+        user.setActive(request.isActive());
+
         this.repo.save(user);
+    }
+
+    public UserEditViewDTO getEditUser(int userId) {
+        UserEditViewDTO user = this.repo.findById(userId)
+                .map(UserEditViewDTO::create)
+                .get();
+
+        return user;
+    }
+
+    public void createEditUser(CreateEditUserInputDTO request) {
+        User user = request.getId().isPresent() ? this.repo.findById(request.getId().get()).get() : new User();
+        User entity = request.toEntity(user);
+
+        List<Authority> authorities = authorityService.findAllById(request.getRoles());
+        entity.setAuthorities(new HashSet<>(authorities));
+
+        this.repo.save(entity);
     }
 
     @Override
