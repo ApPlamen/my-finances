@@ -2,6 +2,7 @@ package com.myfinances.apigateway.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myfinances.apigateway.entities.User;
+import com.myfinances.apigateway.security.ClaimAuthority;
 import com.myfinances.apigateway.security.SecurityUser;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -18,8 +19,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -51,9 +52,12 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                         .build();
                 SecurityUser securityUser = new SecurityUser(user);
 
+                List<String> authorities = claims.get("roles", List.class);
+                var authorityList = authorities.stream().map(ClaimAuthority::new).toList();
+
                 System.out.println("userName : " + userName);
                 Authentication authentication =
-                        new UsernamePasswordAuthenticationToken(securityUser, "", new ArrayList<>());
+                        new UsernamePasswordAuthenticationToken(securityUser, "", authorityList);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 

@@ -1,5 +1,6 @@
 package com.myfinances.apigateway.auth;
 
+import com.myfinances.apigateway.entities.Authority;
 import com.myfinances.apigateway.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
@@ -28,12 +30,13 @@ public class JwtUtil {
         this.jwtParser = Jwts.parser().setSigningKey(secret_key);
     }
 
-    public String createToken(User user) {
-        Claims claims = Jwts.claims().setSubject(user.getUserName()).setId(Integer.toString(user.getId()));
+    public String createToken(User user, List<String> authorities) {
         Date tokenCreateTime = new Date();
         Date tokenValidity = new Date(tokenCreateTime.getTime() + TimeUnit.MINUTES.toMillis(accessTokenValidity));
         return Jwts.builder()
-                .setClaims(claims)
+                .setSubject(user.getUserName())
+                .setId(Integer.toString(user.getId()))
+                .claim("roles", authorities)
                 .setExpiration(tokenValidity)
                 .signWith(SignatureAlgorithm.HS256, secret_key)
                 .compact();
