@@ -8,20 +8,13 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   templateUrl: './login.component.html',
 })
-export class LogInComponent implements OnInit {
-  roles: string[] = [];
+export class LogInComponent {
   logInForm: LogInForm = new LogInForm();
 
   constructor(private authService: AuthService,
               private tokenStorageService: TokenStorageService,
               private router: Router,
               private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    if (this.tokenStorageService.getToken()) {
-      this.roles = this.tokenStorageService.getUser().roles;
-    }
-  }
 
   onSubmit(): void {
     if (this.logInForm.formGroup.valid) {
@@ -40,5 +33,9 @@ export class LogInComponent implements OnInit {
 
   get isLoggedIn(): boolean {
     return this.tokenStorageService.isUserLoggedIn();
+  }
+
+  get userName(): boolean {
+    return this.tokenStorageService.getUser().userName;;
   }
 }
