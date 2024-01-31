@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LogInModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
 import { environment } from 'src/environments/environment';
@@ -19,8 +19,7 @@ export class AuthService {
     return this.http.post<LoginResponse>(BASE_URL + '/login', model);
   }
 
-  register(model: RegisterModel): Observable<void> {
-    this.http.post(BASE_URL + '/register', model);
-    return of();
+  register(model: RegisterModel): Observable<any> {
+    return this.http.post(BASE_URL + '/register', model);
   }
 }

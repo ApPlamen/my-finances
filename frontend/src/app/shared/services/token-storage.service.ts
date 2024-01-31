@@ -39,7 +39,7 @@ export class TokenStorageService {
 
   public getUserRoles(): string[] {
     const roles = this.getUser()
-      .authorities
+      ?.authorities
       ?.filter((authority: string) => authority.startsWith("ROLE_"))
       .map((authority: string) => authority.replace("ROLE_","").toLowerCase());
 
