@@ -32,6 +32,6 @@ export class RegisterComponent {
   }
 
   get userName(): string {
-    return this.tokenStorageService.getUser().userName;
+    return this.tokenStorageService.getUserName();
   }
 }

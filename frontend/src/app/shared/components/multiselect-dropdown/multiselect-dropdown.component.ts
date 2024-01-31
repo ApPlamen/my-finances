@@ -35,11 +35,11 @@ import { CustomControlDirective } from '../../services/base/custom-control.direc
     }
 
     get getSelectedItems() {
-        return this.items.filter(item => this.value.includes(item.value));
+        return this.items?.filter(item => this.value.includes(item.value));
     }
 
     get getSelectedItemsDisplayValue() {
-        const selectedItems = this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
+        const selectedItems = this.getSelectedItems?.flatMap(i => i.displayValue).join(", ");
         return selectedItems ? selectedItems : "No option has been selected";
     }
 

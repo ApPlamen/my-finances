@@ -37,6 +37,10 @@ export class TokenStorageService {
     return null;
   }
 
+  public getUserName(): string {
+    return this.getUser()?.userName;
+  }
+
   public getUserRoles(): string[] {
     const roles = this.getUser()
       ?.authorities
