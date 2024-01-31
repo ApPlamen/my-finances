@@ -47,4 +47,3 @@ import { CustomControlDirective } from '../../services/base/custom-control.direc
         return this.value.includes(value);
     }
   }
-  
