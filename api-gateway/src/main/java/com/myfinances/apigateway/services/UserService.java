@@ -40,12 +40,10 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
     }
 
     public List<UserBoardItemResponse> getBoard() {
-        List<UserBoardItemResponse> result = restClient.get()
+        return restClient.get()
                 .uri("/board")
                 .retrieve()
                 .body(List.class);
-
-        return result;
     }
 
     public void setActive(UserActiveRequest request) {
@@ -57,12 +55,10 @@ public class UserService extends CRUDService<User, Integer, UserInputRequest, Us
     }
 
     public UserEditViewResponse getEditUser(int userId) {
-        UserEditViewResponse result = restClient.get()
+        return restClient.get()
                 .uri("/get-edit/" + userId)
                 .retrieve()
                 .body(UserEditViewResponse.class);
-
-        return result;
     }
 
     public void createEditUser(CreateEditUserRequest request) {

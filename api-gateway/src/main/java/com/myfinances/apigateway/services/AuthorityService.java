@@ -13,11 +13,9 @@ public class AuthorityService extends BaseRestService {
     }
 
     public List<RolesOptionResponse> getRolesOptions() {
-        List result = restClient.get()
+        return restClient.get()
                 .uri("/options-roles")
                 .retrieve()
                 .body(List.class);
-
-        return result;
     }
 }
