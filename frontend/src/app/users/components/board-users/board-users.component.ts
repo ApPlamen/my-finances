@@ -67,7 +67,7 @@ export class BoardUsersComponent implements OnInit {
     }
 
     this.usersService.setActive(model)
-      .subscribe(_ => {
+      .subscribe(() => {
         this.toastr.success('Success!');
         this.fillData();
       });
@@ -76,7 +76,7 @@ export class BoardUsersComponent implements OnInit {
   private openEditModal() {
     this.modalService.open(CreateEditUserComponent, {size: 'lg'})
       .closed
-      .subscribe(_ => this.fillData());
+      .subscribe(() => this.fillData());
   }
 
   private fillData(): void {

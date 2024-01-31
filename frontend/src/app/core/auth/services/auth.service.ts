@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LogInModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
 import { environment } from 'src/environments/environment';
+import { LoginResponse } from '../models/login-response.model';
 
 const CONTROLER_URL = 'auth';
 const BASE_URL = environment.apiUrl + CONTROLER_URL;
@@ -14,8 +15,8 @@ const BASE_URL = environment.apiUrl + CONTROLER_URL;
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  login(model: LogInModel): Observable<any> {
-    return this.http.post(BASE_URL + '/login', model);
+  login(model: LogInModel): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(BASE_URL + '/login', model);
   }
 
   register(model: RegisterModel): Observable<any> {

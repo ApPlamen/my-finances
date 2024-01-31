@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
@@ -8,8 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   templateUrl: './register.component.html',
 })
-export class RegisterComponent implements OnInit {
-  roles: string[] = [];
+export class RegisterComponent {
   registerForm: RegisterForm = new RegisterForm();
 
   constructor(private authService: AuthService,
@@ -17,18 +16,10 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private toastr: ToastrService) { }
 
-  ngOnInit(): void {
-    if (this.tokenStorageService.getToken()) {
-      this.roles = this.tokenStorageService.getUser().roles;
-    } else {
-      this.registerForm = new RegisterForm();
-    }
-  }
-
   onSubmit(): void {
     if (this.registerForm.formGroup.valid) {
       this.authService.register(this.registerForm.model)
-        .subscribe(_ => {
+        .subscribe(() => {
           this.toastr.success('Success!');
 
           this.router.navigate(['/login']);
@@ -38,5 +29,9 @@ export class RegisterComponent implements OnInit {
 
   get isLoggedIn(): boolean {
     return this.tokenStorageService.isUserLoggedIn();
+  }
+
+  get userName(): string {
+    return this.tokenStorageService.getUserName();
   }
 }

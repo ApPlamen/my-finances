@@ -13,7 +13,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -26,7 +25,7 @@ public class AuthService {
         String userName = authentication.getName();
 
         List<String> authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+                .map(GrantedAuthority::getAuthority).toList();
 
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = User.builder()
@@ -35,7 +34,7 @@ public class AuthService {
                 .active(securityUser.isEnabled())
                 .build();
 
-        String token = jwtUtil.createToken(user);
+        String token = jwtUtil.createToken(user, authorities);
         LoginResponse loginResponse = new LoginResponse(userName, token, authorities);
         return loginResponse;
     }
