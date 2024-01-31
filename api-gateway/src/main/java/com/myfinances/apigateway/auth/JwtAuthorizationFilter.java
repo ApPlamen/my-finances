@@ -53,7 +53,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 SecurityUser securityUser = new SecurityUser(user);
 
                 List<String> authorities = claims.get("roles", List.class);
-                var authorityList = authorities.stream().map(ClaimAuthority::new).toList();
+                List<ClaimAuthority> authorityList = authorities.stream().map(ClaimAuthority::new).toList();
 
                 System.out.println("userName : " + userName);
                 Authentication authentication =
