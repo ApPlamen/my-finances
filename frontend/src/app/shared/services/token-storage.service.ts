@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserToken } from '../models/user-token.model';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -22,22 +23,22 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user: any): void {
+  public saveUser(user: UserToken): void {
     sessionStorage.removeItem(USER_KEY);
     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public getUser(): any {
+  public getUser(): UserToken {
     const user = sessionStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }
 
-    return {};
+    return null;
   }
 
   public getUserRoles(): string[] {
-    var roles = this.getUser()
+    const roles = this.getUser()
       .authorities
       ?.filter((authority: string) => authority.startsWith("ROLE_"))
       .map((authority: string) => authority.replace("ROLE_","").toLowerCase());

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
@@ -35,7 +35,7 @@ export class LogInComponent {
     return this.tokenStorageService.isUserLoggedIn();
   }
 
-  get userName(): boolean {
-    return this.tokenStorageService.getUser().userName;;
+  get userName(): string {
+    return this.tokenStorageService.getUser().userName;
   }
 }

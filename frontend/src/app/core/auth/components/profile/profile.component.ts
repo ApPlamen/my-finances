@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   onSubmit(): void {
     if (this.profileForm.formGroup.valid) {
       this.profileService.saveUserProfile(this.profileForm.formGroup.value)
-        .subscribe(_ => {
+        .subscribe(() => {
           this.fillForm();
 
           this.toastr.success('Success!');

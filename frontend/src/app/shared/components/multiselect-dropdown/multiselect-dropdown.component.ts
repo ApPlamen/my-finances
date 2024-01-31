@@ -13,7 +13,7 @@ import { CustomControlDirective } from '../../services/base/custom-control.direc
     @Input() label = '';
 
     checkboxStatusChange(newValue: any): void {
-        var values = this.value;
+        let values = this.value;
 
         const index = values.indexOf(newValue);
         if(index > -1) {
@@ -39,7 +39,7 @@ import { CustomControlDirective } from '../../services/base/custom-control.direc
     }
 
     get getSelectedItemsDisplayValue() {
-        var selectedItems = this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
+        const selectedItems = this.getSelectedItems.flatMap(i => i.displayValue).join(", ");
         return selectedItems ? selectedItems : "No option has been selected";
     }
 

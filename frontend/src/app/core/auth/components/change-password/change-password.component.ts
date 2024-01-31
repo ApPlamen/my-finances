@@ -15,7 +15,7 @@ export class ChangePasswordComponent {
   onSubmit(): void {
     if (this.changePasswordForm.formGroup.valid) {
       this.profileService.changePassword(this.changePasswordForm.formGroup.value)
-        .subscribe(_ => {
+        .subscribe(() => {
           this.changePasswordForm.clear();
 
           this.toastr.success('Success!');

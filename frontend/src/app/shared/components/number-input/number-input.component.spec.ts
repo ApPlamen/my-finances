@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 
-import { InputComponent } from './number-input.component';
+import { NumberInputComponent } from './number-input.component';
 
 describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+  let component: NumberInputComponent;
+  let fixture: ComponentFixture<NumberInputComponent>;
   let onChangeSpy: any;
   let onTouchSpy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InputComponent],
+      declarations: [NumberInputComponent],
       providers: [NgControl]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
+    fixture = TestBed.createComponent(NumberInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     onChangeSpy = spyOn(component, 'onChange');

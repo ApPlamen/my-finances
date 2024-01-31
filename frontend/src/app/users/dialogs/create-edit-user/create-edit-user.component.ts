@@ -39,7 +39,7 @@ export class CreateEditUserComponent implements OnInit {
   onSubmit(): void {
     if (this.userForm.formGroup.valid) {
       this.usersService.saveEditUser(this.userForm.formGroup.value)
-        .subscribe(_ => {
+        .subscribe(() => {
           this.toastr.success('Success!');
           this.activeModalService.close();
         });
