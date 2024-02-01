@@ -4,6 +4,7 @@ import com.myfinances.users.dtos.inputs.ChangePasswordUpdateDTO;
 import com.myfinances.users.dtos.inputs.ProfileUpdateDTO;
 import com.myfinances.users.dtos.views.ProfileViewDTO;
 import com.myfinances.users.services.ProfileService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +27,12 @@ public class ProfileController {
     }
 
     @PutMapping("")
-    public void saveProfile(@RequestBody ProfileUpdateDTO profile) {
+    public void saveProfile(@Valid @RequestBody ProfileUpdateDTO profile) {
         this.service.saveProfile(profile);
     }
 
     @PutMapping("change-password")
-    public void changePassword(@RequestBody ChangePasswordUpdateDTO passwordModel) {
+    public void changePassword(@Valid @RequestBody ChangePasswordUpdateDTO passwordModel) {
         this.service.changePassword(passwordModel);
     }
 }

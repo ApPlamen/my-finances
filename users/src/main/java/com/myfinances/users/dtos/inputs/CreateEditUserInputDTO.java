@@ -1,6 +1,7 @@
 package com.myfinances.users.dtos.inputs;
 
 import com.myfinances.users.entities.User;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,9 @@ import java.util.Optional;
 @Getter
 @Setter
 public class CreateEditUserInputDTO extends UpdateDTO<User, Optional<Integer>> {
+    @NotBlank
     private String userName;
+    @NotBlank
     private String fullName;
     private String newPassword;
     private List<Integer> roles;

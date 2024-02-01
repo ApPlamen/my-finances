@@ -10,6 +10,7 @@ import com.myfinances.users.dtos.views.UserEditViewDTO;
 import com.myfinances.users.dtos.views.UserViewDTO;
 import com.myfinances.users.entities.User;
 import com.myfinances.users.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +40,7 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     }
 
     @PostMapping("register")
-    public void register(@RequestBody RegisterInputDTO registerRequest) {
+    public void register(@Valid @RequestBody RegisterInputDTO registerRequest) {
         this.service.register(registerRequest);
     }
 
@@ -61,7 +62,7 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     }
 
     @PostMapping("create-edit-user")
-    public void createEditUser(@RequestBody CreateEditUserInputDTO request) {
+    public void createEditUser(@Valid @RequestBody CreateEditUserInputDTO request) {
         this.service.createEditUser(request);
     }
 }
