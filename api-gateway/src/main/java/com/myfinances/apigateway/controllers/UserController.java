@@ -12,6 +12,7 @@ import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +48,7 @@ public class UserController extends CRUDController<User, Integer, UserInputReque
     }
 
     @PostMapping("create-edit-user")
-    public void createEditUser(@RequestBody CreateEditUserRequest request) {
+    public void createEditUser(@Valid @RequestBody CreateEditUserRequest request) {
         this.service.createEditUser(request);
     }
 }

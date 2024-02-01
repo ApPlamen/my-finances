@@ -6,6 +6,7 @@ import com.myfinances.apigateway.models.response.ProfileResponse;
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.ProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +29,12 @@ public class ProfileController {
     }
 
     @PutMapping("")
-    public void saveProfile(@RequestBody ProfileRequest profile) {
+    public void saveProfile(@Valid @RequestBody ProfileRequest profile) {
         this.service.saveProfile(profile);
     }
 
     @PutMapping("change-password")
-    public void changePassword(@RequestBody ChangePasswordRequest passwordModel) {
+    public void changePassword(@Valid @RequestBody ChangePasswordRequest passwordModel) {
         this.service.changePassword(passwordModel);
     }
 }
