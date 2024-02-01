@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.exceptions;
+package com.myfinances.users.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
