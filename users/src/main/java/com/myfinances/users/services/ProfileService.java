@@ -27,12 +27,12 @@ public class ProfileService {
     }
 
     public void saveProfile(ProfileUpdateDTO profile) {
-        User user = this.repo.findById(profile.getId()).get();
+        User user = this.repo.findById(profile.getId()).orElseThrow();
         this.repo.save(profile.toEntity(user));
     }
 
     public void changePassword(ChangePasswordUpdateDTO passwordModel) {
-        User user = this.repo.findById(passwordModel.getId()).get();
+        User user = this.repo.findById(passwordModel.getId()).orElseThrow();
 
         if (!passwordModel.getCurrentPassword().equals(user.getPassword())) {
             throw new RuntimeException("Current password does not match the user password!");

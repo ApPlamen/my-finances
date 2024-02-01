@@ -1,5 +1,6 @@
 package com.myfinances.apigateway.models.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,9 @@ import java.util.Optional;
 @Setter
 public class CreateEditUserRequest {
     private Optional<Integer> id;
+    @NotBlank
     private String userName;
+    @NotBlank
     private String fullName;
     private String newPassword;
     private List<Integer> roles;

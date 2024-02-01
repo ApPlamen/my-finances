@@ -4,7 +4,6 @@ import com.myfinances.apigateway.entities.EntityModel;
 import com.myfinances.apigateway.models.request.InputRequest;
 import com.myfinances.apigateway.models.request.UpdateRequest;
 import com.myfinances.apigateway.models.response.ViewResponse;
-import org.springframework.web.client.RestClient;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -34,32 +33,26 @@ public class CRUDService<Entity extends EntityModel, EntityId, InputImp extends 
     }
 
     public List<ViewImp> getAll() {
-        List<ViewImp> result = restClient.get()
+        return restClient.get()
                 .uri("/get-all")
                 .retrieve()
                 .body(List.class);
-
-        return result;
     }
 
     public Entity create(InputImp body) {
-        Entity result = restClient.post()
+        return restClient.post()
                 .uri("/create")
                 .body(body)
                 .retrieve()
                 .body(entityTypeParameterClass);
-
-        return result;
     }
 
     public Entity update(UpdateImp body) {
-        Entity result = restClient.put()
+        return restClient.put()
                 .uri("/update")
                 .body(body)
                 .retrieve()
                 .body(entityTypeParameterClass);
-
-        return result;
     }
 
     public void deleteById(EntityId entityId) {

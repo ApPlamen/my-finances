@@ -1,6 +1,5 @@
 package com.myfinances.apigateway.auth;
 
-import com.myfinances.apigateway.entities.Authority;
 import com.myfinances.apigateway.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {

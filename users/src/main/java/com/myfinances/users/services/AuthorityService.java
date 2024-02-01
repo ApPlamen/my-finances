@@ -20,11 +20,11 @@ public class AuthorityService {
     }
 
     public Authority getUserAuthority() {
-        return this.getAuthority("ROLE_USER").get();
+        return this.getAuthority("ROLE_USER").orElseThrow();
     }
 
     public List<RolesOptionViewDTO> getRolesOptions() {
-        List<RolesOptionViewDTO> options = this.repo.findByNameStartingWith("ROLE_")
+        return this.repo.findByNameStartingWith("ROLE_")
                 .stream()
                 .map(a -> RolesOptionViewDTO.builder()
                         .value(a.getId())
@@ -33,8 +33,6 @@ public class AuthorityService {
                                 .toLowerCase())
                         .build()
                 ).collect(Collectors.toList());
-
-        return options;
     }
 
     public List<Authority> findAllById(List<Integer> ids) {

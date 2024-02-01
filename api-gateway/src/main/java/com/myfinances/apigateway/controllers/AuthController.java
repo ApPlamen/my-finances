@@ -6,6 +6,7 @@ import com.myfinances.apigateway.models.response.LoginResponse;
 import com.myfinances.apigateway.services.AuthService;
 import com.myfinances.apigateway.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +23,13 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping(value = "/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
         LoginResponse loginResponse = authService.login(loginRequest);
         return ResponseEntity.ok(loginResponse);
     }
 
     @PostMapping(value = "/register")
-    public void register(@RequestBody RegisterRequest registerRequest) {
+    public void register(@Valid @RequestBody RegisterRequest registerRequest) {
         userService.register(registerRequest);
     }
 }

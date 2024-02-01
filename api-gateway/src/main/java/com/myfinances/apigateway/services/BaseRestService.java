@@ -6,6 +6,8 @@ public abstract class BaseRestService {
     protected final RestClient restClient;
 
     public BaseRestService(String baseUrl, String controllerPath){
-        restClient = RestClient.builder().baseUrl(baseUrl + controllerPath).build();
+        restClient = RestClient.builder()
+                .baseUrl(baseUrl + controllerPath)
+                .build();
     }
 }

@@ -16,13 +16,14 @@ public abstract class CRUDService<Entity extends EntityModel, EntityId, InputDTO
     protected final Repo<Entity, EntityId> repo;
 
     public Optional<ViewDTOImp> getById(EntityId entityId) {
-        Optional<Entity> entity = this.repo.findById(entityId);
-        return entity.map(this::toView);
+        return this.repo.findById(entityId)
+                .map(this::toView);
     }
 
     public List<ViewDTOImp> getAll() {
-        List<Entity> entities = this.repo.findAll();
-        return entities.stream().map(this::toView).toList();
+        return this.repo.findAll().stream()
+                .map(this::toView)
+                .toList();
     }
 
     public Entity create(InputDTOImp dto) {
@@ -30,7 +31,8 @@ public abstract class CRUDService<Entity extends EntityModel, EntityId, InputDTO
     }
 
     public Entity update(UpdateDTOImp dto) {
-        Entity entity = this.repo.findById(dto.getId()).get();
+        Entity entity = this.repo.findById(dto.getId())
+                .orElseThrow();
         return this.repo.save(dto.toEntity(entity));
     }
 

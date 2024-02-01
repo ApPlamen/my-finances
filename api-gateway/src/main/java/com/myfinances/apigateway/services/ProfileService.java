@@ -25,12 +25,10 @@ public class ProfileService {
                 .getPrincipal())
                 .getId();
 
-        ProfileResponse result = restClient.get()
+        return restClient.get()
                 .uri("/" + userId)
                 .retrieve()
                 .body(ProfileResponse.class);
-
-        return result;
     }
 
     public void saveProfile(ProfileRequest profile) {
