@@ -39,7 +39,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             }
-            System.out.println("token : " + accessToken);
             Claims claims = jwtUtil.resolveClaims(request);
 
             if (claims != null & jwtUtil.validateClaims(claims)) {
@@ -55,7 +54,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 List<String> authorities = claims.get("roles", List.class);
                 List<ClaimAuthority> authorityList = authorities.stream().map(ClaimAuthority::new).toList();
 
-                System.out.println("userName : " + userName);
                 Authentication authentication =
                         new UsernamePasswordAuthenticationToken(securityUser, "", authorityList);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
