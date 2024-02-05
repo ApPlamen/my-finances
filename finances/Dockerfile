@@ -11,6 +11,6 @@ RUN ./mvnw clean install
 
 FROM sapmachine:latest
 WORKDIR /opt/app
-EXPOSE 8083
-COPY --from=builder /opt/app/target/my_finances_users_service.jar /opt/app/my_finances_users_service.jar
-ENTRYPOINT ["java","-jar","/opt/app/my_finances_users_service.jar"]
+EXPOSE 8084
+COPY --from=builder /opt/app/target/my_finances_finances_service.jar /opt/app/my_finances_finances_service.jar
+ENTRYPOINT ["java","-jar","/opt/app/my_finances_finances_service.jar"]
