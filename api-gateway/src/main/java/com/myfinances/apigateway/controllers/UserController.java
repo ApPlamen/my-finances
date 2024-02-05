@@ -1,13 +1,13 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.models.request.CreateEditUserRequest;
-import com.myfinances.apigateway.models.request.UserActiveRequest;
-import com.myfinances.apigateway.models.request.UserInputRequest;
-import com.myfinances.apigateway.models.request.UserUpdateRequest;
+import com.myfinances.apigateway.models.request.users.CreateEditUserRequest;
+import com.myfinances.apigateway.models.request.users.UserActiveRequest;
+import com.myfinances.apigateway.models.request.users.UserInputRequest;
+import com.myfinances.apigateway.models.request.users.UserUpdateRequest;
 import com.myfinances.apigateway.entities.User;
-import com.myfinances.apigateway.models.response.UserBoardItemResponse;
-import com.myfinances.apigateway.models.response.UserEditViewResponse;
-import com.myfinances.apigateway.models.response.UserViewResponse;
+import com.myfinances.apigateway.models.response.users.UserBoardItemResponse;
+import com.myfinances.apigateway.models.response.users.UserEditViewResponse;
+import com.myfinances.apigateway.models.response.users.UserViewResponse;
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

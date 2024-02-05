@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.models.response.RolesOptionResponse;
+import com.myfinances.apigateway.models.response.users.RolesOptionResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

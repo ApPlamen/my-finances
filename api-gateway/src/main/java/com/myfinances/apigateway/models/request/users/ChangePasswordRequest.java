@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.models.request;
+package com.myfinances.apigateway.models.request.users;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
