@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.models.response.RolesOptionResponse;
+import com.myfinances.apigateway.models.response.users.RolesOptionResponse;
 import com.myfinances.apigateway.services.AuthorityService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

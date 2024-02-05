@@ -1,14 +1,14 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.User;
-import com.myfinances.apigateway.models.request.CreateEditUserRequest;
-import com.myfinances.apigateway.models.request.RegisterRequest;
-import com.myfinances.apigateway.models.request.UserActiveRequest;
-import com.myfinances.apigateway.models.request.UserInputRequest;
-import com.myfinances.apigateway.models.request.UserUpdateRequest;
-import com.myfinances.apigateway.models.response.UserBoardItemResponse;
-import com.myfinances.apigateway.models.response.UserEditViewResponse;
-import com.myfinances.apigateway.models.response.UserViewResponse;
+import com.myfinances.apigateway.models.request.users.CreateEditUserRequest;
+import com.myfinances.apigateway.models.request.users.RegisterRequest;
+import com.myfinances.apigateway.models.request.users.UserActiveRequest;
+import com.myfinances.apigateway.models.request.users.UserInputRequest;
+import com.myfinances.apigateway.models.request.users.UserUpdateRequest;
+import com.myfinances.apigateway.models.response.users.UserBoardItemResponse;
+import com.myfinances.apigateway.models.response.users.UserEditViewResponse;
+import com.myfinances.apigateway.models.response.users.UserViewResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

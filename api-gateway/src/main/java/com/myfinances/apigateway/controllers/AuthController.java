@@ -1,8 +1,8 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.models.request.LoginRequest;
-import com.myfinances.apigateway.models.request.RegisterRequest;
-import com.myfinances.apigateway.models.response.LoginResponse;
+import com.myfinances.apigateway.models.request.users.LoginRequest;
+import com.myfinances.apigateway.models.request.users.RegisterRequest;
+import com.myfinances.apigateway.models.response.users.LoginResponse;
 import com.myfinances.apigateway.services.AuthService;
 import com.myfinances.apigateway.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;

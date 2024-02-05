@@ -1,10 +1,10 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.models.internal.ChangePasswordInternalRequest;
-import com.myfinances.apigateway.models.internal.ProfileInternalRequest;
-import com.myfinances.apigateway.models.request.ChangePasswordRequest;
-import com.myfinances.apigateway.models.request.ProfileRequest;
-import com.myfinances.apigateway.models.response.ProfileResponse;
+import com.myfinances.apigateway.models.internal.users.ChangePasswordInternalRequest;
+import com.myfinances.apigateway.models.internal.users.ProfileInternalRequest;
+import com.myfinances.apigateway.models.request.users.ChangePasswordRequest;
+import com.myfinances.apigateway.models.request.users.ProfileRequest;
+import com.myfinances.apigateway.models.response.users.ProfileResponse;
 import com.myfinances.apigateway.security.SecurityUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;

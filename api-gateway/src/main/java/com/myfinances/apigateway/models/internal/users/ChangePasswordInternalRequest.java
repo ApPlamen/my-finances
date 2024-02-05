@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.models.internal;
+package com.myfinances.apigateway.models.internal.users;
 
 import lombok.Builder;
 import lombok.Getter;

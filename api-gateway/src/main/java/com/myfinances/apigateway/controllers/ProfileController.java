@@ -1,8 +1,8 @@
 package com.myfinances.apigateway.controllers;
 
-import com.myfinances.apigateway.models.request.ChangePasswordRequest;
-import com.myfinances.apigateway.models.request.ProfileRequest;
-import com.myfinances.apigateway.models.response.ProfileResponse;
+import com.myfinances.apigateway.models.request.users.ChangePasswordRequest;
+import com.myfinances.apigateway.models.request.users.ProfileRequest;
+import com.myfinances.apigateway.models.response.users.ProfileResponse;
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.ProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
