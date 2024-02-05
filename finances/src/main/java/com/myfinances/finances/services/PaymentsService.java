@@ -5,7 +5,9 @@ import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
 import com.myfinances.finances.infrastructure.PaymentRepo;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputDTO, PaymentUpdateDTO, PaymentViewDTO> {
     public PaymentsService(PaymentRepo repo) {
         super(repo);
