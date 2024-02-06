@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
 import { PaymentViewModel } from '../../viewmodels/payment.viewmodel';
 import { PaymentsService } from '../../services/payments.service';
+import { FinancesStoreService } from '../../store/finances.store.service';
+import { CreateEditPaymentComponent } from '../../dialogs/create-edit-user/create-edit-payment.component';
 
 @Component({
   templateUrl: './board-payments.component.html',
@@ -25,7 +27,7 @@ export class BoardPaymentsComponent implements OnInit {
   ];
 
   constructor(private paymentsService: PaymentsService,
-              // private financesStoreService: FinancesStoreService,
+              private financesStoreService: FinancesStoreService,
               private modalService: NgbModal,
               private toastr: ToastrService) { }
 
@@ -42,19 +44,19 @@ export class BoardPaymentsComponent implements OnInit {
   }
 
   openCreate(): void {
-    // this.financesStoreService.setPaymentId = null;
+    this.financesStoreService.setPaymentId = null;
     this.openEditModal();
   }
 
   openEdit(paymentId: number): void {
-    // this.financesStoreService.setPaymentId = paymentId;
+    this.financesStoreService.setPaymentId = paymentId;
     this.openEditModal();
   }
 
   private openEditModal() {
-    // this.modalService.open(CreateEditPaymentComponent, {size: 'lg'})
-    //   .closed
-    //   .subscribe(() => this.fillData());
+    this.modalService.open(CreateEditPaymentComponent, {size: 'lg'})
+      .closed
+      .subscribe(() => this.fillData());
   }
 
   private fillData(): void {
