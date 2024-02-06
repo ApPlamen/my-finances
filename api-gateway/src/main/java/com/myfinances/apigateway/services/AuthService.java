@@ -20,7 +20,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
 
-    public LoginResponse login(LoginRequest loginRequest){
+    public LoginResponse login(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
         String userName = authentication.getName();
 

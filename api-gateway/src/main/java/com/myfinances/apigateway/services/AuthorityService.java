@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class AuthorityService extends BaseRestService {
-    AuthorityService(@Value("${users.service.baseUrl}") String baseUrl) {
+    public AuthorityService(@Value("${users.service.baseUrl}") String baseUrl) {
         super(baseUrl, "authorities");
     }
 

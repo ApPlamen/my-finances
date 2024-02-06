@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CRUDService<Entity extends EntityModel, EntityId, InputImp extends InputRequest, UpdateImp extends UpdateRequest<EntityId>, ViewImp extends ViewResponse>
-        extends BaseRestService{
+        extends BaseRestService {
     private final Class<Entity> entityTypeParameterClass;
     private final Class<ViewImp> viewTypeParameterClass;
 
