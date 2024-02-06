@@ -35,7 +35,7 @@ public class User implements EntityModel {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_authorities",
-        joinColumns = @JoinColumn(name = "userId"),
-        inverseJoinColumns = @JoinColumn(name = "authorityId"))
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "authorityId"))
     private Set<Authority> authorities;
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputRequest, PaymentUpdateRequest, PaymentViewResponse> {
-    PaymentsService(@Value("${FINANCES_SERVICE_URL}") String baseUrl) {
+    public PaymentsService(@Value("${FINANCES_SERVICE_URL}") String baseUrl) {
         super(baseUrl, "payments");
     }
 }

@@ -6,6 +6,7 @@ import com.myfinances.apigateway.models.response.users.ProfileResponse;
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.services.ProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/profile")
+@Tag(name = "Profile Controller")
 @SecurityRequirement(name = OpenAPI30Config.securitySchemeName)
 public class ProfileController {
     private final ProfileService service;

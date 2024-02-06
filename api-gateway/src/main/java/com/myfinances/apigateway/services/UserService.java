@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputRequest, UserUpdateRequest, UserViewResponse> {
 
-    UserService(@Value("${users.service.baseUrl}") String baseUrl) {
+    public UserService(@Value("${users.service.baseUrl}") String baseUrl) {
         super(baseUrl, "users");
     }
 
