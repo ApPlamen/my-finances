@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-// import { StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { FinancesRoutingModule } from './finances-routing.module';
 import { BoardPaymentsComponent } from './components/board-payments/board-payments.component';
+import { financesRecuder } from './store/finances.store.reducer';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { BoardPaymentsComponent } from './components/board-payments/board-paymen
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    // StoreModule.forFeature('finances', financesRecuder),
+    StoreModule.forFeature('finances', financesRecuder),
   ],
   exports: [
   ],
