@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { MultiselectDropdown } from 'src/app/shared/models/multiselect-dropdown.model';
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
 import { PaymentForm } from '../../forms/payment.form';
