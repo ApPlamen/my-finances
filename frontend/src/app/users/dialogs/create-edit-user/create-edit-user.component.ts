@@ -64,5 +64,5 @@ export class CreateEditUserComponent implements OnInit {
       this.userForm.formGroup.get('newPassword').removeValidators(Validators.required);
     }
     this.userForm.formGroup.get('newPassword').updateValueAndValidity();
-  };
+  }
 }

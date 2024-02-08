@@ -14,7 +14,7 @@ export class FinancesStoreService {
     return this.financesStore.select(getPaymentId);
   }
 
-  public set setPaymentId(userId: number) {
-    this.financesStore.dispatch( new FinancesActions.SetPaymentId(userId) );
+  public set setPaymentId(paymentId: number) {
+    this.financesStore.dispatch( new FinancesActions.SetPaymentId(paymentId) );
   }
 }

@@ -18,8 +18,8 @@ export class PaymentsService {
     return this.http.get<PaymentViewModel[]>(BASE_URL + '/get-all');
   }
 
-  getPayment(userId: number): Observable<PaymentModel> {
-    return this.http.get<PaymentModel>(BASE_URL + '/get/' + userId);
+  getPayment(paymentId: number): Observable<PaymentModel> {
+    return this.http.get<PaymentModel>(BASE_URL + '/get/' + paymentId);
   }
 
   savePayment(model: PaymentModel): Observable<void> {
@@ -30,7 +30,7 @@ export class PaymentsService {
     return this.http.post<void>(BASE_URL + '/create', model);
   }
 
-  deletePayment(userId: string): Observable<void> {
-    return this.http.delete<void>(BASE_URL + '/delete/' + userId);
+  deletePayment(paymentId: string): Observable<void> {
+    return this.http.delete<void>(BASE_URL + '/delete/' + paymentId);
   }
 }

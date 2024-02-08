@@ -5,7 +5,7 @@ import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
 import { PaymentViewModel } from '../../viewmodels/payment.viewmodel';
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
-import { CreateEditPaymentComponent } from '../../dialogs/create-edit-user/create-edit-payment.component';
+import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/create-edit-payment.component';
 
 @Component({
   templateUrl: './board-payments.component.html',
@@ -55,7 +55,7 @@ export class BoardPaymentsComponent implements OnInit {
 
   delete(paymentId: string): void {
     this.paymentsService.deletePayment(paymentId)
-      .subscribe(_ => {
+      .subscribe(() => {
         this.toastr.success('Success!');
         this.fillData();
       });

@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { FinancesRoutingModule } from './finances-routing.module';
 import { BoardPaymentsComponent } from './components/board-payments/board-payments.component';
 import { financesRecuder } from './store/finances.store.reducer';
-import { CreateEditPaymentComponent } from './dialogs/create-edit-user/create-edit-payment.component';
+import { CreateEditPaymentComponent } from './dialogs/create-edit-payment/create-edit-payment.component';
 
 @NgModule({
   declarations: [
