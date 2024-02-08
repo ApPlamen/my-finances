@@ -11,12 +11,12 @@ public class PaymentBoardItemViewDTO {
     private String description;
     private float amount;
 
-    public static PaymentBoardItemViewDTO create(Payment user) {
+    public static PaymentBoardItemViewDTO create(Payment payment) {
         PaymentBoardItemViewDTO dto = new PaymentBoardItemViewDTO();
 
-        dto.setId(user.getId());
-        dto.setDescription(user.getDescription());
-        dto.setAmount(user.getAmount());
+        dto.setId(payment.getId());
+        dto.setDescription(payment.getDescription());
+        dto.setAmount(payment.getAmount());
 
         return dto;
     }
