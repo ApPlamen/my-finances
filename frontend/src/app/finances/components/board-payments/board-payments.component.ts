@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
-import { PaymentViewModel } from '../../viewmodels/payment.viewmodel';
+import { PaymentBoardViewModel } from '../../viewmodels/payment-board.viewmodel';
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
 import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/create-edit-payment.component';
@@ -13,7 +13,7 @@ import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/cr
 export class BoardPaymentsComponent implements OnInit {
   @ViewChild('tableActionCellTemplate', { static: true }) tableActionCellTemplate: TemplateRef<any>;
 
-  public payments: PaymentViewModel[];
+  public payments: PaymentBoardViewModel[];
 
   public columns: SimpleTableColumn<{ [key: string]: string }>[] = [
     {
