@@ -22,7 +22,7 @@ export class CreateEditPaymentComponent implements OnInit {
       paymentId => {
         if ( paymentId ) {
           this.isNew = false;
-          this.paymentsService.getPayment(paymentId)
+          this.paymentsService.getEditPayment(paymentId)
             .subscribe( payment => this.paymentForm.setModel(payment) );
         } else {
           this.isNew = true;

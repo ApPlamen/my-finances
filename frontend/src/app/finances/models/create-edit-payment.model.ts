@@ -1,4 +1,4 @@
-export class PaymentModel {
+export class CreateEditPaymentModel {
   id: number | null;
   description: string;
   amount: number;

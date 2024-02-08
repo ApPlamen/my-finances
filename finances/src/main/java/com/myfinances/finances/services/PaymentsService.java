@@ -3,6 +3,7 @@ package com.myfinances.finances.services;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
+import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
 import com.myfinances.finances.infrastructure.PaymentRepo;
@@ -24,6 +25,12 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         return this.repo.findAllByOrderByIdAsc().stream()
                 .map(PaymentBoardItemViewDTO::create)
                 .collect(Collectors.toList());
+    }
+
+    public PaymentEditViewDTO getEditPayment(int userId) {
+        return this.repo.findById(userId)
+                .map(PaymentEditViewDTO::create)
+                .orElseThrow();
     }
 
     @Override
