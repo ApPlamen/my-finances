@@ -18,5 +18,12 @@
                 [hideLabelOnSmall]="true"
                 (clicked)="openEdit(dataItem.id)">
     </tmc-button>
+
+    <tmc-button design="danger"
+                label="Delete"
+                iconName="trash"
+                [hideLabelOnSmall]="true"
+                (clicked)="delete(dataItem.id)">
+    </tmc-button>
   </div>
 </ng-template>

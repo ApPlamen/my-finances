@@ -53,6 +53,14 @@ export class BoardPaymentsComponent implements OnInit {
     this.openEditModal();
   }
 
+  delete(paymentId: string): void {
+    this.paymentsService.deletePayment(paymentId)
+      .subscribe(_ => {
+        this.toastr.success('Success!');
+        this.fillData();
+      });
+  }
+
   private openEditModal() {
     this.modalService.open(CreateEditPaymentComponent, {size: 'lg'})
       .closed

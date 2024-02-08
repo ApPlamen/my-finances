@@ -31,6 +31,6 @@ export class PaymentsService {
   }
 
   deletePayment(userId: string): Observable<void> {
-    return this.http.delete<void>(BASE_URL + '/' + userId);
+    return this.http.delete<void>(BASE_URL + '/delete/' + userId);
   }
 }
