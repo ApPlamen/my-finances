@@ -1,11 +1,12 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.Payment;
+import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentInputRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentUpdateRequest;
-import com.myfinances.apigateway.models.response.finances.PaymentViewResponse;
 import com.myfinances.apigateway.models.response.finances.PaymentBoardItemResponse;
 import com.myfinances.apigateway.models.response.finances.PaymentEditViewResponse;
+import com.myfinances.apigateway.models.response.finances.PaymentViewResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,13 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputR
                 .uri("/get-edit/" + paymentId)
                 .retrieve()
                 .body(PaymentEditViewResponse.class);
+    }
+
+    public void createEditPayment(CreateEditPaymentRequest request) {
+        restClient.post()
+                .uri("/create-edit-payment")
+                .body(request)
+                .retrieve()
+                .toBodilessEntity();
     }
 }

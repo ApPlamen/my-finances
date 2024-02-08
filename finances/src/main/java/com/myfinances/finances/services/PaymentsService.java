@@ -1,5 +1,6 @@
 package com.myfinances.finances.services;
 
+import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
@@ -31,6 +32,13 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         return this.repo.findById(userId)
                 .map(PaymentEditViewDTO::create)
                 .orElseThrow();
+    }
+
+    public void createEditPayment(CreateEditPaymentInputDTO request) {
+        Payment user = request.getId().isPresent() ? this.repo.findById(request.getId().get()).orElse(new Payment()) : new Payment();
+        Payment entity = request.toEntity(user);
+
+        this.repo.save(entity);
     }
 
     @Override

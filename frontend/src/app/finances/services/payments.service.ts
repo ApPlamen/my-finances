@@ -22,12 +22,8 @@ export class PaymentsService {
     return this.http.get<CreateEditPaymentModel>(BASE_URL + '/get-edit/' + paymentId);
   }
 
-  savePayment(model: CreateEditPaymentModel): Observable<void> {
-    if(model.id != null){
-      return this.http.put<void>(BASE_URL + '/update', model);
-    }
-
-    return this.http.post<void>(BASE_URL + '/create', model);
+  saveEditPayment(model: CreateEditPaymentModel): Observable<void> {
+    return this.http.post<void>(BASE_URL + '/create-edit-payment', model);
   }
 
   deletePayment(paymentId: string): Observable<void> {

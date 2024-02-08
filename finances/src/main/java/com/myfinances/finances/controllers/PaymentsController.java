@@ -1,5 +1,6 @@
 package com.myfinances.finances.controllers;
 
+import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
@@ -7,9 +8,12 @@ import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
 import com.myfinances.finances.services.PaymentsService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +39,10 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
     public ResponseEntity<PaymentEditViewDTO> getById(@PathVariable int userId) {
         PaymentEditViewDTO response = this.service.getEditPayment(userId);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("create-edit-payment")
+    public void createEditPayment(@Valid @RequestBody CreateEditPaymentInputDTO request) {
+        this.service.createEditPayment(request);
     }
 }
