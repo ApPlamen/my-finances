@@ -28,15 +28,15 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
                 .collect(Collectors.toList());
     }
 
-    public PaymentEditViewDTO getEditPayment(int userId) {
-        return this.repo.findById(userId)
+    public PaymentEditViewDTO getEditPayment(int paymentId) {
+        return this.repo.findById(paymentId)
                 .map(PaymentEditViewDTO::create)
                 .orElseThrow();
     }
 
     public void createEditPayment(CreateEditPaymentInputDTO request) {
-        Payment user = request.getId().isPresent() ? this.repo.findById(request.getId().get()).orElse(new Payment()) : new Payment();
-        Payment entity = request.toEntity(user);
+        Payment payment = request.getId().isPresent() ? this.repo.findById(request.getId().get()).orElse(new Payment()) : new Payment();
+        Payment entity = request.toEntity(payment);
 
         this.repo.save(entity);
     }

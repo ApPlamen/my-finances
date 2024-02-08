@@ -35,9 +35,9 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("get-edit/{userId}")
-    public ResponseEntity<PaymentEditViewDTO> getById(@PathVariable int userId) {
-        PaymentEditViewDTO response = this.service.getEditPayment(userId);
+    @GetMapping("get-edit/{paymentId}")
+    public ResponseEntity<PaymentEditViewDTO> getById(@PathVariable int paymentId) {
+        PaymentEditViewDTO response = this.service.getEditPayment(paymentId);
         return ResponseEntity.ok(response);
     }
 
