@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { BaseFormModel } from 'src/app/shared/models/base-form.model';
-import { PaymentModel } from '../models/payment.model';
+import { CreateEditPaymentModel } from '../models/create-edit-payment.model';
 
 @Injectable()
-export class PaymentForm extends BaseFormModel<PaymentModel> {
+export class PaymentForm extends BaseFormModel<CreateEditPaymentModel> {
   constructor() {
     super();
 

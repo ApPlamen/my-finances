@@ -22,7 +22,7 @@ export class CreateEditPaymentComponent implements OnInit {
       paymentId => {
         if ( paymentId ) {
           this.isNew = false;
-          this.paymentsService.getPayment(paymentId)
+          this.paymentsService.getEditPayment(paymentId)
             .subscribe( payment => this.paymentForm.setModel(payment) );
         } else {
           this.isNew = true;
@@ -33,7 +33,7 @@ export class CreateEditPaymentComponent implements OnInit {
 
   onSubmit(): void {
     if (this.paymentForm.formGroup.valid) {
-      this.paymentsService.savePayment(this.paymentForm.formGroup.value)
+      this.paymentsService.saveEditPayment(this.paymentForm.formGroup.value)
         .subscribe(() => {
           this.toastr.success('Success!');
           this.activeModalService.close();
