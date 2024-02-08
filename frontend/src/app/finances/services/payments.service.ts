@@ -23,7 +23,11 @@ export class PaymentsService {
   }
 
   savePayment(model: PaymentModel): Observable<void> {
-    return this.http.post<void>(BASE_URL + '/', model);
+    if(model.id != null){
+      return this.http.put<void>(BASE_URL + '/update', model);
+    }
+
+    return this.http.post<void>(BASE_URL + '/create', model);
   }
 
   deletePayment(userId: string): Observable<void> {
