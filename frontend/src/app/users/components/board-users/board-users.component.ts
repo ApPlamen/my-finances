@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SimpleTableColumn } from 'src/app/shared/models/simple-table.model';
 import { UsersService } from '../../services/users.service';
-import { UsersViewModel } from '../../viewmodels/user.viewmodel';
+import { UserBoardViewModel } from '../../viewmodels/user-board.viewmodel';
 import { JoinPipe } from 'src/app/shared/pipes/join.pipe';
 import { UserActiveModel } from '../../models/user-active.model';
 import { UsersStoreService } from '../../store/users.store.service';
@@ -15,7 +15,7 @@ import { CreateEditUserComponent } from '../../dialogs/create-edit-user/create-e
 export class BoardUsersComponent implements OnInit {
   @ViewChild('tableActionCellTemplate', { static: true }) tableActionCellTemplate: TemplateRef<any>;
 
-  public users: UsersViewModel[];
+  public users: UserBoardViewModel[];
 
   public columns: SimpleTableColumn<{ [key: string]: string }>[] = [
     {

@@ -1,4 +1,4 @@
-export class UsersViewModel {
+export class UserBoardViewModel {
   id: number;
   userName: string;
   fullname: string;

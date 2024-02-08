@@ -1,4 +1,4 @@
-export class PaymentViewModel {
+export class PaymentBoardViewModel {
   id: number;
   description: string;
   amount: number;

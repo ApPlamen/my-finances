@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PaymentViewModel } from '../viewmodels/payment.viewmodel';
+import { PaymentBoardViewModel } from '../viewmodels/payment-board.viewmodel';
 import { CreateEditPaymentModel } from '../models/create-edit-payment.model';
 
 const CONTROLER_URL = 'payments';
@@ -14,8 +14,8 @@ const BASE_URL = environment.apiUrl + CONTROLER_URL;
 export class PaymentsService {
   constructor(private http: HttpClient) { }
 
-  getPaymentsBoard(): Observable<PaymentViewModel[]> {
-    return this.http.get<PaymentViewModel[]>(BASE_URL + '/board');
+  getPaymentsBoard(): Observable<PaymentBoardViewModel[]> {
+    return this.http.get<PaymentBoardViewModel[]>(BASE_URL + '/board');
   }
 
   getEditPayment(paymentId: number): Observable<CreateEditPaymentModel> {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UsersViewModel } from '../viewmodels/user.viewmodel';
+import { UserBoardViewModel } from '../viewmodels/user-board.viewmodel';
 import { UserActiveModel } from '../models/user-active.model';
 import { CreateEditUserModel } from '../models/create-edit-user.model';
 
@@ -15,8 +15,8 @@ const BASE_URL = environment.apiUrl + CONTROLER_URL;
 export class UsersService {
   constructor(private http: HttpClient) { }
 
-  getUserBoard(): Observable<UsersViewModel[]> {
-    return this.http.get<UsersViewModel[]>(BASE_URL + '/board');
+  getUserBoard(): Observable<UserBoardViewModel[]> {
+    return this.http.get<UserBoardViewModel[]>(BASE_URL + '/board');
   }
 
   getEditUser(userId: number): Observable<CreateEditUserModel> {
