@@ -15,7 +15,7 @@ export class PaymentsService {
   constructor(private http: HttpClient) { }
 
   getPaymentsBoard(): Observable<PaymentViewModel[]> {
-    return this.http.get<PaymentViewModel[]>(BASE_URL + '/get-all');
+    return this.http.get<PaymentViewModel[]>(BASE_URL + '/board');
   }
 
   getPayment(paymentId: number): Observable<PaymentModel> {
