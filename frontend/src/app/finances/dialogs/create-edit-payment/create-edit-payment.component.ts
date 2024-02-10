@@ -3,14 +3,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
-import { PaymentForm } from '../../forms/payment.form';
+import { EditPaymentForm } from '../../forms/edit-payment.form';
 
 @Component({
   templateUrl: './create-edit-payment.component.html',
 })
 export class CreateEditPaymentComponent implements OnInit {
   _isNew = true;
-  paymentForm: PaymentForm = new PaymentForm();
+  paymentForm: EditPaymentForm = new EditPaymentForm();
 
   constructor(private paymentsService: PaymentsService,
               private financesStoreService: FinancesStoreService,

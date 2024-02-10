@@ -4,7 +4,7 @@ import { BaseFormModel } from 'src/app/shared/models/base-form.model';
 import { CreateEditPaymentModel } from '../models/create-edit-payment.model';
 
 @Injectable()
-export class PaymentForm extends BaseFormModel<CreateEditPaymentModel> {
+export class EditPaymentForm extends BaseFormModel<CreateEditPaymentModel> {
   constructor() {
     super();
 
