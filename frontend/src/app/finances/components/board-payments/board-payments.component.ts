@@ -40,7 +40,7 @@ export class BoardPaymentsComponent implements OnInit {
       ...this.columns,
       {
         header: 'Income',
-        field: 'amount',
+        field: 'income',
         cellTemplate: this.tableIncomeCellTemplate
       },
       {
@@ -70,8 +70,8 @@ export class BoardPaymentsComponent implements OnInit {
       });
   }
 
-  isIncome(amount: number) {
-    return amount >= 0 ? "bi-arrow-up-right-square-fill text-success" : "bi-arrow-down-right-square-fill text-danger";
+  isIncome(income: boolean) {
+    return income ? "bi-arrow-up-right-square-fill text-success" : "bi-arrow-down-right-square-fill text-danger";
   }
 
   private openEditModal() {
