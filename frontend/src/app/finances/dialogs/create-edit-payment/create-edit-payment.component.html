@@ -12,6 +12,8 @@
     <tmc-input type="text" label="Description" placeholder="Description" formControlName="description"></tmc-input>
 
     <tmc-number-input label="Amount" placeholder="Amount" formControlName="amount"></tmc-number-input>
+
+    <tmc-dropdown label="Type" [items]="incomeTypes" placeholder="Select type" formControlName="income"></tmc-dropdown>
   </form>
 
 </div>
