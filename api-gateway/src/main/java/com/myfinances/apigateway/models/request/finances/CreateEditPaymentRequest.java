@@ -11,4 +11,5 @@ public class CreateEditPaymentRequest {
     private Optional<Integer> id;
     private String description;
     private float amount;
+    private boolean income;
 }

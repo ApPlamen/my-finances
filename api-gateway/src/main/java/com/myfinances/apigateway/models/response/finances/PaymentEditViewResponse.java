@@ -9,4 +9,5 @@ public class PaymentEditViewResponse {
     private int id;
     private String description;
     private float amount;
+    private boolean income;
 }
