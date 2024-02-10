@@ -6,11 +6,13 @@ import { PaymentBoardViewModel } from '../../viewmodels/payment-board.viewmodel'
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
 import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/create-edit-payment.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   templateUrl: './board-payments.component.html',
 })
 export class BoardPaymentsComponent implements OnInit {
+  @ViewChild('tableIncomeCellTemplate', { static: true }) tableIncomeCellTemplate: TemplateRef<any>;
   @ViewChild('tableActionCellTemplate', { static: true }) tableActionCellTemplate: TemplateRef<any>;
 
   public payments: PaymentBoardViewModel[];
@@ -23,6 +25,8 @@ export class BoardPaymentsComponent implements OnInit {
     {
       header: 'Amount',
       field: 'amount',
+      pipe: CurrencyPipe,
+      pipeArgs: ['EUR']
     }
   ];
 
@@ -34,6 +38,11 @@ export class BoardPaymentsComponent implements OnInit {
   ngOnInit(): void {
     this.columns = [
       ...this.columns,
+      {
+        header: 'Income',
+        field: 'amount',
+        cellTemplate: this.tableIncomeCellTemplate
+      },
       {
         field: 'id',
         cellTemplate: this.tableActionCellTemplate
@@ -59,6 +68,10 @@ export class BoardPaymentsComponent implements OnInit {
         this.toastr.success('Success!');
         this.fillData();
       });
+  }
+
+  isIncome(amount: number) {
+    return amount >= 0 ? "bi-arrow-up-right-square-fill text-success" : "bi-arrow-down-right-square-fill text-danger";
   }
 
   private openEditModal() {

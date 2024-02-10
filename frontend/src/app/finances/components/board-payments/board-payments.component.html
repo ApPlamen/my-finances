@@ -10,6 +10,13 @@
   <tmc-simple-table [columns]="columns" [data]="payments"></tmc-simple-table>
 </div>
 
+<ng-template #tableIncomeCellTemplate let-column="column" let-dataItem="dataItem">
+  <div class="table-actions-container btn-group gap-2">
+    <i class="bi"
+    [class]="isIncome(dataItem.amount)"></i>
+  </div>
+</ng-template>
+
 <ng-template #tableActionCellTemplate let-column="column" let-dataItem="dataItem">
   <div class="table-actions-container btn-group gap-2">
     <tmc-button design="warning"
