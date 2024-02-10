@@ -11,6 +11,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { JoinPipe } from './pipes/join.pipe';
 import { MultiselectDropdownComponent } from './components/multiselect-dropdown/multiselect-dropdown.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MultiselectDropdownComponent } from './components/multiselect-dropdown/
     ButtonComponent,
     NavbarComponent,
     MultiselectDropdownComponent,
+    DropdownComponent,
   ],
   imports: [
     RouterModule,
@@ -37,6 +39,7 @@ import { MultiselectDropdownComponent } from './components/multiselect-dropdown/
     ButtonComponent,
     NavbarComponent,
     MultiselectDropdownComponent,
+    DropdownComponent,
   ],
   providers: [
     authInterceptorProviders,
