@@ -23,6 +23,10 @@ export class BoardPaymentsComponent implements OnInit {
       field: 'description',
     },
     {
+      header: 'Payment Option',
+      field: 'paymentOption',
+    },
+    {
       header: 'Amount',
       field: 'amount',
       pipe: CurrencyPipe,

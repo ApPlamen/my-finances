@@ -5,6 +5,7 @@ import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
 import { EditPaymentForm } from '../../forms/edit-payment.form';
 import { Dropdown } from 'src/app/shared/models/dropdown.model';
+import { PaymentOptionsService } from '../../services/payment-options.service';
 
 @Component({
   templateUrl: './create-edit-payment.component.html',
@@ -12,15 +13,20 @@ import { Dropdown } from 'src/app/shared/models/dropdown.model';
 export class CreateEditPaymentComponent implements OnInit {
   _isNew = true;
   paymentForm: EditPaymentForm = new EditPaymentForm();
-  incomeTypes: Dropdown[]
+  incomeTypes: Dropdown[];
+  paymentOptions: Dropdown[];
 
   constructor(private paymentsService: PaymentsService,
+              private paymentOptionsService: PaymentOptionsService,
               private financesStoreService: FinancesStoreService,
               private activeModalService: NgbActiveModal,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.incomeTypes = [{value: true, displayValue: "Income"}, {value: false, displayValue: "Expense"}];
+
+    this.paymentOptionsService.getPaymentOptions()
+      .subscribe(paymentOptions => this.paymentOptions = paymentOptions);
 
     this.financesStoreService.getPaymentId$.subscribe(
       paymentId => {

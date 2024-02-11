@@ -12,6 +12,7 @@ public class CreateEditPaymentInputDTO extends UpdateDTO<Payment, Optional<Integ
     private String description;
     private float amount;
     private boolean income;
+    private int paymentOption;
 
     @Override
     public Payment toEntity(Payment payment) {
