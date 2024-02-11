@@ -23,6 +23,9 @@ export class CreateEditUserComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.authoritiesService.getRolesOptions()
+      .subscribe(rolesOptions => this.roles = rolesOptions);
+
     this.usersStoreService.getUserId$.subscribe(
       userId => {
         if ( userId ) {
@@ -34,9 +37,6 @@ export class CreateEditUserComponent implements OnInit {
         }
       }
     );
-
-    this.authoritiesService.getRolesOptions()
-      .subscribe(rolesOptions => this.roles = rolesOptions)
   }
 
   onSubmit(): void {
