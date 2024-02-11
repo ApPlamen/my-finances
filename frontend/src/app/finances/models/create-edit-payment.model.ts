@@ -3,4 +3,5 @@ export class CreateEditPaymentModel {
   description: string;
   amount: number;
   income: boolean;
+  paymentOption: number;
 }
