@@ -10,4 +10,5 @@ public class PaymentBoardItemResponse {
     private String description;
     private float amount;
     private boolean income;
+    private String paymentOption;
 }

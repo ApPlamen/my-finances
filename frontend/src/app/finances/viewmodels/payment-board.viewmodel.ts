@@ -3,4 +3,5 @@ export class PaymentBoardViewModel {
   description: string;
   amount: number;
   income: boolean;
+  paymentOption: string;
 }
