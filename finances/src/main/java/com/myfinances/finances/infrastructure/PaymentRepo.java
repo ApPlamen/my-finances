@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface PaymentRepo extends Repo<Payment, Integer> {
-    public List<Payment> findAllByUserId(int userId);
+    public List<Payment> findAllByUserIdOrderByIdAsc(int userId);
 }
