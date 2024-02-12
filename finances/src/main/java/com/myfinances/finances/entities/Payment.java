@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "Payments")
@@ -24,6 +25,9 @@ public class Payment implements EntityModel {
     private String description;
     @Column(name = "amount")
     private float amount;
+    @Column(name = "active")
+    @ColumnDefault("true")
+    private boolean active;
 
     @ManyToOne
     @JoinColumn(name="paymentOption")

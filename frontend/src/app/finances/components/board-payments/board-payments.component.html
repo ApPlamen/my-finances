@@ -26,6 +26,22 @@
                 (clicked)="openEdit(dataItem.id)">
     </tmc-button>
 
+    <tmc-button design="secondary"
+                label="deactive"
+                iconName="slash-circle"
+                [hideLabelOnSmall]="true"
+                *ngIf="dataItem.active"
+                (clicked)="setActive(dataItem.id, false)">
+    </tmc-button>
+
+    <tmc-button design="primary"
+                label="Active"
+                iconName="check-circle"
+                [hideLabelOnSmall]="true"
+                *ngIf="!dataItem.active"
+                (clicked)="setActive(dataItem.id, true)">
+    </tmc-button>
+
     <tmc-button design="danger"
                 label="Delete"
                 iconName="trash"

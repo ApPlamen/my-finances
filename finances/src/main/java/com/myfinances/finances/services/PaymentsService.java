@@ -1,6 +1,7 @@
 package com.myfinances.finances.services;
 
 import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
+import com.myfinances.finances.dtos.inputs.PaymentActiveInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
@@ -45,6 +46,14 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         entity.setPaymentOption(paymentOption);
 
         this.repo.save(entity);
+    }
+
+    public void setActive(PaymentActiveInputDTO request) {
+        Payment payment = this.repo.findById(request.getPaymentId()).orElseThrow();
+
+        payment.setActive(request.isActive());
+
+        this.repo.save(payment);
     }
 
     @Override

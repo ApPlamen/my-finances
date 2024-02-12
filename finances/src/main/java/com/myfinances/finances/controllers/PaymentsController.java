@@ -1,6 +1,7 @@
 package com.myfinances.finances.controllers;
 
 import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
+import com.myfinances.finances.dtos.inputs.PaymentActiveInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
@@ -44,5 +45,10 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
     @PostMapping("create-edit-payment")
     public void createEditPayment(@Valid @RequestBody CreateEditPaymentInputDTO request) {
         this.service.createEditPayment(request);
+    }
+
+    @PostMapping("set-active")
+    public void setActive(@RequestBody PaymentActiveInputDTO request) {
+        this.service.setActive(request);
     }
 }
