@@ -23,6 +23,8 @@ public class Payment implements EntityModel {
     private int id;
     @Column(name = "description")
     private String description;
+    @Column(name = "vendor")
+    private String vendor;
     @Column(name = "amount")
     private float amount;
     @Column(name = "userId")

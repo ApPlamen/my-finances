@@ -8,6 +8,7 @@ import lombok.Setter;
 public class PaymentBoardItemResponse {
     private int id;
     private String description;
+    private String vendor;
     private float amount;
     private boolean income;
     private String paymentOption;
