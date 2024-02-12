@@ -3,21 +3,31 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
-import { PaymentForm } from '../../forms/payment.form';
+import { EditPaymentForm } from '../../forms/edit-payment.form';
+import { Dropdown } from 'src/app/shared/models/dropdown.model';
+import { PaymentOptionsService } from '../../services/payment-options.service';
 
 @Component({
   templateUrl: './create-edit-payment.component.html',
 })
 export class CreateEditPaymentComponent implements OnInit {
   _isNew = true;
-  paymentForm: PaymentForm = new PaymentForm();
+  paymentForm: EditPaymentForm = new EditPaymentForm();
+  incomeTypes: Dropdown[];
+  paymentOptions: Dropdown[];
 
   constructor(private paymentsService: PaymentsService,
+              private paymentOptionsService: PaymentOptionsService,
               private financesStoreService: FinancesStoreService,
               private activeModalService: NgbActiveModal,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.incomeTypes = [{value: true, displayValue: "Income"}, {value: false, displayValue: "Expense"}];
+
+    this.paymentOptionsService.getPaymentOptions()
+      .subscribe(paymentOptions => this.paymentOptions = paymentOptions);
+
     this.financesStoreService.getPaymentId$.subscribe(
       paymentId => {
         if ( paymentId ) {

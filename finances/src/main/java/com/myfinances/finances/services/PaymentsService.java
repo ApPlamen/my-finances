@@ -7,6 +7,7 @@ import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
 import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
+import com.myfinances.finances.entities.PaymentOption;
 import com.myfinances.finances.infrastructure.PaymentRepo;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputDTO, PaymentUpdateDTO, PaymentViewDTO> {
     private final PaymentRepo repo;
+    private final PaymentOptionsService paymentOptionsService;
 
-    public PaymentsService(PaymentRepo repo) {
+    public PaymentsService(PaymentRepo repo, PaymentOptionsService paymentOptionsService) {
         super(repo);
         this.repo = repo;
+        this.paymentOptionsService = paymentOptionsService;
     }
 
     public List<PaymentBoardItemViewDTO> getBoard() {
@@ -37,6 +40,9 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
     public void createEditPayment(CreateEditPaymentInputDTO request) {
         Payment payment = request.getId().isPresent() ? this.repo.findById(request.getId().get()).orElse(new Payment()) : new Payment();
         Payment entity = request.toEntity(payment);
+
+        PaymentOption paymentOption = paymentOptionsService.findById(request.getPaymentOption());
+        entity.setPaymentOption(paymentOption);
 
         this.repo.save(entity);
     }
