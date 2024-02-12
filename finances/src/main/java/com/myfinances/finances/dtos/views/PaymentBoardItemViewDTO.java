@@ -9,6 +9,7 @@ import lombok.Setter;
 public class PaymentBoardItemViewDTO {
     private int id;
     private String description;
+    private String vendor;
     private float amount;
     private boolean income;
     private String paymentOption;
@@ -19,6 +20,7 @@ public class PaymentBoardItemViewDTO {
 
         dto.setId(payment.getId());
         dto.setDescription(payment.getDescription());
+        dto.setVendor(payment.getVendor());
         dto.setPaymentOption(payment.getPaymentOption().getDescription());
         dto.setActive(payment.isActive());
 

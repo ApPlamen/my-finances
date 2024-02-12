@@ -39,7 +39,10 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
     }
 
     public void createEditPayment(CreateEditPaymentInputDTO request) {
-        Payment payment = request.getId().isPresent() ? this.repo.findById(request.getId().get()).orElse(new Payment()) : new Payment();
+        Payment payment = request.getId().isPresent()
+                ? this.repo.findById(request.getId().get()).orElse(createNewPayment())
+                : createNewPayment();
+
         Payment entity = request.toEntity(payment);
 
         PaymentOption paymentOption = paymentOptionsService.findById(request.getPaymentOption());
@@ -63,5 +66,11 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
                 .description(payment.getDescription())
                 .amount(payment.getAmount())
                 .build();
+    }
+
+    private Payment createNewPayment() {
+        Payment newPayment = new Payment();
+        newPayment.setActive(true);
+        return newPayment;
     }
 }

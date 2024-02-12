@@ -24,6 +24,10 @@ export class BoardPaymentsComponent implements OnInit {
       field: 'description',
     },
     {
+      header: 'Vendor',
+      field: 'vendor',
+    },
+    {
       header: 'Payment option',
       field: 'paymentOption',
     },

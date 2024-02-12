@@ -10,6 +10,7 @@ import java.util.Optional;
 @Setter
 public class CreateEditPaymentInputDTO extends UpdateDTO<Payment, Optional<Integer>> {
     private String description;
+    private String vendor;
     private float amount;
     private boolean income;
     private int userId;
@@ -18,6 +19,7 @@ public class CreateEditPaymentInputDTO extends UpdateDTO<Payment, Optional<Integ
     @Override
     public Payment toEntity(Payment payment) {
         payment.setDescription(this.getDescription());
+        payment.setVendor(this.getVendor());
         payment.setUserId(this.getUserId());
 
         float amount = this.getAmount();
