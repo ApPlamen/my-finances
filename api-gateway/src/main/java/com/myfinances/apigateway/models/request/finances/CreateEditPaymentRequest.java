@@ -12,5 +12,6 @@ public class CreateEditPaymentRequest {
     private String description;
     private float amount;
     private boolean income;
+    private int userId;
     private int paymentOption;
 }

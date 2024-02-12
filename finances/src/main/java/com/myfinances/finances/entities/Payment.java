@@ -25,6 +25,8 @@ public class Payment implements EntityModel {
     private String description;
     @Column(name = "amount")
     private float amount;
+    @Column(name = "userId")
+    private int userId;
     @Column(name = "active")
     @ColumnDefault("true")
     private boolean active;

@@ -1,13 +1,12 @@
 package com.myfinances.apigateway.services;
 
+import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.internal.users.ChangePasswordInternalRequest;
 import com.myfinances.apigateway.models.internal.users.ProfileInternalRequest;
 import com.myfinances.apigateway.models.request.users.ChangePasswordRequest;
 import com.myfinances.apigateway.models.request.users.ProfileRequest;
 import com.myfinances.apigateway.models.response.users.ProfileResponse;
-import com.myfinances.apigateway.security.SecurityUser;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -20,10 +19,7 @@ public class ProfileService {
     }
 
     public ProfileResponse getProfile() {
-        int userId = ((SecurityUser) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal())
-                .getId();
+        int userId = SecurityContextHelper.getUserId();
 
         return restClient.get()
                 .uri("/" + userId)
@@ -32,10 +28,7 @@ public class ProfileService {
     }
 
     public void saveProfile(ProfileRequest profile) {
-        int userId = ((SecurityUser) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal())
-                .getId();
+        int userId = SecurityContextHelper.getUserId();
 
         ProfileInternalRequest body = ProfileInternalRequest.builder()
                 .id(userId)
@@ -50,10 +43,7 @@ public class ProfileService {
     }
 
     public void changePassword(ChangePasswordRequest passwordModel) {
-        int userId = ((SecurityUser) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal())
-                .getId();
+        int userId = SecurityContextHelper.getUserId();
 
         ChangePasswordInternalRequest body = ChangePasswordInternalRequest.builder()
                 .id(userId)

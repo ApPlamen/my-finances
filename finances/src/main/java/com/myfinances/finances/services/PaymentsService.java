@@ -26,8 +26,8 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         this.paymentOptionsService = paymentOptionsService;
     }
 
-    public List<PaymentBoardItemViewDTO> getBoard() {
-        return this.repo.findAllByOrderByIdAsc().stream()
+    public List<PaymentBoardItemViewDTO> getBoard(int userId) {
+        return this.repo.findAllByUserIdOrderByIdAsc(userId).stream()
                 .map(PaymentBoardItemViewDTO::create)
                 .collect(Collectors.toList());
     }
