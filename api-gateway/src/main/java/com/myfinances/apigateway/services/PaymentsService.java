@@ -1,6 +1,7 @@
 package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.Payment;
+import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentActiveRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentInputRequest;
@@ -20,8 +21,10 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputR
     }
 
     public List<PaymentBoardItemResponse> getBoard() {
+        int userId = SecurityContextHelper.getUserId();
+
         return restClient.get()
-                .uri("/board")
+                .uri("/board/" + userId)
                 .retrieve()
                 .body(List.class);
     }
@@ -34,6 +37,9 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputR
     }
 
     public void createEditPayment(CreateEditPaymentRequest request) {
+        int userId = SecurityContextHelper.getUserId();
+        request.setUserId(userId);
+
         restClient.post()
                 .uri("/create-edit-payment")
                 .body(request)

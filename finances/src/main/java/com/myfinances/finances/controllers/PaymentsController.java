@@ -30,9 +30,9 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
         this.service = service;
     }
 
-    @GetMapping("board")
-    public ResponseEntity<List<PaymentBoardItemViewDTO>> getBoard() {
-        List<PaymentBoardItemViewDTO> response = this.service.getBoard();
+    @GetMapping("board/{userId}")
+    public ResponseEntity<List<PaymentBoardItemViewDTO>> getBoard(@PathVariable int userId) {
+        List<PaymentBoardItemViewDTO> response = this.service.getBoard(userId);
         return ResponseEntity.ok(response);
     }
 

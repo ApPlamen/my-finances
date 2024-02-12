@@ -12,11 +12,13 @@ public class CreateEditPaymentInputDTO extends UpdateDTO<Payment, Optional<Integ
     private String description;
     private float amount;
     private boolean income;
+    private int userId;
     private int paymentOption;
 
     @Override
     public Payment toEntity(Payment payment) {
         payment.setDescription(this.getDescription());
+        payment.setUserId(this.getUserId());
 
         float amount = this.getAmount();
         if (!this.income) {
