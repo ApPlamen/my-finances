@@ -2,6 +2,7 @@ package com.myfinances.apigateway.controllers;
 
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.entities.Payment;
+import com.myfinances.apigateway.models.request.finances.PaymentActiveRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentInputRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentUpdateRequest;
 import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
@@ -49,5 +50,10 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
     @PostMapping("create-edit-payment")
     public void createEditPayment(@Valid @RequestBody CreateEditPaymentRequest request) {
         this.service.createEditPayment(request);
+    }
+
+    @PostMapping("set-active")
+    public void setActive(@RequestBody PaymentActiveRequest request) {
+        this.service.setActive(request);
     }
 }

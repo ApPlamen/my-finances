@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PaymentBoardViewModel } from '../viewmodels/payment-board.viewmodel';
 import { CreateEditPaymentModel } from '../models/create-edit-payment.model';
+import { PaymentActiveModel } from '../models/payment-active.model';
 
 const CONTROLER_URL = 'payments';
 const BASE_URL = environment.apiUrl + CONTROLER_URL;
@@ -28,5 +29,9 @@ export class PaymentsService {
 
   deletePayment(paymentId: string): Observable<void> {
     return this.http.delete<void>(BASE_URL + '/delete/' + paymentId);
+  }
+
+  setActive(model: PaymentActiveModel): Observable<void> {
+    return this.http.post<void>(BASE_URL + '/set-active', model);
   }
 }

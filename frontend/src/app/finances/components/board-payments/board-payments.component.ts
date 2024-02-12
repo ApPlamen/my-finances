@@ -7,6 +7,7 @@ import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
 import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/create-edit-payment.component';
 import { CurrencyPipe } from '@angular/common';
+import { PaymentActiveModel } from '../../models/payment-active.model';
 
 @Component({
   templateUrl: './board-payments.component.html',
@@ -68,6 +69,19 @@ export class BoardPaymentsComponent implements OnInit {
 
   delete(paymentId: string): void {
     this.paymentsService.deletePayment(paymentId)
+      .subscribe(() => {
+        this.toastr.success('Success!');
+        this.fillData();
+      });
+  }
+
+  setActive(paymentId: number, active: boolean): void {
+    const model: PaymentActiveModel = {
+      paymentId: paymentId,
+      active: active
+    }
+
+    this.paymentsService.setActive(model)
       .subscribe(() => {
         this.toastr.success('Success!');
         this.fillData();

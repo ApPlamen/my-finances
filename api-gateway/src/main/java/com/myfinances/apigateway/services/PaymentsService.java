@@ -2,6 +2,7 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.Payment;
 import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
+import com.myfinances.apigateway.models.request.finances.PaymentActiveRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentInputRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentUpdateRequest;
 import com.myfinances.apigateway.models.response.finances.PaymentBoardItemResponse;
@@ -35,6 +36,14 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputR
     public void createEditPayment(CreateEditPaymentRequest request) {
         restClient.post()
                 .uri("/create-edit-payment")
+                .body(request)
+                .retrieve()
+                .toBodilessEntity();
+    }
+
+    public void setActive(PaymentActiveRequest request) {
+        restClient.post()
+                .uri("/set-active")
                 .body(request)
                 .retrieve()
                 .toBodilessEntity();

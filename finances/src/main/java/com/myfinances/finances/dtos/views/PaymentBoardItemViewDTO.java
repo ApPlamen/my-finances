@@ -12,6 +12,7 @@ public class PaymentBoardItemViewDTO {
     private float amount;
     private boolean income;
     private String paymentOption;
+    private boolean active;
 
     public static PaymentBoardItemViewDTO create(Payment payment) {
         PaymentBoardItemViewDTO dto = new PaymentBoardItemViewDTO();
@@ -19,6 +20,7 @@ public class PaymentBoardItemViewDTO {
         dto.setId(payment.getId());
         dto.setDescription(payment.getDescription());
         dto.setPaymentOption(payment.getPaymentOption().getDescription());
+        dto.setActive(payment.isActive());
 
         float amount = payment.getAmount();
 
