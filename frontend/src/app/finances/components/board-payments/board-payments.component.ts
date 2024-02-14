@@ -6,7 +6,7 @@ import { PaymentBoardViewModel } from '../../viewmodels/payment-board.viewmodel'
 import { PaymentsService } from '../../services/payments.service';
 import { FinancesStoreService } from '../../store/finances.store.service';
 import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/create-edit-payment.component';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { PaymentActiveModel } from '../../models/payment-active.model';
 
 @Component({
@@ -36,7 +36,13 @@ export class BoardPaymentsComponent implements OnInit {
       field: 'amount',
       pipe: CurrencyPipe,
       pipeArgs: ['EUR']
-    }
+    },
+    {
+      header: 'Date',
+      field: 'dateTime',
+      pipe: DatePipe,
+      // pipeArgs: ["EEEE YYYY-MM-dd hh:mm:ss.SSS OOOO"]
+    },
   ];
 
   constructor(private paymentsService: PaymentsService,
