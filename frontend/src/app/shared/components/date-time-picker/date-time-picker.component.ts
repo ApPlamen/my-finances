@@ -100,4 +100,4 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
     public onBlur(event: Event): void {
         this.onTouch(event);
     }
-  }
+}
