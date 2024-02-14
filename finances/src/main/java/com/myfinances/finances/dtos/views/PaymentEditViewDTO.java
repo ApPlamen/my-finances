@@ -4,6 +4,8 @@ import com.myfinances.finances.entities.Payment;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class PaymentEditViewDTO {
@@ -11,6 +13,7 @@ public class PaymentEditViewDTO {
     private String description;
     private String vendor;
     private float amount;
+    private Date dateTime;
     private boolean income;
     private int paymentOption;
 
@@ -21,6 +24,7 @@ public class PaymentEditViewDTO {
         dto.setDescription(payment.getDescription());
         dto.setVendor(payment.getVendor());
         dto.setPaymentOption(payment.getPaymentOption().getId());
+        dto.setDateTime(payment.getDateTime());
 
         float amount = payment.getAmount();
 

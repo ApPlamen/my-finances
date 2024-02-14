@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "Payments")
 @Getter
@@ -27,6 +29,8 @@ public class Payment implements EntityModel {
     private String vendor;
     @Column(name = "amount")
     private float amount;
+    @Column(name = "dateTime")
+    private Timestamp dateTime;
     @Column(name = "userId")
     private int userId;
     @Column(name = "active")

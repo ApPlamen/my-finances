@@ -7,7 +7,8 @@
                [disabled]="disabled"
                (blur)="onBlur($event)"
                class="form-control {{ displayError && getErrorMessage() ? 'is-invalid' : '' }}"
-               (change)="onInputChange($event)" />
+               (change)="onInputChange($event)"
+               readonly />
         <label [for]="id"
                [hidden]="!label"
                class="form-label">
