@@ -1,5 +1,4 @@
 import { NgbTimeStruct, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-import { DatePipe } from "@angular/common";
 
 export interface NgbDateTimeStruct extends NgbDateStruct, NgbTimeStruct {}
 
