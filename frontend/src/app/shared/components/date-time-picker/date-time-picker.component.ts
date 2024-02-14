@@ -57,7 +57,7 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
 
         if (!date) {
             this.dateString = this.dateString;
-        return;
+            return;
         }
 
         if (!this.datetime) {
@@ -90,10 +90,10 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         if (!this.firstTimeAssign) {
             this.onChange(this.dateString);
         } else {
-        // Skip very first assignment to null done by Angular
-        if (this.dateString !== null) {
-            this.firstTimeAssign = false;
-        }
+            // Skip very first assignment to null done by Angular
+            if (this.dateString !== null) {
+                this.firstTimeAssign = false;
+            }
         }
     }
 
