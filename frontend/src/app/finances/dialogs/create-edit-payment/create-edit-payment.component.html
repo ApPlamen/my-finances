@@ -18,8 +18,9 @@
     <tmc-dropdown label="Type" [items]="incomeTypes" placeholder="Select type" formControlName="income"></tmc-dropdown>
 
     <tmc-dropdown label="Payment Option" [items]="paymentOptions" placeholder="Select payment Option" formControlName="paymentOption"></tmc-dropdown>
-  </form>
 
+    <app-date-time-picker name="activeEndDate" formControlName="date"></app-date-time-picker>
+  </form>
 </div>
 
 <div class="modal-footer">

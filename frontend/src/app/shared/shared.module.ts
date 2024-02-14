@@ -12,6 +12,8 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { JoinPipe } from './pipes/join.pipe';
 import { MultiselectDropdownComponent } from './components/multiselect-dropdown/multiselect-dropdown.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -24,12 +26,14 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     NavbarComponent,
     MultiselectDropdownComponent,
     DropdownComponent,
+    DateTimePickerComponent,
   ],
   imports: [
     RouterModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   exports: [
     SimpleTableComponent,
@@ -40,6 +44,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     NavbarComponent,
     MultiselectDropdownComponent,
     DropdownComponent,
+    DateTimePickerComponent,
   ],
   providers: [
     authInterceptorProviders,
