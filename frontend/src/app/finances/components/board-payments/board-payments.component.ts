@@ -41,7 +41,7 @@ export class BoardPaymentsComponent implements OnInit {
       header: 'Date',
       field: 'dateTime',
       pipe: DatePipe,
-      // pipeArgs: ["EEEE YYYY-MM-dd hh:mm:ss.SSS OOOO"]
+      pipeArgs: ["dd.MM.YYYY hh:mm:ss"]
     },
   ];
 
