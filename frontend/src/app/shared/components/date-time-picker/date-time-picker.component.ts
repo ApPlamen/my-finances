@@ -1,67 +1,42 @@
 import {
     Component,
-    OnInit,
     Input,
-    forwardRef,
-    ViewChild,
-    Injector
+    ChangeDetectorRef,
+    Optional
 } from "@angular/core";
 import {
     NgbTimeStruct,
     NgbDateStruct,
     NgbPopoverConfig,
-    NgbPopover,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-    NG_VALUE_ACCESSOR,
-    ControlValueAccessor,
     NgControl
 } from "@angular/forms";
-import { DatePipe } from "@angular/common";
-import { noop } from "rxjs";
 import { DateTimeModel } from "../../models/date-time.model";
+import { CustomControlDirective } from "../../services/base/custom-control.directive";
   
 @Component({
     selector: "app-date-time-picker",
     templateUrl: "./date-time-picker.component.html",
-    providers: [
-        DatePipe,
-        {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => DateTimePickerComponent),
-        multi: true
-        }
-    ]
   })
-  export class DateTimePickerComponent implements ControlValueAccessor, OnInit {
+  export class DateTimePickerComponent extends CustomControlDirective {
     @Input() dateString: string;
     @Input() inputDatetimeFormat = "dd.MM.yyyy HH:mm:ss";
     @Input() hourStep = 1;
     @Input() minuteStep = 15;
     @Input() secondStep = 30;
     @Input() seconds = true;
-    @Input() disabled = false;
 
     datetime: DateTimeModel = new DateTimeModel();
     private firstTimeAssign = true;
 
-    @ViewChild(NgbPopover, { static: true }) private popover: NgbPopover;
-
-    private onTouched: () => void = noop;
-    private onChange: (_: any) => void = noop;
-
-    ngControl: NgControl;
-
-    constructor(private config: NgbPopoverConfig, private inj: Injector) {
+    constructor(@Optional() ngControl: NgControl, cd: ChangeDetectorRef, private config: NgbPopoverConfig) {
+        super(ngControl, cd);
         config.autoClose = "outside";
         config.placement = "auto";
     }
 
-    ngOnInit(): void {
-        this.ngControl = this.inj.get(NgControl);
-    }
-
-    writeValue(newModel: string) {
+    override writeValue(newModel: string) {
         if (newModel) {
         this.datetime = Object.assign(
             this.datetime,
@@ -72,18 +47,6 @@ import { DateTimeModel } from "../../models/date-time.model";
         } else {
         this.datetime = new DateTimeModel();
         }
-    }
-
-    registerOnChange(fn: any): void {
-        this.onChange = fn;
-    }
-
-    registerOnTouched(fn: any): void {
-        this.onTouched = fn;
-    }
-
-    setDisabledState?(isDisabled: boolean): void {
-        this.disabled = isDisabled;
     }
 
     onInputChange($event: any) {
@@ -147,8 +110,8 @@ import { DateTimeModel } from "../../models/date-time.model";
         }
     }
 
-    inputBlur($event) {
-        this.onTouched();
+    public onBlur(event: Event): void {
+        this.onTouch(event);
     }
   }
   

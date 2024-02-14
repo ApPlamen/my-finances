@@ -1,7 +1,7 @@
 <div class="input-group mr-2">
 	<input [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'"
            class="form-control"
-           (blur)="inputBlur($event)"
+           (blur)="onBlur($event)"
            [ngModel]="dateString | date:inputDatetimeFormat"
            (change)="onInputChange($event)"
            [disabled]="disabled" />
