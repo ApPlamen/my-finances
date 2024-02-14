@@ -1,20 +1,31 @@
-<div class="input-group mr-2">
-	<input [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'"
-           class="form-control"
-           (blur)="onBlur($event)"
-           [ngModel]="dateString | date:inputDatetimeFormat"
-           (change)="onInputChange($event)"
-           [disabled]="disabled" />
-
-	<div class="input-group-append">
-		<button
-      class="btn btn-outline-secondary"
-      [ngbPopover]="calendarContent"
-      [disabled]="disabled"
-      type="button">
-      <i class="bi bi-calendar3"></i>
-    </button>
-	</div>
+<div class="input-group mb-3">
+    <div class="form-floating">
+        <input [type]="type"
+               [ngModel]="dateString | date:inputDatetimeFormat"
+               [id]="id"
+               [placeholder]="placeholder"
+               [disabled]="disabled"
+               (blur)="onBlur($event)"
+               class="form-control {{ displayError && getErrorMessage() ? 'is-invalid' : '' }}"
+               (change)="onInputChange($event)" />
+        <label [for]="id"
+               [hidden]="!label"
+               class="form-label">
+            {{ label }}
+        </label>
+        <div class="invalid-feedback"
+             [class.d-none]="">
+            {{ getErrorMessage() }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary py-3"
+                [ngbPopover]="calendarContent"
+                [disabled]="disabled"
+                type="button">
+            <i class="bi bi-calendar3"></i>
+        </button>
+    </div>
 </div>
 
 <ng-template #calendarContent>

@@ -26,6 +26,9 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
     @Input() minuteStep = 15;
     @Input() secondStep = 30;
     @Input() seconds = true;
+    @Input() type = 'text';
+    @Input() label = '';
+    @Input() placeholder = '';
 
     datetime: DateTimeModel = new DateTimeModel();
     private firstTimeAssign = true;
