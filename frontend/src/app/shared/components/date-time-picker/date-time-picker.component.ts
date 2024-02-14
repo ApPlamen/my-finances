@@ -101,4 +101,3 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         this.onTouch(event);
     }
   }
-  
