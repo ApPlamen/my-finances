@@ -52,22 +52,6 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         }
     }
 
-    onInputChange($event: any) {
-        const value = $event.target.value;
-        const dt = DateTimeModel.fromLocalString(value);
-
-        if (dt) {
-            this.datetime = dt;
-            this.setDateStringModel();
-        } else if (value.trim() === "") {
-            this.datetime = new DateTimeModel();
-            this.dateString = "";
-            this.onChange(this.dateString);
-        } else {
-            this.onChange(value);
-        }
-    }
-
     onDateChange($event: string | NgbDateStruct) {
         const date = new DateTimeModel($event);
 
