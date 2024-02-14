@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
@@ -25,7 +25,8 @@ import { CreateEditPaymentComponent } from './dialogs/create-edit-payment/create
   exports: [
   ],
   providers: [
-    CurrencyPipe
+    CurrencyPipe,
+    DatePipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,0 +1,39 @@
+<div class="input-group mb-3">
+    <div class="form-floating">
+        <input [type]="type"
+               [ngModel]="dateString | date:inputDatetimeFormat"
+               [id]="id"
+               [placeholder]="placeholder"
+               [disabled]="disabled"
+               (blur)="onBlur($event)"
+               class="form-control {{ displayError && getErrorMessage() ? 'is-invalid' : '' }}"
+               readonly />
+        <label [for]="id"
+               [hidden]="!label"
+               class="form-label">
+            {{ label }}
+        </label>
+        <div class="invalid-feedback"
+             [class.d-none]="">
+            {{ getErrorMessage() }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary py-3"
+                [ngbPopover]="calendarContent"
+                [disabled]="disabled"
+                type="button">
+            <i class="bi bi-calendar3"></i>
+        </button>
+    </div>
+</div>
+
+<ng-template #calendarContent>
+	<div>
+        <ngb-datepicker id="dp" #dp name="datepicker" [ngModel]="datetime" [startDate]="datetime"
+            (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+        <ngb-timepicker id="tp" #tp name="timepicker" [ngModel]="datetime" (ngModelChange)="onTimeChange($event)"
+            [seconds]="seconds" [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep">
+        </ngb-timepicker>
+	</div>
+</ng-template>
