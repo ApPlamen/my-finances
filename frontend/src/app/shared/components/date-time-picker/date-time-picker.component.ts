@@ -41,14 +41,14 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
 
     override writeValue(newModel: string) {
         if (newModel) {
-        this.datetime = Object.assign(
-            this.datetime,
-            DateTimeModel.fromLocalString(newModel)
-        );
-        this.dateString = newModel;
-        this.setDateStringModel();
+            this.datetime = Object.assign(
+                this.datetime,
+                DateTimeModel.fromLocalString(newModel)
+            );
+            this.dateString = newModel;
+            this.setDateStringModel();
         } else {
-        this.datetime = new DateTimeModel();
+            this.datetime = new DateTimeModel();
         }
     }
 
@@ -57,14 +57,14 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         const dt = DateTimeModel.fromLocalString(value);
 
         if (dt) {
-        this.datetime = dt;
-        this.setDateStringModel();
+            this.datetime = dt;
+            this.setDateStringModel();
         } else if (value.trim() === "") {
-        this.datetime = new DateTimeModel();
-        this.dateString = "";
-        this.onChange(this.dateString);
+            this.datetime = new DateTimeModel();
+            this.dateString = "";
+            this.onChange(this.dateString);
         } else {
-        this.onChange(value);
+            this.onChange(value);
         }
     }
 
@@ -72,12 +72,12 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         const date = new DateTimeModel($event);
 
         if (!date) {
-        this.dateString = this.dateString;
+            this.dateString = this.dateString;
         return;
         }
 
         if (!this.datetime) {
-        this.datetime = date;
+            this.datetime = date;
         }
 
         this.datetime.year = date.year;
@@ -86,7 +86,7 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
 
         const adjustedDate = new Date(this.datetime.toString());
         if (this.datetime.timeZoneOffset !== adjustedDate.getTimezoneOffset()) {
-        this.datetime.timeZoneOffset = adjustedDate.getTimezoneOffset();
+            this.datetime.timeZoneOffset = adjustedDate.getTimezoneOffset();
         }
 
         this.setDateStringModel();
@@ -104,7 +104,7 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         this.dateString = this.datetime.toString();
 
         if (!this.firstTimeAssign) {
-        this.onChange(this.dateString);
+            this.onChange(this.dateString);
         } else {
         // Skip very first assignment to null done by Angular
         if (this.dateString !== null) {
