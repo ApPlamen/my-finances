@@ -13,12 +13,12 @@ public class PaymentsSpecifications {
 
     public static Specification<Payment> descriptionLike(String description) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.like(root.get("description"), description);
+                criteriaBuilder.like(root.get("description"), "%" + description + "%");
     }
 
     public static Specification<Payment> vendorLike(String vendor) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.like(root.get("vendor"), vendor);
+                criteriaBuilder.like(root.get("vendor"), "%" + vendor + "%");
     }
 
     public static Specification<Payment> dateTimeIsGreaterThanOrEqualTo(Date dateTime) {
