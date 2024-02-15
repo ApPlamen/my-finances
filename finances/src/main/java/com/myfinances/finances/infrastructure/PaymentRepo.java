@@ -1,11 +1,9 @@
 package com.myfinances.finances.infrastructure;
 
 import com.myfinances.finances.entities.Payment;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PaymentRepo extends Repo<Payment, Integer> {
-    public List<Payment> findAllByUserIdOrderByIdAsc(int userId);
+public interface PaymentRepo extends Repo<Payment, Integer>, JpaSpecificationExecutor<Payment> {
 }

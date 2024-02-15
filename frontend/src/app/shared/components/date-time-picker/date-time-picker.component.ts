@@ -31,7 +31,6 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
     @Input() placeholder = '';
 
     datetime: DateTimeModel = new DateTimeModel();
-    private firstTimeAssign = true;
 
     constructor(@Optional() ngControl: NgControl, cd: ChangeDetectorRef, private config: NgbPopoverConfig) {
         super(ngControl, cd);
@@ -87,13 +86,8 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
     setDateStringModel() {
         this.dateString = this.datetime.toString();
 
-        if (!this.firstTimeAssign) {
+        if (this.dateString !== null) {
             this.onChange(this.dateString);
-        } else {
-            // Skip very first assignment to null done by Angular
-            if (this.dateString !== null) {
-                this.firstTimeAssign = false;
-            }
         }
     }
 

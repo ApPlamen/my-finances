@@ -4,14 +4,19 @@ import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentActiveInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
+import com.myfinances.finances.dtos.request.BoardPaymentsRequest;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
 import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
 import com.myfinances.finances.entities.PaymentOption;
 import com.myfinances.finances.infrastructure.PaymentRepo;
+import com.myfinances.finances.specifications.PaymentsSpecifications;
+import io.micrometer.common.util.StringUtils;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,8 +31,23 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         this.paymentOptionsService = paymentOptionsService;
     }
 
-    public List<PaymentBoardItemViewDTO> getBoard(int userId) {
-        return this.repo.findAllByUserIdOrderByIdAsc(userId).stream()
+    public List<PaymentBoardItemViewDTO> getBoard(BoardPaymentsRequest request) {
+        Specification<Payment> spec = Specification.where(PaymentsSpecifications.userId(request.getUserId()));
+
+        if(!StringUtils.isBlank(request.getDescription())){
+            spec = spec.and(PaymentsSpecifications.descriptionLike(request.getDescription()));
+        }
+        if(!StringUtils.isBlank(request.getVendor())){
+            spec = spec.and(PaymentsSpecifications.vendorLike(request.getVendor()));
+        }
+        if(request.getStartDate() != null){
+            spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(request.getStartDate()));
+        }
+        if(request.getEndDate() != null){
+            spec = spec.and(PaymentsSpecifications.dateTimeIsLessThanOrEqualTo(request.getEndDate()));
+        }
+
+        return this.repo.findAll(spec).stream()
                 .map(PaymentBoardItemViewDTO::create)
                 .collect(Collectors.toList());
     }
