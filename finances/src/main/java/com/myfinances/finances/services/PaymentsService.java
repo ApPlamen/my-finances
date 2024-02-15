@@ -10,8 +10,11 @@ import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
 import com.myfinances.finances.entities.PaymentOption;
 import com.myfinances.finances.infrastructure.PaymentRepo;
+import com.myfinances.finances.specifications.PaymentsSpecifications;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +30,23 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
     }
 
     public List<PaymentBoardItemViewDTO> getBoard(int userId) {
-        return this.repo.findAllByUserIdOrderByIdAsc(userId).stream()
+//        Date startOfMonth = new Date();
+//        startOfMonth.setDate(1);
+//        startOfMonth.setHours(0);
+//        startOfMonth.setMinutes(0);
+//        startOfMonth.setSeconds(0);
+
+//        Date endOfMonth = new Date();
+//        endOfMonth.setDate(29);
+//        endOfMonth.setHours(23);
+//        endOfMonth.setMinutes(59);
+//        endOfMonth.setSeconds(59);
+
+        Specification<Payment> spec = Specification.where(PaymentsSpecifications.userIs(userId));
+//        spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(startOfMonth));
+//        spec = spec.and(PaymentsSpecifications.dateTimeIsLessThanOrEqualTo(endOfMonth));
+
+        return this.repo.findAll(spec).stream()
                 .map(PaymentBoardItemViewDTO::create)
                 .collect(Collectors.toList());
     }
