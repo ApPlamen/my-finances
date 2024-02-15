@@ -10,5 +10,4 @@ import java.util.Date;
 public class BoardPaymentsRequest {
     private Date startDate;
     private Date endDate;
-    private int userId;
 }

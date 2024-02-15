@@ -2,6 +2,7 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.entities.Payment;
 import com.myfinances.apigateway.helpers.SecurityContextHelper;
+import com.myfinances.apigateway.models.internal.finances.BoardPaymentsInternalRequest;
 import com.myfinances.apigateway.models.request.finances.BoardPaymentsRequest;
 import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentActiveRequest;
@@ -24,11 +25,15 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputR
     public List<PaymentBoardItemResponse> getBoard(BoardPaymentsRequest request) {
         int userId = SecurityContextHelper.getUserId();
 
-        request.setUserId(userId);
+        BoardPaymentsInternalRequest body = BoardPaymentsInternalRequest.builder()
+                .userId(userId)
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .build();
 
         return restClient.post()
                 .uri("/board")
-                .body(request)
+                .body(body)
                 .retrieve()
                 .body(List.class);
     }
