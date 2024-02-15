@@ -25,12 +25,23 @@
             <app-date-time-picker label="End date time" placeholder="End date time" formControlName="endDate"></app-date-time-picker>
           </div>
 
-          <div class="col-md-2">
-            <tmc-button type='submit'
+          <div class="col-md-1">
+            <tmc-button design="info"
+                        type='submit'
                         label="Search"
                         iconName="search"
                         class="py-2 d-grid gap-2"
                         (clicked)="onSubmit()">
+            </tmc-button>
+          </div>
+
+          <div class="col-md-1">
+            <tmc-button design="outline-secondary"
+                        type='reset'
+                        label="Reset"
+                        iconName="x-octagon"
+                        class="py-2 d-grid gap-2"
+                        (clicked)="onReset()">
             </tmc-button>
           </div>
         </div>

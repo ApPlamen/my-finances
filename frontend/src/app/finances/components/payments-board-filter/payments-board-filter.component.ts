@@ -17,4 +17,8 @@ export class PaymentsBoardFilterComponent {
       this.filterSubmit.emit(this.paymentsBoardFilterForm.formGroup.value);
     }
   }
+
+  onReset(): void {
+    this.paymentsBoardFilterForm.clear();
+  }
 }
