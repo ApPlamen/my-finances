@@ -4,6 +4,7 @@ import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentActiveInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
+import com.myfinances.finances.dtos.request.BoardPaymentsRequest;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
 import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
@@ -30,9 +31,9 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
         this.service = service;
     }
 
-    @GetMapping("board/{userId}")
-    public ResponseEntity<List<PaymentBoardItemViewDTO>> getBoard(@PathVariable int userId) {
-        List<PaymentBoardItemViewDTO> response = this.service.getBoard(userId);
+    @PostMapping("board")
+    public ResponseEntity<List<PaymentBoardItemViewDTO>> getBoard(@RequestBody BoardPaymentsRequest request) {
+        List<PaymentBoardItemViewDTO> response = this.service.getBoard(request);
         return ResponseEntity.ok(response);
     }
 

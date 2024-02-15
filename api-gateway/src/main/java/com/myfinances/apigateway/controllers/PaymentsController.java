@@ -2,10 +2,11 @@ package com.myfinances.apigateway.controllers;
 
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.entities.Payment;
+import com.myfinances.apigateway.models.request.finances.BoardPaymentsRequest;
+import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentActiveRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentInputRequest;
 import com.myfinances.apigateway.models.request.finances.PaymentUpdateRequest;
-import com.myfinances.apigateway.models.request.finances.CreateEditPaymentRequest;
 import com.myfinances.apigateway.models.response.finances.PaymentViewResponse;
 import com.myfinances.apigateway.models.response.finances.PaymentBoardItemResponse;
 import com.myfinances.apigateway.models.response.finances.PaymentEditViewResponse;
@@ -35,9 +36,9 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
         this.service = paymentsService;
     }
 
-    @GetMapping("board")
-    public ResponseEntity<List<PaymentBoardItemResponse>> getBoard() {
-        List<PaymentBoardItemResponse> response = this.service.getBoard();
+    @PostMapping("board")
+    public ResponseEntity<List<PaymentBoardItemResponse>> getBoard(@RequestBody BoardPaymentsRequest request) {
+        List<PaymentBoardItemResponse> response = this.service.getBoard(request);
         return ResponseEntity.ok(response);
     }
 

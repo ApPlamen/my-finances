@@ -4,6 +4,7 @@ import com.myfinances.finances.dtos.inputs.CreateEditPaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentActiveInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentInputDTO;
 import com.myfinances.finances.dtos.inputs.PaymentUpdateDTO;
+import com.myfinances.finances.dtos.request.BoardPaymentsRequest;
 import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
 import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
@@ -29,20 +30,8 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         this.paymentOptionsService = paymentOptionsService;
     }
 
-    public List<PaymentBoardItemViewDTO> getBoard(int userId) {
-//        Date startOfMonth = new Date();
-//        startOfMonth.setDate(1);
-//        startOfMonth.setHours(0);
-//        startOfMonth.setMinutes(0);
-//        startOfMonth.setSeconds(0);
-
-//        Date endOfMonth = new Date();
-//        endOfMonth.setDate(29);
-//        endOfMonth.setHours(23);
-//        endOfMonth.setMinutes(59);
-//        endOfMonth.setSeconds(59);
-
-        Specification<Payment> spec = Specification.where(PaymentsSpecifications.userIs(userId));
+    public List<PaymentBoardItemViewDTO> getBoard(BoardPaymentsRequest request) {
+        Specification<Payment> spec = Specification.where(PaymentsSpecifications.userIs(request.getUserId()));
 //        spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(startOfMonth));
 //        spec = spec.and(PaymentsSpecifications.dateTimeIsLessThanOrEqualTo(endOfMonth));
 
