@@ -8,6 +8,7 @@ import { FinancesStoreService } from '../../store/finances.store.service';
 import { CreateEditPaymentComponent } from '../../dialogs/create-edit-payment/create-edit-payment.component';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { PaymentActiveModel } from '../../models/payment-active.model';
+import { PaymentsBoardFilterModel } from '../../models/payments-board-filter.model';
 
 @Component({
   templateUrl: './board-payments.component.html',
@@ -98,6 +99,10 @@ export class BoardPaymentsComponent implements OnInit {
       });
   }
 
+  filter(value: PaymentsBoardFilterModel) {
+    this.fillData(value)
+  }
+
   isIncome(income: boolean) {
     return income ? "bi-arrow-up-right-square-fill text-success" : "bi-arrow-down-right-square-fill text-danger";
   }
@@ -108,8 +113,8 @@ export class BoardPaymentsComponent implements OnInit {
       .subscribe(() => this.fillData());
   }
 
-  private fillData(): void {
-    this.paymentsService.getPaymentsBoard()
+  private fillData(value: PaymentsBoardFilterModel = new PaymentsBoardFilterModel()): void {
+    this.paymentsService.getPaymentsBoard(value)
       .subscribe(payments => this.payments = payments);
   }
 }

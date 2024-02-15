@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PaymentsBoardFilterForm } from '../../forms/payments-board-filter.form';
+import { PaymentsBoardFilterModel } from '../../models/payments-board-filter.model';
 
 @Component({
   selector: 'app-payments-board-filter',
@@ -7,16 +8,13 @@ import { PaymentsBoardFilterForm } from '../../forms/payments-board-filter.form'
 })
 export class PaymentsBoardFilterComponent {
   paymentsBoardFilterForm: PaymentsBoardFilterForm = new PaymentsBoardFilterForm();
+  @Output() filterSubmit = new EventEmitter<PaymentsBoardFilterModel>();
 
   constructor() { }
 
   onSubmit(): void {
-    // if (this.paymentForm.formGroup.valid) {
-    //   this.paymentsService.saveEditPayment(this.paymentForm.formGroup.value)
-    //     .subscribe(() => {
-    //       this.toastr.success('Success!');
-    //       this.activeModalService.close();
-    //     });
-    // }
+    if (this.paymentsBoardFilterForm.formGroup.valid) {
+      this.filterSubmit.emit(this.paymentsBoardFilterForm.formGroup.value);
+    }
   }
 }

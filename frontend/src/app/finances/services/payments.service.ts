@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { PaymentBoardViewModel } from '../viewmodels/payment-board.viewmodel';
 import { CreateEditPaymentModel } from '../models/create-edit-payment.model';
 import { PaymentActiveModel } from '../models/payment-active.model';
+import { PaymentsBoardFilterModel } from '../models/payments-board-filter.model';
 
 const CONTROLER_URL = 'payments';
 const BASE_URL = environment.apiUrl + CONTROLER_URL;
@@ -15,8 +16,8 @@ const BASE_URL = environment.apiUrl + CONTROLER_URL;
 export class PaymentsService {
   constructor(private http: HttpClient) { }
 
-  getPaymentsBoard(): Observable<PaymentBoardViewModel[]> {
-    return this.http.post<PaymentBoardViewModel[]>(BASE_URL + '/board', {});
+  getPaymentsBoard(value: PaymentsBoardFilterModel): Observable<PaymentBoardViewModel[]> {
+    return this.http.post<PaymentBoardViewModel[]>(BASE_URL + '/board', value);
   }
 
   getEditPayment(paymentId: number): Observable<CreateEditPaymentModel> {

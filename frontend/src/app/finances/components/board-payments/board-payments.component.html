@@ -6,7 +6,7 @@
   </tmc-button>
 </div>
 
-<app-payments-board-filter></app-payments-board-filter>
+<app-payments-board-filter (filterSubmit)="filter($event)"></app-payments-board-filter>
 
 <div class="row m-0 mt-1">
   <tmc-simple-table [columns]="columns" [data]="payments"></tmc-simple-table>
