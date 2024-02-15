@@ -10,8 +10,6 @@ export class PaymentsBoardFilterComponent {
   paymentsBoardFilterForm: PaymentsBoardFilterForm = new PaymentsBoardFilterForm();
   @Output() filterSubmit = new EventEmitter<PaymentsBoardFilterModel>();
 
-  constructor() { }
-
   onSubmit(): void {
     if (this.paymentsBoardFilterForm.formGroup.valid) {
       this.filterSubmit.emit(this.paymentsBoardFilterForm.formGroup.value);
