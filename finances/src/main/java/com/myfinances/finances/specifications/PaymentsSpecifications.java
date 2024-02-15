@@ -6,9 +6,19 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.Date;
 
 public class PaymentsSpecifications {
-    public static Specification<Payment> userIs(int userId) {
+    public static Specification<Payment> userId(int userId) {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("userId"), userId);
+    }
+
+    public static Specification<Payment> descriptionLike(String description) {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.like(root.get("description"), description);
+    }
+
+    public static Specification<Payment> vendorLike(String vendor) {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.like(root.get("vendor"), vendor);
     }
 
     public static Specification<Payment> dateTimeIsGreaterThanOrEqualTo(Date dateTime) {

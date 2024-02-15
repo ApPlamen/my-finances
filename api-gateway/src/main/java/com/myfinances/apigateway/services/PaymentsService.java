@@ -27,6 +27,8 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputR
 
         BoardPaymentsInternalRequest body = BoardPaymentsInternalRequest.builder()
                 .userId(userId)
+                .description(request.getDescription())
+                .vendor(request.getVendor())
                 .startDate(request.getStartDate())
                 .endDate(request.getEndDate())
                 .build();

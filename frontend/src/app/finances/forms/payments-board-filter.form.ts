@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { BaseFormModel } from 'src/app/shared/models/base-form.model';
 import { PaymentsBoardFilterModel } from '../models/payments-board-filter.model';
 
@@ -9,6 +8,8 @@ export class PaymentsBoardFilterForm extends BaseFormModel<PaymentsBoardFilterMo
     super();
 
     this.formGroup = this.formBuilder.group({
+      description: [null],
+      vendor: [null],
       startDate: [null],
       endDate: [null],
     });

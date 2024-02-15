@@ -10,6 +10,8 @@ import java.util.Date;
 @Setter
 @Builder
 public class BoardPaymentsInternalRequest {
+    private String description;
+    private String vendor;
     private Date startDate;
     private Date endDate;
     private int userId;

@@ -12,6 +12,7 @@ import com.myfinances.finances.entities.Payment;
 import com.myfinances.finances.entities.PaymentOption;
 import com.myfinances.finances.infrastructure.PaymentRepo;
 import com.myfinances.finances.specifications.PaymentsSpecifications;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -31,13 +32,19 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
     }
 
     public List<PaymentBoardItemViewDTO> getBoard(BoardPaymentsRequest request) {
-        Specification<Payment> spec = Specification.where(PaymentsSpecifications.userIs(request.getUserId()));
+        Specification<Payment> spec = Specification.where(PaymentsSpecifications.userId(request.getUserId()));
 
+        if(!StringUtils.isBlank(request.getDescription())){
+            spec = spec.and(PaymentsSpecifications.descriptionLike(request.getDescription()));
+        }
+        if(!StringUtils.isBlank(request.getVendor())){
+            spec = spec.and(PaymentsSpecifications.vendorLike(request.getVendor()));
+        }
         if(request.getStartDate() != null){
             spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(request.getStartDate()));
         }
         if(request.getEndDate() != null){
-            spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(request.getEndDate()));
+            spec = spec.and(PaymentsSpecifications.dateTimeIsLessThanOrEqualTo(request.getEndDate()));
         }
 
         return this.repo.findAll(spec).stream()
