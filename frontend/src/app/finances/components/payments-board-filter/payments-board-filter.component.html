@@ -1,8 +1,11 @@
-<div class="px-3">
-  <form class="needs-validation"
-        (ngSubmit)="onSubmit()"
-        [formGroup]="paymentsBoardFilterForm.formGroup"
-        novalidate >
+<div class="">
+  <fieldset class="border p-2 mx-3 my-1">
+    <legend>Filters:</legend>
+      <form class="needs-validation"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="paymentsBoardFilterForm.formGroup"
+            novalidate >
+
 
         <div class="row">
           <div class="col-md-5">
@@ -23,5 +26,6 @@
             </tmc-button>
           </div>
         </div>
-  </form>
+      </form>
+    </fieldset>
 </div>
