@@ -1,0 +1,27 @@
+<div class="px-3">
+  <form class="needs-validation"
+        (ngSubmit)="onSubmit()"
+        [formGroup]="paymentsBoardFilterForm.formGroup"
+        novalidate >
+
+        <div class="row">
+          <div class="col-md-5">
+            <app-date-time-picker  label="Satrt date time" placeholder="Satrt date time" formControlName="startDate"></app-date-time-picker>
+          </div>
+      
+
+          <div class="col-md-5">
+            <app-date-time-picker label="End date time" placeholder="End date time" formControlName="endDate"></app-date-time-picker>
+          </div>
+
+          <div class="col-md-2">
+            <tmc-button type='submit'
+                        label="Search"
+                        iconName="search"
+                        class="py-2 d-grid gap-2"
+                        (clicked)="onSubmit()">
+            </tmc-button>
+          </div>
+        </div>
+  </form>
+</div>
