@@ -32,8 +32,13 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
 
     public List<PaymentBoardItemViewDTO> getBoard(BoardPaymentsRequest request) {
         Specification<Payment> spec = Specification.where(PaymentsSpecifications.userIs(request.getUserId()));
-//        spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(startOfMonth));
-//        spec = spec.and(PaymentsSpecifications.dateTimeIsLessThanOrEqualTo(endOfMonth));
+
+        if(request.getStartDate() != null){
+            spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(request.getStartDate()));
+        }
+        if(request.getEndDate() != null){
+            spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(request.getEndDate()));
+        }
 
         return this.repo.findAll(spec).stream()
                 .map(PaymentBoardItemViewDTO::create)
