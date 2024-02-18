@@ -3,7 +3,7 @@ import { RolesFilteringBaseClass } from '../../base-classes/roles-filtering.clas
 import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
-  selector: 'navbar',
+  selector: 'app-navbar',
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent extends RolesFilteringBaseClass {
