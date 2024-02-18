@@ -9,6 +9,7 @@ import { PaymentsBoardFilterModel } from '../../models/payments-board-filter.mod
 export class PaymentsBoardFilterComponent {
   paymentsBoardFilterForm: PaymentsBoardFilterForm = new PaymentsBoardFilterForm();
   @Output() filterSubmit = new EventEmitter<PaymentsBoardFilterModel>();
+  @Output() isCollapsed: boolean = true
 
   onSubmit(): void {
     if (this.paymentsBoardFilterForm.formGroup.valid) {
@@ -18,5 +19,9 @@ export class PaymentsBoardFilterComponent {
 
   onReset(): void {
     this.paymentsBoardFilterForm.clear();
+  }
+
+  collapse(){
+    this.isCollapsed = !this.isCollapsed;
   }
 }
