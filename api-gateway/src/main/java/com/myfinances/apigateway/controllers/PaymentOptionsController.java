@@ -1,7 +1,9 @@
 package com.myfinances.apigateway.controllers;
 
+import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.models.response.users.RolesOptionResponse;
 import com.myfinances.apigateway.services.PaymentOptionsService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("api/payment-options")
 @Tag(name = "Payment Options Controller")
+@SecurityRequirement(name = OpenAPI30Config.securitySchemeName)
 public class PaymentOptionsController {
     private PaymentOptionsService service;
 
