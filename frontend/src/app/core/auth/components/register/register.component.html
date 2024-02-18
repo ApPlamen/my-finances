@@ -8,17 +8,17 @@
             [formGroup]="registerForm.formGroup"
             novalidate >
 
-        <tmc-input type="text" label="Username" placeholder="User name" formControlName="userName"></tmc-input>
+        <app-input type="text" label="Username" placeholder="User name" formControlName="userName"></app-input>
 
-        <tmc-input type="text" label="Fullname" placeholder="Full name" formControlName="fullName"></tmc-input>
+        <app-input type="text" label="Fullname" placeholder="Full name" formControlName="fullName"></app-input>
 
-        <tmc-input type="password" label="Password" placeholder="Password" formControlName="password"></tmc-input>
+        <app-input type="password" label="Password" placeholder="Password" formControlName="password"></app-input>
 
         <div class="form-group">
-          <tmc-button type='submit'
+          <app-button type='submit'
                       label="Register"
                       iconName="person-plus">
-          </tmc-button>
+          </app-button>
         </div>
       </form>
 

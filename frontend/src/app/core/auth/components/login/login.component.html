@@ -8,15 +8,15 @@
             [formGroup]="logInForm.formGroup"
             novalidate >
 
-        <tmc-input type="userName" label="Username" placeholder="user" formControlName="userName"></tmc-input>
+        <app-input type="userName" label="Username" placeholder="user" formControlName="userName"></app-input>
 
-        <tmc-input type="password" label="Password" placeholder="Password" formControlName="password"></tmc-input>
+        <app-input type="password" label="Password" placeholder="Password" formControlName="password"></app-input>
 
         <div class="form-group">
-          <tmc-button type='submit'
+          <app-button type='submit'
                       label="Login"
                       iconName="box-arrow-in-right">
-          </tmc-button>
+          </app-button>
         </div>
       </form>
 

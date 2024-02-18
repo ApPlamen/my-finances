@@ -9,23 +9,23 @@
         [formGroup]="paymentForm.formGroup"
         novalidate >
 
-    <tmc-input type="text" label="Description" placeholder="Description" formControlName="description"></tmc-input>
+    <app-input type="text" label="Description" placeholder="Description" formControlName="description"></app-input>
 
-    <tmc-input type="text" label="Vendor" placeholder="Vendor" formControlName="vendor"></tmc-input>
+    <app-input type="text" label="Vendor" placeholder="Vendor" formControlName="vendor"></app-input>
 
-    <tmc-number-input label="Amount" placeholder="Amount" formControlName="amount"></tmc-number-input>
+    <app-number-input label="Amount" placeholder="Amount" formControlName="amount"></app-number-input>
 
-    <tmc-dropdown label="Type" [items]="incomeTypes" placeholder="Select type" formControlName="income"></tmc-dropdown>
+    <app-dropdown label="Type" [items]="incomeTypes" placeholder="Select type" formControlName="income"></app-dropdown>
 
-    <tmc-dropdown label="Payment Option" [items]="paymentOptions" placeholder="Select payment Option" formControlName="paymentOption"></tmc-dropdown>
+    <app-dropdown label="Payment Option" [items]="paymentOptions" placeholder="Select payment Option" formControlName="paymentOption"></app-dropdown>
 
     <app-date-time-picker label="Date time" placeholder="Date time" name="activeEndDate" formControlName="dateTime"></app-date-time-picker>
   </form>
 </div>
 
 <div class="modal-footer">
-  <tmc-button type='submit'
+  <app-button type='submit'
               label="Save"
               (clicked)="onSubmit()">
-  </tmc-button>
+  </app-button>
 </div>

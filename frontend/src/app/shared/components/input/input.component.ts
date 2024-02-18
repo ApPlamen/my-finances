@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CustomControlDirective } from '../../services/base/custom-control.directive';
 
 @Component({
-  selector: 'tmc-input',
+  selector: 'app-input',
   templateUrl: './input.component.html',
 })
 export class InputComponent extends CustomControlDirective {

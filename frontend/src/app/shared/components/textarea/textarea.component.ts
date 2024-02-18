@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CustomControlDirective } from '../../services/base/custom-control.directive';
 
 @Component({
-  selector: 'tmc-textarea',
+  selector: 'app-textarea',
   templateUrl: './textarea.component.html',
 })
 export class TextareaComponent extends CustomControlDirective {

@@ -9,20 +9,20 @@
         [formGroup]="userForm.formGroup"
         novalidate >
 
-    <tmc-input type="text" label="Username" placeholder="User name" formControlName="userName"></tmc-input>
+    <app-input type="text" label="Username" placeholder="User name" formControlName="userName"></app-input>
 
-    <tmc-input type="text" label="Fullname" placeholder="Full name" formControlName="fullName"></tmc-input>
+    <app-input type="text" label="Fullname" placeholder="Full name" formControlName="fullName"></app-input>
 
-    <tmc-input type="password" label="Password" placeholder="Password" formControlName="newPassword"></tmc-input>
+    <app-input type="password" label="Password" placeholder="Password" formControlName="newPassword"></app-input>
 
-    <tmc-multiselect-dropdown label="Roles" [items]="roles" placeholder="Select roles" formControlName="roles"></tmc-multiselect-dropdown>
+    <app-multiselect-dropdown label="Roles" [items]="roles" placeholder="Select roles" formControlName="roles"></app-multiselect-dropdown>
   </form>
 
 </div>
 
 <div class="modal-footer">
-  <tmc-button type='submit'
+  <app-button type='submit'
               label="Save"
               (clicked)="onSubmit()">
-  </tmc-button>
+  </app-button>
 </div>

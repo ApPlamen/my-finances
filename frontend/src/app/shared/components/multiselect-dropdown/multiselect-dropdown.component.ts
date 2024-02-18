@@ -3,7 +3,7 @@ import { MultiselectDropdown } from '../../models/multiselect-dropdown.model';
 import { CustomControlDirective } from '../../services/base/custom-control.directive';
 
 @Component({
-    selector: 'tmc-multiselect-dropdown',
+    selector: 'app-multiselect-dropdown',
     templateUrl: './multiselect-dropdown.component.html',
     styleUrl: './multiselect-dropdown.component.css',
   })

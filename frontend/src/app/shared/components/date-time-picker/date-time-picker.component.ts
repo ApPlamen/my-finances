@@ -55,7 +55,6 @@ import { CustomControlDirective } from "../../services/base/custom-control.direc
         const date = new DateTimeModel($event);
 
         if (!date) {
-            this.dateString = this.dateString;
             return;
         }
 
