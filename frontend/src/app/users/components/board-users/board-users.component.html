@@ -1,38 +1,38 @@
 <div class="row d-grid justify-content-end m-0 mt-1">
-  <tmc-button design="success"
+  <app-button design="success"
               label="Add new user"
               iconName="people"
               (clicked)="openCreate()">
-  </tmc-button>
+  </app-button>
 </div>
 
 <div class="row m-0 mt-1">
-  <tmc-simple-table [columns]="columns" [data]="users"></tmc-simple-table>
+  <app-simple-table [columns]="columns" [data]="users"></app-simple-table>
 </div>
 
 <ng-template #tableActionCellTemplate let-column="column" let-dataItem="dataItem">
   <div class="table-actions-container btn-group gap-2">
-    <tmc-button design="warning"
+    <app-button design="warning"
                 label="Edit"
                 iconName="pencil-square"
                 [hideLabelOnSmall]="true"
                 (clicked)="openEdit(dataItem.id)">
-    </tmc-button>
+    </app-button>
 
-    <tmc-button design="danger"
+    <app-button design="danger"
                 label="deactive"
                 iconName="person-dash-fill"
                 [hideLabelOnSmall]="true"
                 *ngIf="dataItem.active"
                 (clicked)="setActive(dataItem.id, false)">
-    </tmc-button>
+    </app-button>
 
-    <tmc-button design="primary"
+    <app-button design="primary"
                 label="Active"
                 iconName="person-check-fill"
                 [hideLabelOnSmall]="true"
                 *ngIf="!dataItem.active"
                 (clicked)="setActive(dataItem.id, true)">
-    </tmc-button>
+    </app-button>
   </div>
 </ng-template>

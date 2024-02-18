@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'tmc-button',
+  selector: 'app-button',
   templateUrl: './button.component.html',
 })
 export class ButtonComponent {

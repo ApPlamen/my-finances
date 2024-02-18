@@ -9,11 +9,11 @@
 
         <div class="row">
           <div class="col-12 col-sm-6 col-lg-3 col-xl-2">
-            <tmc-input type="text" label="Description" placeholder="Description" formControlName="description"></tmc-input>
+            <app-input type="text" label="Description" placeholder="Description" formControlName="description"></app-input>
           </div>
 
           <div class="col-12 col-sm-6 col-lg-3 col-xl-2">
-            <tmc-input type="text" label="Vendor" placeholder="Vendor" formControlName="vendor"></tmc-input>
+            <app-input type="text" label="Vendor" placeholder="Vendor" formControlName="vendor"></app-input>
           </div>
 
           <div class="col-12 col-sm-6 col-lg-3 col-xl-2">
@@ -25,23 +25,23 @@
           </div>
 
           <div class="col-12 col-sm-6 col-lg-6 col-xl-2">
-            <tmc-button design="info"
+            <app-button design="info"
                         type='submit'
                         label="Search"
                         iconName="search"
                         class="py-2 d-grid gap-2"
                         (clicked)="onSubmit()">
-            </tmc-button>
+            </app-button>
           </div>
 
           <div class="col-12 col-sm-6 col-lg-6 col-xl-2">
-            <tmc-button design="outline-secondary"
+            <app-button design="outline-secondary"
                         type='reset'
                         label="Reset"
                         iconName="x-octagon"
                         class="py-2 d-grid gap-2"
                         (clicked)="onReset()">
-            </tmc-button>
+            </app-button>
           </div>
         </div>
       </form>

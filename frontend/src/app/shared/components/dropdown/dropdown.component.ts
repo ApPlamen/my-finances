@@ -3,7 +3,7 @@ import { Dropdown } from '../../models/dropdown.model';
 import { CustomControlDirective } from '../../services/base/custom-control.directive';
 
 @Component({
-    selector: 'tmc-dropdown',
+    selector: 'app-dropdown',
     templateUrl: './dropdown.component.html',
     styleUrl: './dropdown.component.css',
   })
