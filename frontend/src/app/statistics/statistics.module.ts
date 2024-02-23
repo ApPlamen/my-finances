@@ -7,6 +7,7 @@ import { StatisticsRoutingModule } from './statistics-routing.module';
 import { StatisticsComponent } from './statistics.component';
 import { TestComponent } from './components/test/test.component';
 import { StatisticsNavbarComponent } from './components/statistics-navbar/statistics-navbar.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { StatisticsNavbarComponent } from './components/statistics-navbar/statis
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
+    NgxChartsModule,
   ],
   exports: [
   ],
