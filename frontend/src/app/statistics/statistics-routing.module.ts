@@ -6,7 +6,7 @@ import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'test',
     // canActivate: [canActivate],
     // data: { accessRoles: [RolesEnum.user] },
     component: TestComponent,

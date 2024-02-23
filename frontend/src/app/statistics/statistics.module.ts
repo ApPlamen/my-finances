@@ -6,10 +6,12 @@ import { SharedModule } from '../shared/shared.module';
 import { StatisticsRoutingModule } from './statistics-routing.module';
 import { StatisticsComponent } from './statistics.component';
 import { TestComponent } from './components/test/test.component';
+import { StatisticsNavbarComponent } from './components/statistics-navbar/statistics-navbar.component';
 
 @NgModule({
   declarations: [
     StatisticsComponent,
+    StatisticsNavbarComponent,
     TestComponent
   ],
   imports: [
