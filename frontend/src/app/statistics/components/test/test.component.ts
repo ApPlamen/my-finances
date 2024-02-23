@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { multi } from './data';
+import { Component, OnInit } from '@angular/core';
+import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
   templateUrl: './test.component.html',
 })
-export class TestComponent {
+export class TestComponent implements OnInit {
   multi: any[];
 
   // options
@@ -19,7 +19,10 @@ export class TestComponent {
   yAxisLabel: string = 'Amount';
   timeline: boolean = true;
 
-  constructor() {
-    Object.assign(this, { multi });
+  constructor(private statisticsService: StatisticsService) { }
+
+  ngOnInit(): void {
+    this.statisticsService.getTest()
+      .subscribe(multi => this.multi = multi);
   }
 }
