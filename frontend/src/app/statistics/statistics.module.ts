@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { StatisticsRoutingModule } from './statistics-routing.module';
 import { StatisticsComponent } from './statistics.component';
-import { TestComponent } from './test/test.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
