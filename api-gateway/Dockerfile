@@ -1,6 +1,7 @@
 FROM sapmachine:latest as builder
 ARG USER_SERVICE_URL
 ARG FINANCES_SERVICE_URL
+ARG STATISTICS_SERVICE_URL
 WORKDIR /opt/app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
