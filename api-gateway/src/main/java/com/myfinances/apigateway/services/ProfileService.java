@@ -8,14 +8,11 @@ import com.myfinances.apigateway.models.request.users.ProfileRequest;
 import com.myfinances.apigateway.models.response.users.ProfileResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 
 @Service
-public class ProfileService {
-    private final RestClient restClient;
-
+public class ProfileService extends BaseRestService {
     public ProfileService(@Value("${users.service.baseUrl}") String baseUrl) {
-        restClient = RestClient.builder().baseUrl(baseUrl + "profile").build();
+        super(baseUrl, "profile");
     }
 
     public ProfileResponse getProfile() {
