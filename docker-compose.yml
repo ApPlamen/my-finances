@@ -26,6 +26,19 @@ services:
     ports:
       - "8084:8084"
 
+  statistics-service:
+    build:
+      context: ./statistics
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: "jdbc:postgresql://host.docker.internal:5435/my_finances_finances_db"
+        DATABASE_USERNAME: "postgres"
+        DATABASE_PASSWORD: "postgres"
+    image: my_finances_statistics_service
+    env_file: ./statistics/environments/dev-docker.env
+    ports:
+      - "8085:8085"
+
   api-gateway:
     build:
       context: ./api-gateway
@@ -33,6 +46,7 @@ services:
       args:
         USER_SERVICE_URL: "http://host.docker.internal:8083/api/"
         FINANCES_SERVICE_URL: "http://host.docker.internal:8084/api/"
+        STATISTICS_SERVICE_URL: "http://host.docker.internal:8085/api/"
     image: my_finances_api_gateway
     env_file: ./api-gateway/environments/dev-docker.env
     ports:
