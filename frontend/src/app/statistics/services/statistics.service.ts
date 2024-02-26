@@ -13,7 +13,7 @@ export class StatisticsService {
   constructor(private http: HttpClient) { }
 
   getChangeByDate(): Observable<any[]> {
-    return this.http.get<any[]>(BASE_URL + '/change-by-date');
+    return this.http.post<any[]>(BASE_URL + '/change-by-date', {});
   }
 
 }
