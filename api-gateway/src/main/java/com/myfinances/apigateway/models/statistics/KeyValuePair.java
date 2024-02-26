@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class KeyValuePair {
     private String name;
-    private int value;
+    private float value;
 }
