@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RolesEnum } from '../core/auth/enums/roles.enum';
 import { canActivate } from '../shared/guards/auth.guard';
-import { TestComponent } from './components/test/test.component';
+import { ChangeByDateComponent } from './components/change-by-date/change-by-date.component';
 
 const routes: Routes = [
   {
-    path: 'test',
+    path: 'change-by-date',
     // canActivate: [canActivate],
     // data: { accessRoles: [RolesEnum.user] },
-    component: TestComponent,
+    component: ChangeByDateComponent,
   },
 ];
 

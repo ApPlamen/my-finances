@@ -23,7 +23,7 @@ public class PaymentsRepo {
                     GROUP BY date
                     ORDER BY date);""";
 
-        Query query = entityManager.createNativeQuery(sql, "AggregateStatsResult");
+        Query query = entityManager.createNativeQuery(sql, "ChangeByDateStatisticResult");
         var result = query.getResultList();
 
         return result;

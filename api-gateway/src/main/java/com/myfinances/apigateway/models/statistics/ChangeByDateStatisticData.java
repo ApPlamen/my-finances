@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Builder
-public class TestStatisticData {
+public class ChangeByDateStatisticData {
     private String name;
     private List<KeyValuePair> series;
 }

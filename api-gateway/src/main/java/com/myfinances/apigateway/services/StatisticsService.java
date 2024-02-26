@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.models.statistics.TestStatisticData;
+import com.myfinances.apigateway.models.statistics.ChangeByDateStatisticData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ public class StatisticsService extends BaseRestService {
         super(baseUrl, "statistics");
     }
 
-    public List<TestStatisticData> getTest() {
+    public List<ChangeByDateStatisticData> getChangeByDate() {
         return restClient.get()
-                .uri("/test")
+                .uri("/change-by-date")
                 .retrieve()
                 .body(List.class);
     }

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
-  templateUrl: './test.component.html',
+  templateUrl: './change-by-date.component.html',
 })
-export class TestComponent implements OnInit {
+export class ChangeByDateComponent implements OnInit {
   multi: any[];
 
   // options
@@ -22,7 +22,7 @@ export class TestComponent implements OnInit {
   constructor(private statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
-    this.statisticsService.getTest()
+    this.statisticsService.getChangeByDate()
       .subscribe(multi => this.multi = multi);
   }
 }

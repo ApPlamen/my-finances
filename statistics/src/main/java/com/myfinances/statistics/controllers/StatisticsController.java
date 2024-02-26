@@ -1,6 +1,6 @@
 package com.myfinances.statistics.controllers;
 
-import com.myfinances.statistics.models.TestStatisticData;
+import com.myfinances.statistics.models.ChangeByDateStatisticData;
 import com.myfinances.statistics.services.StatisticsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import java.util.List;
 public class StatisticsController {
     private StatisticsService service;
 
-    @GetMapping("test")
-    public ResponseEntity<List<TestStatisticData>> getTest() {
-        List<TestStatisticData> response = this.service.getTest();
+    @GetMapping("change-by-date")
+    public ResponseEntity<List<ChangeByDateStatisticData>> getChangeByDate() {
+        List<ChangeByDateStatisticData> response = this.service.getChangeByDate();
         return ResponseEntity.ok(response);
     }
 }

@@ -2,7 +2,7 @@ package com.myfinances.statistics.services;
 
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
 import com.myfinances.statistics.models.KeyValuePair;
-import com.myfinances.statistics.models.TestStatisticData;
+import com.myfinances.statistics.models.ChangeByDateStatisticData;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +14,15 @@ import java.util.List;
 public class StatisticsService {
     private final PaymentsRepo repo;
 
-    public List<TestStatisticData> getTest() {
+    public List<ChangeByDateStatisticData> getChangeByDate() {
         List<KeyValuePair> series = repo.getTest();
 
-        TestStatisticData amountData = TestStatisticData.builder()
+        ChangeByDateStatisticData amountData = ChangeByDateStatisticData.builder()
                 .name("Amount")
                 .series(series)
                 .build();
 
-        List<TestStatisticData> data = new ArrayList<>();
+        List<ChangeByDateStatisticData> data = new ArrayList<>();
         data.add(amountData);
 
         return data;

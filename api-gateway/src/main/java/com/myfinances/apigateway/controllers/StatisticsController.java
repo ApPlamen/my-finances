@@ -1,7 +1,7 @@
 package com.myfinances.apigateway.controllers;
 
 import com.myfinances.apigateway.configs.OpenAPI30Config;
-import com.myfinances.apigateway.models.statistics.TestStatisticData;
+import com.myfinances.apigateway.models.statistics.ChangeByDateStatisticData;
 import com.myfinances.apigateway.services.StatisticsService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,9 +21,9 @@ import java.util.List;
 public class StatisticsController {
     private StatisticsService service;
 
-    @GetMapping("test")
-    public ResponseEntity<List<TestStatisticData>> getTest() {
-        List<TestStatisticData> response = this.service.getTest();
+    @GetMapping("change-by-date")
+    public ResponseEntity<List<ChangeByDateStatisticData>> getChangeByDate() {
+        List<ChangeByDateStatisticData> response = this.service.getChangeByDate();
         return ResponseEntity.ok(response);
     }
 }
