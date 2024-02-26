@@ -8,7 +8,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +17,6 @@ public class PaymentsRepo {
     private EntityManager entityManager;
 
     public List<KeyValuePair> getChangeByDate(ChangeByDateStatisticRequest request) {
-//        int year = 2024 - 1900;
-//        request.setStartDate(new Date(year, Calendar.FEBRUARY, 02));
-//        request.setEndDate(new Date(year, Calendar.FEBRUARY, 04));
-
         StringBuilder sql = new StringBuilder("""
                 SELECT sum AS value, to_char(date, 'DD.MM.YYYY') AS name
                 FROM (
@@ -54,8 +49,6 @@ public class PaymentsRepo {
             query.setParameter("endDate", endDate);
         }
 
-        var result = query.getResultList();
-
-        return result;
+        return query.getResultList();
     }
 }
