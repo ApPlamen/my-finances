@@ -14,6 +14,7 @@ import { MultiselectDropdownComponent } from './components/multiselect-dropdown/
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     MultiselectDropdownComponent,
     DropdownComponent,
+    DatePickerComponent,
     DateTimePickerComponent,
   ],
   imports: [
@@ -44,6 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     MultiselectDropdownComponent,
     DropdownComponent,
+    DatePickerComponent,
     DateTimePickerComponent,
   ],
   providers: [

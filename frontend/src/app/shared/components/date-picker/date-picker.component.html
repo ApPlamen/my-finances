@@ -33,8 +33,5 @@
         <ngb-datepicker id="dp" #dp name="datepicker" [ngModel]="datetime" [startDate]="datetime"
             (ngModelChange)="onDateChange($event)">
         </ngb-datepicker>
-        <ngb-timepicker id="tp" #tp name="timepicker" [ngModel]="datetime" (ngModelChange)="onTimeChange($event)"
-            [seconds]="seconds" [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep">
-        </ngb-timepicker>
 	</div>
 </ng-template>
