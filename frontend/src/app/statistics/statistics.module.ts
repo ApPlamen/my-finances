@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { StatisticsRoutingModule } from './statistics-routing.module';
 import { StatisticsComponent } from './statistics.component';
-import { TestComponent } from './components/test/test.component';
+import { ChangeByDateComponent } from './components/change-by-date/change-by-date.component';
 import { StatisticsNavbarComponent } from './components/statistics-navbar/statistics-navbar.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -13,7 +13,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   declarations: [
     StatisticsComponent,
     StatisticsNavbarComponent,
-    TestComponent
+    ChangeByDateComponent
   ],
   imports: [
     CommonModule,

@@ -12,8 +12,8 @@ const BASE_URL = environment.apiUrl + CONTROLER_URL;
 export class StatisticsService {
   constructor(private http: HttpClient) { }
 
-  getTest(): Observable<any[]> {
-    return this.http.get<any[]>(BASE_URL + '/test');
+  getChangeByDate(): Observable<any[]> {
+    return this.http.post<any[]>(BASE_URL + '/change-by-date', {});
   }
 
 }

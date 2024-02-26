@@ -1,6 +1,9 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.models.statistics.TestStatisticData;
+import com.myfinances.apigateway.helpers.SecurityContextHelper;
+import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisticInternalRequest;
+import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
+import com.myfinances.apigateway.models.statistics.ChangeByDateStatisticData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +15,18 @@ public class StatisticsService extends BaseRestService {
         super(baseUrl, "statistics");
     }
 
-    public List<TestStatisticData> getTest() {
-        return restClient.get()
-                .uri("/test")
+    public List<ChangeByDateStatisticData> getChangeByDate(ChangeByDateStatisticRequest request) {
+        int userId = SecurityContextHelper.getUserId();
+
+        ChangeByDateStatisticInternalRequest body = ChangeByDateStatisticInternalRequest.builder()
+                .userId(userId)
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .build();
+
+        return restClient.post()
+                .uri("/change-by-date")
+                .body(body)
                 .retrieve()
                 .body(List.class);
     }
