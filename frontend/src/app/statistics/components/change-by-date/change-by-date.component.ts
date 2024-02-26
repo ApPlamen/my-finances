@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
+import { ChangeByDateFilterModel } from '../../models/change-by-date-filter.model';
 
 @Component({
   templateUrl: './change-by-date.component.html',
@@ -22,7 +23,15 @@ export class ChangeByDateComponent implements OnInit {
   constructor(private statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
-    this.statisticsService.getChangeByDate()
+    this.fillData();
+  }
+
+  filter(value: ChangeByDateFilterModel) {
+    this.fillData(value);
+  }
+
+  private fillData(value: ChangeByDateFilterModel = new ChangeByDateFilterModel()): void {
+    this.statisticsService.getChangeByDate(value)
       .subscribe(multi => this.multi = multi);
   }
 }
