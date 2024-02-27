@@ -32,7 +32,7 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
     }
 
     @PostMapping("board")
-    public ResponseEntity<List<PaymentBoardItemViewDTO>> getBoard(@RequestBody BoardPaymentsRequest request) {
+    public ResponseEntity<List<PaymentBoardItemViewDTO>> getBoard(@Valid @RequestBody BoardPaymentsRequest request) {
         List<PaymentBoardItemViewDTO> response = this.service.getBoard(request);
         return ResponseEntity.ok(response);
     }
@@ -49,7 +49,7 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
     }
 
     @PostMapping("set-active")
-    public void setActive(@RequestBody PaymentActiveInputDTO request) {
+    public void setActive(@Valid @RequestBody PaymentActiveInputDTO request) {
         this.service.setActive(request);
     }
 }

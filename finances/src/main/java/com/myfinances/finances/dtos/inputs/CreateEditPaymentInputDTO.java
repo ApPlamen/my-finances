@@ -1,6 +1,7 @@
 package com.myfinances.finances.dtos.inputs;
 
 import com.myfinances.finances.entities.Payment;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,12 +12,19 @@ import java.util.Optional;
 @Getter
 @Setter
 public class CreateEditPaymentInputDTO extends UpdateDTO<Payment, Optional<Integer>> {
+    @NotBlank
     private String description;
+    @NotBlank
     private String vendor;
+    @NotBlank
     private float amount;
+    @NotBlank
     private Date dateTime;
+    @NotBlank
     private boolean income;
+    @NotBlank
     private int userId;
+    @NotBlank
     private int paymentOption;
 
     @Override

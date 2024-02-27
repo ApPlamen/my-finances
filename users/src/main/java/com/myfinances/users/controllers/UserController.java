@@ -51,7 +51,7 @@ public class UserController extends CRUDController<User, Integer, UserInputDTO, 
     }
 
     @PostMapping("set-active")
-    public void setActive(@RequestBody UserActiveInputDTO request) {
+    public void setActive(@Valid @RequestBody UserActiveInputDTO request) {
         this.service.setActive(request);
     }
 
