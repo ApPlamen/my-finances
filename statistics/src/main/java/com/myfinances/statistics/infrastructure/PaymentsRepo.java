@@ -1,6 +1,6 @@
 package com.myfinances.statistics.infrastructure;
 
-import com.myfinances.statistics.models.KeyValuePair;
+import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.utils.DateUtil;
 import jakarta.persistence.EntityManager;

@@ -1,6 +1,6 @@
 package com.myfinances.statistics.controllers;
 
-import com.myfinances.statistics.models.ChangeByDateStatisticData;
+import com.myfinances.statistics.models.response.ChangeByDateStatisticData;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.services.StatisticsService;
 import lombok.AllArgsConstructor;

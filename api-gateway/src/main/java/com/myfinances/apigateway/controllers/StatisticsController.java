@@ -2,7 +2,7 @@ package com.myfinances.apigateway.controllers;
 
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
-import com.myfinances.apigateway.models.statistics.ChangeByDateStatisticData;
+import com.myfinances.apigateway.models.response.statistics.ChangeByDateStatisticData;
 import com.myfinances.apigateway.services.StatisticsService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;

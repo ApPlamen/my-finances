@@ -1,6 +1,6 @@
 package com.myfinances.statistics.entities;
 
-import com.myfinances.statistics.models.KeyValuePair;
+import com.myfinances.statistics.models.response.KeyValuePair;
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
