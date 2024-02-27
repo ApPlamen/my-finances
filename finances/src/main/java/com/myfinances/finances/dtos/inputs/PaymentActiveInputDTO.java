@@ -1,14 +1,14 @@
 package com.myfinances.finances.dtos.inputs;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class PaymentActiveInputDTO {
-    @NotBlank
+    @NotNull
     private int paymentId;
-    @NotBlank
+    @NotNull
     private boolean active;
 }

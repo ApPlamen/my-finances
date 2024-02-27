@@ -1,6 +1,7 @@
 package com.myfinances.apigateway.models.request.finances;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,14 +16,14 @@ public class CreateEditPaymentRequest {
     private String description;
     @NotBlank
     private String vendor;
-    @NotBlank
+    @NotNull
     private float amount;
-    @NotBlank
+    @NotNull
     private Date dateTime;
-    @NotBlank
+    @NotNull
     private boolean income;
-    @NotBlank
+    @NotNull
     private int userId;
-    @NotBlank
+    @NotNull
     private int paymentOption;
 }

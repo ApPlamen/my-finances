@@ -1,6 +1,6 @@
 package com.myfinances.finances.dtos.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +13,6 @@ public class BoardPaymentsRequest {
     private String vendor;
     private Date startDate;
     private Date endDate;
-    @NotBlank
+    @NotNull
     private int userId;
 }
