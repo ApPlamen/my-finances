@@ -1,4 +1,4 @@
-package com.myfinances.apigateway.models.statistics;
+package com.myfinances.apigateway.models.response.statistics;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

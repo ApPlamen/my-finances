@@ -3,7 +3,7 @@ package com.myfinances.apigateway.services;
 import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisticInternalRequest;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
-import com.myfinances.apigateway.models.statistics.ChangeByDateStatisticData;
+import com.myfinances.apigateway.models.response.statistics.ChangeByDateStatisticData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

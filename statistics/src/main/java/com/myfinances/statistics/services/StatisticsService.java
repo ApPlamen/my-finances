@@ -1,8 +1,8 @@
 package com.myfinances.statistics.services;
 
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
-import com.myfinances.statistics.models.KeyValuePair;
-import com.myfinances.statistics.models.ChangeByDateStatisticData;
+import com.myfinances.statistics.models.response.KeyValuePair;
+import com.myfinances.statistics.models.response.ChangeByDateStatisticData;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

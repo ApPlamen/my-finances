@@ -54,7 +54,7 @@ public class PaymentsController extends CRUDController<Payment, Integer, Payment
     }
 
     @PostMapping("set-active")
-    public void setActive(@RequestBody PaymentActiveRequest request) {
+    public void setActive(@Valid @RequestBody PaymentActiveRequest request) {
         this.service.setActive(request);
     }
 }

@@ -1,4 +1,4 @@
-package com.myfinances.statistics.models;
+package com.myfinances.statistics.models.response;
 
 import lombok.Getter;
 

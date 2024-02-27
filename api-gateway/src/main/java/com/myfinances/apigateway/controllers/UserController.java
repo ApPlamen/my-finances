@@ -42,7 +42,7 @@ public class UserController extends CRUDController<User, Integer, UserInputReque
     }
 
     @PostMapping("set-active")
-    public void setActive(@RequestBody UserActiveRequest request) {
+    public void setActive(@Valid @RequestBody UserActiveRequest request) {
         this.service.setActive(request);
     }
 
