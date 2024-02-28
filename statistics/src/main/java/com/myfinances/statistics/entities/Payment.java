@@ -22,7 +22,7 @@ import java.sql.Timestamp;
 @Table(name = "Payments")
 @Getter
 @Setter
-@SqlResultSetMapping(name = "ChangeByDateStatisticResult", classes = {
+@SqlResultSetMapping(name = "KeyValuePair", classes = {
         @ConstructorResult(targetClass = KeyValuePair.class,
                 columns = {
                         @ColumnResult(name = "name"),

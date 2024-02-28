@@ -39,7 +39,7 @@ public class PaymentsRepo {
                     ORDER BY date);
                 """);
 
-        Query query = entityManager.createNativeQuery(sql.toString(), "ChangeByDateStatisticResult");
+        Query query = entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
 
         query.setParameter("userId", request.getUserId());
         if (request.getStartDate() != null) {
@@ -74,7 +74,7 @@ public class PaymentsRepo {
                 ORDER BY vendor;
                 """);
 
-        Query query = entityManager.createNativeQuery(sql.toString(), "ChangeByDateStatisticResult");
+        Query query = entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
 
         query.setParameter("userId", request.getUserId());
         if (request.getStartDate() != null) {
