@@ -9,13 +9,15 @@ import { ChangeByDateComponent } from './components/change-by-date/change-by-dat
 import { StatisticsNavbarComponent } from './components/statistics-navbar/statistics-navbar.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChangeByDateFilterComponent } from './components/filters/payments-board-filter/change-by-date-filter.component';
+import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-vendor.component';
 
 @NgModule({
   declarations: [
     StatisticsComponent,
     StatisticsNavbarComponent,
     ChangeByDateComponent,
-    ChangeByDateFilterComponent
+    ChangeByDateFilterComponent,
+    SpentByVendorComponent
   ],
   imports: [
     CommonModule,
