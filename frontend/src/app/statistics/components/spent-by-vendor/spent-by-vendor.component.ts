@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
-import { SpentByVendorModel } from '../../models/spent-by-vendor.model';
+import { SpentByVendorFilterModel } from '../../models/spent-by-vendor-filter..model';
 
 @Component({
   templateUrl: './spent-by-vendor.component.html',
@@ -20,7 +20,7 @@ export class SpentByVendorComponent implements OnInit {
     this.fillData();
   }
 
-  filter(value: SpentByVendorModel) {
+  filter(value: SpentByVendorFilterModel) {
     this.fillData(value);
   }
 
@@ -38,7 +38,7 @@ export class SpentByVendorComponent implements OnInit {
     document.getElementById(tabContent).classList.add("show", "active");
   }
 
-  private fillData(value: SpentByVendorModel = new SpentByVendorModel()): void {
+  private fillData(value: SpentByVendorFilterModel = new SpentByVendorFilterModel()): void {
     this.statisticsService.getSpentByVendor(value)
       .subscribe(multi => this.multi = multi);
   }

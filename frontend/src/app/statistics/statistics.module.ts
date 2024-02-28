@@ -10,6 +10,7 @@ import { StatisticsNavbarComponent } from './components/statistics-navbar/statis
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChangeByDateFilterComponent } from './components/filters/payments-board-filter/change-by-date-filter.component';
 import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-vendor.component';
+import { SpentByVendorFilterComponent } from './components/filters/spent-by-vendor-filter/spent-by-vendor-filter.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-ve
     StatisticsNavbarComponent,
     ChangeByDateComponent,
     ChangeByDateFilterComponent,
-    SpentByVendorComponent
+    SpentByVendorComponent,
+    SpentByVendorFilterComponent
   ],
   imports: [
     CommonModule,
