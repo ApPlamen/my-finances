@@ -1,6 +1,7 @@
 package com.myfinances.statistics.services;
 
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
+import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.response.ChangeByDateStatisticData;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
@@ -27,5 +28,16 @@ public class StatisticsService {
         data.add(amountData);
 
         return data;
+    }
+
+    public List<KeyValuePair> getSpentByVendor(SpentByVendorStatisticRequest request) {
+        List<KeyValuePair> result = new ArrayList<>();
+        result.add(new KeyValuePair("Germany", 8940000));
+        result.add(new KeyValuePair("USA", 5000000));
+        result.add(new KeyValuePair("France", 7200000));
+        result.add(new KeyValuePair("UK", 6200000));
+        result.add(new KeyValuePair("Bulgaria", 3100000));
+
+        return result;
     }
 }
