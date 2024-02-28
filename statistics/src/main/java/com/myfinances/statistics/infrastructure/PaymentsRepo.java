@@ -1,5 +1,6 @@
 package com.myfinances.statistics.infrastructure;
 
+import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.utils.DateUtil;
@@ -36,6 +37,41 @@ public class PaymentsRepo {
         sql.append("""
                     GROUP BY date
                     ORDER BY date);
+                """);
+
+        Query query = entityManager.createNativeQuery(sql.toString(), "ChangeByDateStatisticResult");
+
+        query.setParameter("userId", request.getUserId());
+        if (request.getStartDate() != null) {
+            query.setParameter("startDate", request.getStartDate());
+        }
+        if (request.getEndDate() != null) {
+            Date endDate = DateUtil.addDays(request.getEndDate(),1);
+            query.setParameter("endDate", endDate);
+        }
+
+        return query.getResultList();
+    }
+
+    public List<KeyValuePair> getSpentByVendor(SpentByVendorStatisticRequest request) {
+        StringBuilder sql = new StringBuilder("""
+                SELECT SUM(ABS(amount)) AS value, vendor AS name
+                FROM payments
+                WHERE user_id = :userId
+                AND active = TRUE
+                AND amount < 0
+                """);
+
+        if (request.getStartDate() != null) {
+            sql.append("AND date_time >= :startDate").append("\n");
+        }
+        if (request.getEndDate() != null) {
+            sql.append("AND date_time <= :endDate").append("\n");
+        }
+
+        sql.append("""
+                GROUP BY vendor
+                ORDER BY vendor;
                 """);
 
         Query query = entityManager.createNativeQuery(sql.toString(), "ChangeByDateStatisticResult");
