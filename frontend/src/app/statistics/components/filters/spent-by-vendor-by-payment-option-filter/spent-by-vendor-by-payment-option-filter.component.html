@@ -1,0 +1,42 @@
+<div class="">
+  <fieldset class="border p-2 mx-3 my-1">
+    <legend>Filters:</legend>
+    <div>
+      <form class="needs-validation"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="spentByVendorByPaymentOptionFilterForm.formGroup"
+            novalidate >
+
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-3 col-xl-4">
+            <app-date-picker  label="Start date time" placeholder="Start date time" formControlName="startDate"></app-date-picker>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 col-xl-4">
+            <app-date-picker label="End date time" placeholder="End date time" formControlName="endDate"></app-date-picker>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 col-xl-2">
+            <app-button design="info"
+                        type='submit'
+                        label="Search"
+                        iconName="search"
+                        class="py-2 d-grid gap-2"
+                        (clicked)="onSubmit()">
+            </app-button>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 col-xl-2">
+            <app-button design="outline-secondary"
+                        type='reset'
+                        label="Reset"
+                        iconName="x-octagon"
+                        class="py-2 d-grid gap-2"
+                        (clicked)="onReset()">
+            </app-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </fieldset>
+</div>

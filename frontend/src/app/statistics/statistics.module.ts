@@ -12,6 +12,7 @@ import { ChangeByDateFilterComponent } from './components/filters/payments-board
 import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-vendor.component';
 import { SpentByVendorFilterComponent } from './components/filters/spent-by-vendor-filter/spent-by-vendor-filter.component';
 import { SpentByVendorByPaymentOptionComponent } from './components/spent-by-vendor-by-payment-option/spent-by-vendor-by-payment-option.component';
+import { SpentByVendorByPaymentOptionFilterComponent } from './components/filters/spent-by-vendor-by-payment-option-filter/spent-by-vendor-by-payment-option-filter.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SpentByVendorByPaymentOptionComponent } from './components/spent-by-ven
     ChangeByDateFilterComponent,
     SpentByVendorComponent,
     SpentByVendorFilterComponent,
-    SpentByVendorByPaymentOptionComponent
+    SpentByVendorByPaymentOptionComponent,
+    SpentByVendorByPaymentOptionFilterComponent
   ],
   imports: [
     CommonModule,

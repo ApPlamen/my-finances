@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChangeByDateFilterModel } from '../models/change-by-date-filter.model';
-import { SpentByVendorFilterModel } from '../models/spent-by-vendor-filter..model';
+import { SpentByVendorFilterModel } from '../models/spent-by-vendor-filter.model';
 import { KeyValuePair } from '../viewmodels/key-value-pair.viewmodel';
 import { ListOfKeyValuePairs } from '../viewmodels/list-of-key-value-pairs.viewmodel';
 
