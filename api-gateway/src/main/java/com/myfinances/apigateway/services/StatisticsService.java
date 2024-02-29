@@ -5,7 +5,7 @@ import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisti
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorStatisticInternalRequest;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorStatisticRequest;
-import com.myfinances.apigateway.models.response.statistics.ChangeByDateStatisticData;
+import com.myfinances.apigateway.models.response.statistics.ListOfKeyValuePairs;
 import com.myfinances.apigateway.models.response.statistics.KeyValuePair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class StatisticsService extends BaseRestService {
         super(baseUrl, "statistics");
     }
 
-    public List<ChangeByDateStatisticData> getChangeByDate(ChangeByDateStatisticRequest request) {
+    public List<ListOfKeyValuePairs> getChangeByDate(ChangeByDateStatisticRequest request) {
         int userId = SecurityContextHelper.getUserId();
 
         ChangeByDateStatisticInternalRequest body = ChangeByDateStatisticInternalRequest.builder()
