@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChangeByDateFilterModel } from '../models/change-by-date-filter.model';
 import { SpentByVendorFilterModel } from '../models/spent-by-vendor-filter..model';
+import { KeyValuePair } from '../viewmodels/key-value-pair.viewmodel';
+import { ListOfKeyValuePairs } from '../viewmodels/list-of-key-value-pairs.viewmodel';
 
 const CONTROLER_URL = 'statistics';
 const BASE_URL = environment.apiUrl + CONTROLER_URL;
@@ -14,11 +16,11 @@ const BASE_URL = environment.apiUrl + CONTROLER_URL;
 export class StatisticsService {
   constructor(private http: HttpClient) { }
 
-  getChangeByDate(value: ChangeByDateFilterModel): Observable<any[]> {
+  getChangeByDate(value: ChangeByDateFilterModel): Observable<ListOfKeyValuePairs[]> {
     return this.http.post<any[]>(BASE_URL + '/change-by-date', value);
   }
 
-  getSpentByVendor(value: SpentByVendorFilterModel): Observable<any[]> {
+  getSpentByVendor(value: SpentByVendorFilterModel): Observable<KeyValuePair[]> {
     return this.http.post<any[]>(BASE_URL + '/spent-by-vendor', value);
   }
 

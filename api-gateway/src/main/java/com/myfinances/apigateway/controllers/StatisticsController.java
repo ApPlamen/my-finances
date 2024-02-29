@@ -3,7 +3,7 @@ package com.myfinances.apigateway.controllers;
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorStatisticRequest;
-import com.myfinances.apigateway.models.response.statistics.ChangeByDateStatisticData;
+import com.myfinances.apigateway.models.response.statistics.ListOfKeyValuePairs;
 import com.myfinances.apigateway.models.response.statistics.KeyValuePair;
 import com.myfinances.apigateway.services.StatisticsService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -26,8 +26,8 @@ public class StatisticsController {
     private StatisticsService service;
 
     @PostMapping("change-by-date")
-    public ResponseEntity<List<ChangeByDateStatisticData>> getChangeByDate(@RequestBody ChangeByDateStatisticRequest request) {
-        List<ChangeByDateStatisticData> response = this.service.getChangeByDate(request);
+    public ResponseEntity<List<ListOfKeyValuePairs>> getChangeByDate(@RequestBody ChangeByDateStatisticRequest request) {
+        List<ListOfKeyValuePairs> response = this.service.getChangeByDate(request);
         return ResponseEntity.ok(response);
     }
 

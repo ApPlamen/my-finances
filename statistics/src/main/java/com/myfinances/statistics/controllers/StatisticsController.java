@@ -1,7 +1,7 @@
 package com.myfinances.statistics.controllers;
 
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
-import com.myfinances.statistics.models.response.ChangeByDateStatisticData;
+import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.services.StatisticsService;
@@ -22,8 +22,8 @@ public class StatisticsController {
     private StatisticsService service;
 
     @PostMapping("change-by-date")
-    public ResponseEntity<List<ChangeByDateStatisticData>> getChangeByDate(@Valid @RequestBody ChangeByDateStatisticRequest request) {
-        List<ChangeByDateStatisticData> response = this.service.getChangeByDate(request);
+    public ResponseEntity<List<ListOfKeyValuePairs>> getChangeByDate(@Valid @RequestBody ChangeByDateStatisticRequest request) {
+        List<ListOfKeyValuePairs> response = this.service.getChangeByDate(request);
         return ResponseEntity.ok(response);
     }
 
