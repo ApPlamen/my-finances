@@ -11,6 +11,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChangeByDateFilterComponent } from './components/filters/payments-board-filter/change-by-date-filter.component';
 import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-vendor.component';
 import { SpentByVendorFilterComponent } from './components/filters/spent-by-vendor-filter/spent-by-vendor-filter.component';
+import { SpentByVendorByPaymentOptionComponent } from './components/spent-by-vendor-by-payment-option/spent-by-vendor-by-payment-option.component';
+import { SpentByVendorByPaymentOptionFilterComponent } from './components/filters/spent-by-vendor-by-payment-option-filter/spent-by-vendor-by-payment-option-filter.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SpentByVendorFilterComponent } from './components/filters/spent-by-vend
     ChangeByDateComponent,
     ChangeByDateFilterComponent,
     SpentByVendorComponent,
-    SpentByVendorFilterComponent
+    SpentByVendorFilterComponent,
+    SpentByVendorByPaymentOptionComponent,
+    SpentByVendorByPaymentOptionFilterComponent
   ],
   imports: [
     CommonModule,

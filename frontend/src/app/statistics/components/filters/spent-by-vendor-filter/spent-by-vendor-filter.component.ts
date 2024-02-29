@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SpentByVendorFilterForm } from 'src/app/statistics/forms/spent-by-vendor-filter.form';
-import { SpentByVendorFilterModel } from 'src/app/statistics/models/spent-by-vendor-filter..model';
+import { SpentByVendorFilterModel } from 'src/app/statistics/models/spent-by-vendor-filter.model';
 
 @Component({
   selector: 'app-spent-by-vendor-filter',

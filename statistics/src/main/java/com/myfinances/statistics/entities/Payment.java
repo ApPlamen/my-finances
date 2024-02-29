@@ -1,6 +1,7 @@
 package com.myfinances.statistics.entities;
 
 import com.myfinances.statistics.models.response.KeyValuePair;
+import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
@@ -27,6 +28,14 @@ import java.sql.Timestamp;
                 columns = {
                         @ColumnResult(name = "name"),
                         @ColumnResult(name = "value")
+                })
+})
+@SqlResultSetMapping(name = "SpentByVendorByPaymentOption", classes = {
+        @ConstructorResult(targetClass = SpentByVendorByPaymentOptionSQLResponse.class,
+                columns = {
+                        @ColumnResult(name = "amount"),
+                        @ColumnResult(name = "vendor"),
+                        @ColumnResult(name = "paymentOption")
                 })
 })
 public class Payment implements EntityModel {

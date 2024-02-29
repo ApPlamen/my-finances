@@ -1,5 +1,6 @@
 package com.myfinances.statistics.controllers;
 
+import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
@@ -30,6 +31,12 @@ public class StatisticsController {
     @PostMapping("spent-by-vendor")
     public ResponseEntity<List<KeyValuePair>> getChangeByDate(@Valid @RequestBody SpentByVendorStatisticRequest request) {
         List<KeyValuePair> response = this.service.getSpentByVendor(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("spent-by-vendor-by-payment-option")
+    public ResponseEntity<List<ListOfKeyValuePairs>> getSpentByVendorByPaymentOption(@Valid @RequestBody SpentByVendorByPaymentOptionStatisticRequest request) {
+        List<ListOfKeyValuePairs> response = this.service.getSpentByVendorByPaymentOption(request);
         return ResponseEntity.ok(response);
     }
 }
