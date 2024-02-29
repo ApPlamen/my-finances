@@ -6,11 +6,13 @@ import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -36,22 +38,17 @@ public class StatisticsService {
     }
 
     public List<ListOfKeyValuePairs> getSpentByVendorByPaymentOption(SpentByVendorByPaymentOptionStatisticRequest request) {
+        List<SpentByVendorByPaymentOptionSQLResponse> response = repo.getSpentByVendorByPaymentOption(request);
+
         List<ListOfKeyValuePairs> data = new ArrayList<>();
 
-        List<KeyValuePair> series1 = new ArrayList<>();
-        series1.add(new KeyValuePair("2010", 7300000));
-        series1.add(new KeyValuePair("2011", 8940000));
-        data.add(new ListOfKeyValuePairs("Germany", series1));
-
-        List<KeyValuePair> series2 = new ArrayList<>();
-        series2.add(new KeyValuePair("2010", 7870000));
-        series2.add(new KeyValuePair("2011", 8270000));
-        data.add(new ListOfKeyValuePairs("USA", series2));
-
-        List<KeyValuePair> series3 = new ArrayList<>();
-        series3.add(new KeyValuePair("2010", 5000002));
-        series3.add(new KeyValuePair("2011", 5800000));
-        data.add(new ListOfKeyValuePairs("France", series3));
+        response.stream()
+                .collect(Collectors.groupingBy(r -> r.vendor))
+                .forEach((key, value) -> {
+                    List<KeyValuePair> series = new ArrayList<>();
+                    value.forEach(v -> series.add(new KeyValuePair(v.paymentOption, v.amount)));
+                    data.add(new ListOfKeyValuePairs(key, series));
+                });
 
         return data;
     }
