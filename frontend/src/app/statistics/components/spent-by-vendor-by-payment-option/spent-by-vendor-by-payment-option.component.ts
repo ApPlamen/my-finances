@@ -15,11 +15,11 @@ export class SpentByVendorByPaymentOptionComponent implements OnInit {
   gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Country';
+  xAxisLabel: string = 'Vendor';
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Population';
+  yAxisLabel: string = 'Amount';
   animations: boolean = true;
-  legendTitle: string = 'Years';
+  legendTitle: string = 'Payment option';
 
   constructor(private statisticsService: StatisticsService) { }
 
