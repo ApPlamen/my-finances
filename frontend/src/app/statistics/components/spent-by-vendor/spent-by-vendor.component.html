@@ -1,0 +1,70 @@
+<div class="mx-3 mt-2">
+  <h1>Spent by vendor</h1>
+</div>
+
+<div class="mt-3">
+  <app-spent-by-vendor-filter (filterSubmit)="filter($event)"></app-spent-by-vendor-filter>
+</div>
+
+<div class="m-3 mt-5">
+  <!-- Tabs navs -->
+  <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link active"
+        role="tab"
+        id="ex1-tab-1"
+        (click)="openTab('ex1-tab-1', 'ex1-tabs-1')">
+        Pie chart
+    </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        role="tab"
+        id="ex1-tab-2"
+        (click)="openTab('ex1-tab-2', 'ex1-tabs-2')">
+        Advanced pie chart
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        role="tab"
+        id="ex1-tab-3"
+        (click)="openTab('ex1-tab-3', 'ex1-tabs-3')">
+        Charts pie grid
+      </a>
+    </li>
+  </ul>
+  <!-- Tabs navs -->
+
+  <!-- Tabs content -->
+  <div class="tab-content" id="ex1-content">
+    <div
+      class="tab-pane fade show active"
+      id="ex1-tabs-1"
+      role="tabpanel"
+      aria-labelledby="ex1-tab-1">
+      <ngx-charts-pie-chart
+        [results]="multi"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut">
+      </ngx-charts-pie-chart>
+    </div>
+    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+      <ngx-charts-advanced-pie-chart
+        [results]="multi"
+        [gradient]="gradient">
+      </ngx-charts-advanced-pie-chart>
+    </div>
+    <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+      <ngx-charts-pie-grid
+        [results]="multi">
+      </ngx-charts-pie-grid>
+    </div>
+  </div>
+  <!-- Tabs content -->
+</div>

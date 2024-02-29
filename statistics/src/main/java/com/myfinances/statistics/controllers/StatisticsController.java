@@ -1,7 +1,9 @@
 package com.myfinances.statistics.controllers;
 
+import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.ChangeByDateStatisticData;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.services.StatisticsService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,12 @@ public class StatisticsController {
     @PostMapping("change-by-date")
     public ResponseEntity<List<ChangeByDateStatisticData>> getChangeByDate(@Valid @RequestBody ChangeByDateStatisticRequest request) {
         List<ChangeByDateStatisticData> response = this.service.getChangeByDate(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("spent-by-vendor")
+    public ResponseEntity<List<KeyValuePair>> getChangeByDate(@Valid @RequestBody SpentByVendorStatisticRequest request) {
+        List<KeyValuePair> response = this.service.getSpentByVendor(request);
         return ResponseEntity.ok(response);
     }
 }
