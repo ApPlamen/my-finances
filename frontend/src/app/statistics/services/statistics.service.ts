@@ -17,11 +17,14 @@ export class StatisticsService {
   constructor(private http: HttpClient) { }
 
   getChangeByDate(value: ChangeByDateFilterModel): Observable<ListOfKeyValuePairs[]> {
-    return this.http.post<any[]>(BASE_URL + '/change-by-date', value);
+    return this.http.post<ListOfKeyValuePairs[]>(BASE_URL + '/change-by-date', value);
   }
 
   getSpentByVendor(value: SpentByVendorFilterModel): Observable<KeyValuePair[]> {
-    return this.http.post<any[]>(BASE_URL + '/spent-by-vendor', value);
+    return this.http.post<KeyValuePair[]>(BASE_URL + '/spent-by-vendor', value);
   }
 
+  getSpentByVendorByPaymentOption(value: SpentByVendorFilterModel): Observable<ListOfKeyValuePairs[]> {
+    return this.http.post<ListOfKeyValuePairs[]>(BASE_URL + '/spent-by-vendor-by-payment-option', value);
+  }
 }

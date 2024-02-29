@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
 import { SpentByVendorFilterModel } from '../../models/spent-by-vendor-filter.model';
 import { ListOfKeyValuePairs } from '../../viewmodels/list-of-key-value-pairs.viewmodel';
-import { multi } from './data';
 
 @Component({
   templateUrl: './spent-by-vendor-by-payment-option.component.html',
@@ -47,8 +46,7 @@ export class SpentByVendorByPaymentOptionComponent implements OnInit {
   }
 
   private fillData(value: SpentByVendorFilterModel = new SpentByVendorFilterModel()): void {
-    // this.statisticsService.getSpentByVendorByPaymentOption(value)
-    //   .subscribe(multi => this.multi = multi);
-    Object.assign(this, { multi })
+    this.statisticsService.getSpentByVendorByPaymentOption(value)
+      .subscribe(multi => this.multi = multi);
   }
 }
