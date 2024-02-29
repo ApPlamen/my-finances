@@ -5,7 +5,6 @@ import {
     Optional
 } from "@angular/core";
 import {
-    NgbTimeStruct,
     NgbDateStruct,
     NgbPopoverConfig,
 } from "@ng-bootstrap/ng-bootstrap";

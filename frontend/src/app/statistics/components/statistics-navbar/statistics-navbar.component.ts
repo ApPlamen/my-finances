@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'statistics-navbar',
+  selector: 'app-statistics-navbar',
   templateUrl: './statistics-navbar.component.html',
 })
 export class StatisticsNavbarComponent {

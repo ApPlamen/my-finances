@@ -8,14 +8,14 @@ import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-ve
 const routes: Routes = [
   {
     path: 'change-by-date',
-    // canActivate: [canActivate],
-    // data: { accessRoles: [RolesEnum.user] },
+    canActivate: [canActivate],
+    data: { accessRoles: [RolesEnum.user] },
     component: ChangeByDateComponent,
   },
   {
     path: 'spent-by-vendor',
-    // canActivate: [canActivate],
-    // data: { accessRoles: [RolesEnum.user] },
+    canActivate: [canActivate],
+    data: { accessRoles: [RolesEnum.user] },
     component: SpentByVendorComponent,
   },
 ];
