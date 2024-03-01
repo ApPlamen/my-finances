@@ -1,6 +1,7 @@
 package com.myfinances.statistics.services;
 
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
+import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
@@ -51,5 +52,9 @@ public class StatisticsService {
                 });
 
         return data;
+    }
+
+    public List<KeyValuePair> getSpentByPaymentOption(SpentByPaymentOptionStatisticRequest request) {
+        return repo.getSpentByPaymentOption(request);
     }
 }

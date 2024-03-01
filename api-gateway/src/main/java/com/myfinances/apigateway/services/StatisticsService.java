@@ -2,9 +2,11 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisticInternalRequest;
+import com.myfinances.apigateway.models.internal.statistics.SpentByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorStatisticInternalRequest;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
+import com.myfinances.apigateway.models.request.statistics.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorStatisticRequest;
 import com.myfinances.apigateway.models.response.statistics.ListOfKeyValuePairs;
@@ -63,6 +65,22 @@ public class StatisticsService extends BaseRestService {
 
         return restClient.post()
                 .uri("/spent-by-vendor-by-payment-option")
+                .body(body)
+                .retrieve()
+                .body(List.class);
+    }
+
+    public List<KeyValuePair> getSpentByPaymentOption(SpentByPaymentOptionStatisticRequest request) {
+        int userId = SecurityContextHelper.getUserId();
+
+        SpentByPaymentOptionStatisticInternalRequest body = SpentByPaymentOptionStatisticInternalRequest.builder()
+                .userId(userId)
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .build();
+
+        return restClient.post()
+                .uri("/spent-by-payment-option")
                 .body(body)
                 .retrieve()
                 .body(List.class);

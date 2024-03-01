@@ -31,6 +31,6 @@ export class StatisticsService {
   }
 
   getSpentByPaymentOption(value: SpentByPaymentOptionFilterModel): Observable<KeyValuePair[]> {
-    return this.http.post<KeyValuePair[]>(BASE_URL + '/spent-by-vendor', value);
+    return this.http.post<KeyValuePair[]>(BASE_URL + '/spent-by-payment-option', value);
   }
 }
