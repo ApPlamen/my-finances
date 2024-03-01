@@ -1,12 +1,14 @@
 package com.myfinances.statistics.services;
 
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
+import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
-import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,5 +58,31 @@ public class StatisticsService {
 
     public List<KeyValuePair> getSpentByPaymentOption(SpentByPaymentOptionStatisticRequest request) {
         return repo.getSpentByPaymentOption(request);
+    }
+
+    public List<ListOfKeyValuePairs> getEarnedByMonth(EarnedByMonthStatisticRequest request) {
+        List<KeyValuePair> series = new ArrayList<>();
+        series.add(new KeyValuePair("01", 20));
+        series.add(new KeyValuePair("02", 30));
+        series.add(new KeyValuePair("03", 10));
+
+        ListOfKeyValuePairs data = new ListOfKeyValuePairs("2023", series);
+
+        List<ListOfKeyValuePairs> result = new ArrayList<>();
+        result.add(data);
+        return result;
+    }
+
+    public List<ListOfKeyValuePairs> getSpentByMonth(SpentByMonthStatisticRequest request) {
+        List<KeyValuePair> series = new ArrayList<>();
+        series.add(new KeyValuePair("01", 10));
+        series.add(new KeyValuePair("02", 20));
+        series.add(new KeyValuePair("03", 30));
+
+        ListOfKeyValuePairs data = new ListOfKeyValuePairs("2023", series);
+
+        List<ListOfKeyValuePairs> result = new ArrayList<>();
+        result.add(data);
+        return result;
     }
 }
