@@ -9,6 +9,7 @@ import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStat
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
+import com.myfinances.statistics.models.sql.AmountByMonthAndYearSQLResponse;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -61,28 +62,34 @@ public class StatisticsService {
     }
 
     public List<ListOfKeyValuePairs> getEarnedByMonth(EarnedByMonthStatisticRequest request) {
-        List<KeyValuePair> series = new ArrayList<>();
-        series.add(new KeyValuePair("01", 20));
-        series.add(new KeyValuePair("02", 30));
-        series.add(new KeyValuePair("03", 10));
+        List<AmountByMonthAndYearSQLResponse> response = repo.getEarnedByMonth(request);
 
-        ListOfKeyValuePairs data = new ListOfKeyValuePairs("2023", series);
+        List<ListOfKeyValuePairs> data = new ArrayList<>();
 
-        List<ListOfKeyValuePairs> result = new ArrayList<>();
-        result.add(data);
-        return result;
+        response.stream()
+                .collect(Collectors.groupingBy(AmountByMonthAndYearSQLResponse::getYear))
+                .forEach((key, value) -> {
+                    List<KeyValuePair> series = new ArrayList<>();
+                    value.forEach(v -> series.add(new KeyValuePair(v.getMonth(), v.getAmount())));
+                    data.add(new ListOfKeyValuePairs(key, series));
+                });
+
+        return data;
     }
 
     public List<ListOfKeyValuePairs> getSpentByMonth(SpentByMonthStatisticRequest request) {
-        List<KeyValuePair> series = new ArrayList<>();
-        series.add(new KeyValuePair("01", 10));
-        series.add(new KeyValuePair("02", 20));
-        series.add(new KeyValuePair("03", 30));
+        List<AmountByMonthAndYearSQLResponse> response = repo.getSpentByMonth(request);
 
-        ListOfKeyValuePairs data = new ListOfKeyValuePairs("2023", series);
+        List<ListOfKeyValuePairs> data = new ArrayList<>();
 
-        List<ListOfKeyValuePairs> result = new ArrayList<>();
-        result.add(data);
-        return result;
+        response.stream()
+                .collect(Collectors.groupingBy(AmountByMonthAndYearSQLResponse::getYear))
+                .forEach((key, value) -> {
+                    List<KeyValuePair> series = new ArrayList<>();
+                    value.forEach(v -> series.add(new KeyValuePair(v.getMonth(), v.getAmount())));
+                    data.add(new ListOfKeyValuePairs(key, series));
+                });
+
+        return data;
     }
 }

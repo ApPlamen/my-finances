@@ -1,10 +1,13 @@
 package com.myfinances.statistics.infrastructure;
 
+import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
-import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.sql.AmountByMonthAndYearSQLResponse;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import com.myfinances.statistics.utils.DateUtil;
 import jakarta.persistence.EntityManager;
@@ -167,5 +170,41 @@ public class PaymentsRepo {
 
     private Query createKeyValuePairNativeQuery(StringBuilder sql) {
         return entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
+    }
+
+    public List<AmountByMonthAndYearSQLResponse> getEarnedByMonth(EarnedByMonthStatisticRequest request) {
+        String sql = """
+                SELECT SUM(amount) AS amount, to_char(date_time, 'MONTH') AS month, to_char(date_time, 'YYYY') AS year
+                FROM payments
+                WHERE user_id = :userId
+                AND amount > 0
+                AND active = TRUE
+                GROUP BY month, year
+                ORDER BY month, year;
+                """;
+
+        Query query = entityManager.createNativeQuery(sql, "AmountByMonthAndYearSQLResponse");
+
+        query.setParameter("userId", request.getUserId());
+
+        return query.getResultList();
+    }
+
+    public List<AmountByMonthAndYearSQLResponse> getSpentByMonth(SpentByMonthStatisticRequest request) {
+        String sql = """
+                SELECT SUM(ABS(amount)) AS amount, to_char(date_time, 'MONTH') AS month, to_char(date_time, 'YYYY') AS year
+                FROM payments
+                WHERE user_id = :userId
+                AND amount < 0
+                AND active = TRUE
+                GROUP BY month, year
+                ORDER BY month, year;
+                """;
+
+        Query query = entityManager.createNativeQuery(sql, "AmountByMonthAndYearSQLResponse");
+
+        query.setParameter("userId", request.getUserId());
+
+        return query.getResultList();
     }
 }
