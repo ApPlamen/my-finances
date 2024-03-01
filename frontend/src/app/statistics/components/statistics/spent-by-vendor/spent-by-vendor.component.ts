@@ -1,25 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsService } from '../../services/statistics.service';
-import { SpentByVendorFilterModel } from '../../models/spent-by-vendor-filter.model';
-import { ListOfKeyValuePairs } from '../../viewmodels/list-of-key-value-pairs.viewmodel';
+import { StatisticsService } from '../../../services/statistics.service';
+import { SpentByVendorFilterModel } from '../../../models/spent-by-vendor-filter.model';
+import { KeyValuePair } from '../../../viewmodels/key-value-pair.viewmodel';
 
 @Component({
-  templateUrl: './spent-by-vendor-by-payment-option.component.html',
+  templateUrl: './spent-by-vendor.component.html',
 })
-export class SpentByVendorByPaymentOptionComponent implements OnInit {
-  multi: ListOfKeyValuePairs[];
+export class SpentByVendorComponent implements OnInit {
+  multi: KeyValuePair[];
 
   // options
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  gradient: boolean = false;
+  gradient: boolean = true;
   showLegend: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Vendor';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Amount';
-  animations: boolean = true;
-  legendTitle: string = 'Payment option';
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
 
   constructor(private statisticsService: StatisticsService) { }
 
@@ -46,7 +40,7 @@ export class SpentByVendorByPaymentOptionComponent implements OnInit {
   }
 
   private fillData(value: SpentByVendorFilterModel = new SpentByVendorFilterModel()): void {
-    this.statisticsService.getSpentByVendorByPaymentOption(value)
+    this.statisticsService.getSpentByVendor(value)
       .subscribe(multi => this.multi = multi);
   }
 }

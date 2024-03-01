@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsService } from '../../services/statistics.service';
-import { ChangeByDateFilterModel } from '../../models/change-by-date-filter.model';
-import { ListOfKeyValuePairs } from '../../viewmodels/list-of-key-value-pairs.viewmodel';
+import { StatisticsService } from '../../../services/statistics.service';
+import { ChangeByDateFilterModel } from '../../../models/change-by-date-filter.model';
+import { ListOfKeyValuePairs } from '../../../viewmodels/list-of-key-value-pairs.viewmodel';
 
 @Component({
   templateUrl: './change-by-date.component.html',

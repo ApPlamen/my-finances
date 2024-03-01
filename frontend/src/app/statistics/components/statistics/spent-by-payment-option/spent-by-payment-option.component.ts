@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsService } from '../../services/statistics.service';
-import { SpentByVendorFilterModel } from '../../models/spent-by-vendor-filter.model';
-import { KeyValuePair } from '../../viewmodels/key-value-pair.viewmodel';
+import { StatisticsService } from '../../../services/statistics.service';
+import { KeyValuePair } from '../../../viewmodels/key-value-pair.viewmodel';
+import { SpentByPaymentOptionFilterModel } from '../../../models/spent-by-payment-option-filter.model';
 
 @Component({
-  templateUrl: './spent-by-vendor.component.html',
+  templateUrl: './spent-by-payment-option.component.html',
 })
-export class SpentByVendorComponent implements OnInit {
+export class SpentByPaymentOptionComponent implements OnInit {
   multi: KeyValuePair[];
 
   // options
@@ -21,7 +21,7 @@ export class SpentByVendorComponent implements OnInit {
     this.fillData();
   }
 
-  filter(value: SpentByVendorFilterModel) {
+  filter(value: SpentByPaymentOptionFilterModel) {
     this.fillData(value);
   }
 
@@ -39,8 +39,8 @@ export class SpentByVendorComponent implements OnInit {
     document.getElementById(tabContent).classList.add("show", "active");
   }
 
-  private fillData(value: SpentByVendorFilterModel = new SpentByVendorFilterModel()): void {
-    this.statisticsService.getSpentByVendor(value)
+  private fillData(value: SpentByPaymentOptionFilterModel = new SpentByPaymentOptionFilterModel()): void {
+    this.statisticsService.getSpentByPaymentOption(value)
       .subscribe(multi => this.multi = multi);
   }
 }
