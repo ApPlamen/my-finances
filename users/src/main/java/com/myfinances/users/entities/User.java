@@ -1,6 +1,9 @@
 package com.myfinances.users.entities;
 
+import com.myfinances.users.dtos.views.UserBoardItemViewDTO;
 import jakarta.persistence.Column;
+import jakarta.persistence.ColumnResult;
+import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +23,16 @@ import java.util.Set;
 @Table(name = "Users")
 @Getter
 @Setter
+@SqlResultSetMapping(name = "UserBoard", classes = {
+        @ConstructorResult(targetClass = UserBoardItemViewDTO.class,
+                columns = {
+                        @ColumnResult(name = "id"),
+                        @ColumnResult(name = "userName"),
+                        @ColumnResult(name = "fullName"),
+                        @ColumnResult(name = "active"),
+                        @ColumnResult(name = "roles")
+                })
+})
 public class User implements EntityModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
