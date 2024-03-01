@@ -2,6 +2,8 @@ package com.myfinances.apigateway.services;
 
 import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisticInternalRequest;
+import com.myfinances.apigateway.models.internal.statistics.EarnedByMonthStatisticInternalRequest;
+import com.myfinances.apigateway.models.internal.statistics.SpentByMonthStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorStatisticInternalRequest;
@@ -81,6 +83,34 @@ public class StatisticsService extends BaseRestService {
 
         return restClient.post()
                 .uri("/spent-by-payment-option")
+                .body(body)
+                .retrieve()
+                .body(List.class);
+    }
+
+    public List<ListOfKeyValuePairs> getEarnedByMonth() {
+        int userId = SecurityContextHelper.getUserId();
+
+        EarnedByMonthStatisticInternalRequest body = EarnedByMonthStatisticInternalRequest.builder()
+                .userId(userId)
+                .build();
+
+        return restClient.post()
+                .uri("/earned-by-month")
+                .body(body)
+                .retrieve()
+                .body(List.class);
+    }
+
+    public List<ListOfKeyValuePairs> getSpentByMonth() {
+        int userId = SecurityContextHelper.getUserId();
+
+        SpentByMonthStatisticInternalRequest body = SpentByMonthStatisticInternalRequest.builder()
+                .userId(userId)
+                .build();
+
+        return restClient.post()
+                .uri("/spent-by-month")
                 .body(body)
                 .retrieve()
                 .body(List.class);

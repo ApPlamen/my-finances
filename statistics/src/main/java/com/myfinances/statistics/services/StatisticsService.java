@@ -1,12 +1,15 @@
 package com.myfinances.statistics.services;
 
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
+import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
-import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
+import com.myfinances.statistics.models.sql.AmountByMonthAndYearSQLResponse;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,5 +59,37 @@ public class StatisticsService {
 
     public List<KeyValuePair> getSpentByPaymentOption(SpentByPaymentOptionStatisticRequest request) {
         return repo.getSpentByPaymentOption(request);
+    }
+
+    public List<ListOfKeyValuePairs> getEarnedByMonth(EarnedByMonthStatisticRequest request) {
+        List<AmountByMonthAndYearSQLResponse> response = repo.getEarnedByMonth(request);
+
+        List<ListOfKeyValuePairs> data = new ArrayList<>();
+
+        response.stream()
+                .collect(Collectors.groupingBy(AmountByMonthAndYearSQLResponse::getYear))
+                .forEach((key, value) -> {
+                    List<KeyValuePair> series = new ArrayList<>();
+                    value.forEach(v -> series.add(new KeyValuePair(v.getMonth(), v.getAmount())));
+                    data.add(new ListOfKeyValuePairs(key, series));
+                });
+
+        return data;
+    }
+
+    public List<ListOfKeyValuePairs> getSpentByMonth(SpentByMonthStatisticRequest request) {
+        List<AmountByMonthAndYearSQLResponse> response = repo.getSpentByMonth(request);
+
+        List<ListOfKeyValuePairs> data = new ArrayList<>();
+
+        response.stream()
+                .collect(Collectors.groupingBy(AmountByMonthAndYearSQLResponse::getYear))
+                .forEach((key, value) -> {
+                    List<KeyValuePair> series = new ArrayList<>();
+                    value.forEach(v -> series.add(new KeyValuePair(v.getMonth(), v.getAmount())));
+                    data.add(new ListOfKeyValuePairs(key, series));
+                });
+
+        return data;
     }
 }

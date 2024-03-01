@@ -33,4 +33,12 @@ export class StatisticsService {
   getSpentByPaymentOption(value: SpentByPaymentOptionFilterModel): Observable<KeyValuePair[]> {
     return this.http.post<KeyValuePair[]>(BASE_URL + '/spent-by-payment-option', value);
   }
+
+  getEarnedByMonth() {
+    return this.http.get<ListOfKeyValuePairs[]>(BASE_URL + '/earned-by-month');
+  }
+
+  getSpentByMonth() {
+    return this.http.get<ListOfKeyValuePairs[]>(BASE_URL + '/spent-by-month');
+  }
 }
