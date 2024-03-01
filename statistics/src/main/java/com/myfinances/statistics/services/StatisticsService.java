@@ -47,10 +47,10 @@ public class StatisticsService {
         List<ListOfKeyValuePairs> data = new ArrayList<>();
 
         response.stream()
-                .collect(Collectors.groupingBy(r -> r.vendor))
+                .collect(Collectors.groupingBy(r -> r.getVendor()))
                 .forEach((key, value) -> {
                     List<KeyValuePair> series = new ArrayList<>();
-                    value.forEach(v -> series.add(new KeyValuePair(v.paymentOption, v.amount)));
+                    value.forEach(v -> series.add(new KeyValuePair(v.getPaymentOption(), v.getAmount())));
                     data.add(new ListOfKeyValuePairs(key, series));
                 });
 
