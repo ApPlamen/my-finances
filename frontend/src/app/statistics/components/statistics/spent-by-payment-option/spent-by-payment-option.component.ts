@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsService } from '../../services/statistics.service';
-import { KeyValuePair } from '../../viewmodels/key-value-pair.viewmodel';
-import { SpentByPaymentOptionFilterModel } from '../../models/spent-by-payment-option-filter.model';
+import { StatisticsService } from '../../../services/statistics.service';
+import { KeyValuePair } from '../../../viewmodels/key-value-pair.viewmodel';
+import { SpentByPaymentOptionFilterModel } from '../../../models/spent-by-payment-option-filter.model';
 
 @Component({
   templateUrl: './spent-by-payment-option.component.html',

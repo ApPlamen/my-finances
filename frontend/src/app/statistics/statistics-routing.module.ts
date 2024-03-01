@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RolesEnum } from '../core/auth/enums/roles.enum';
 import { canActivate } from '../shared/guards/auth.guard';
-import { ChangeByDateComponent } from './components/change-by-date/change-by-date.component';
-import { SpentByVendorComponent } from './components/spent-by-vendor/spent-by-vendor.component';
-import { SpentByVendorByPaymentOptionComponent } from './components/spent-by-vendor-by-payment-option/spent-by-vendor-by-payment-option.component';
-import { SpentByPaymentOptionComponent } from './components/spent-by-payment-option/spent-by-payment-option.component';
+import { ChangeByDateComponent } from './components/statistics/change-by-date/change-by-date.component';
+import { SpentByVendorComponent } from './components/statistics/spent-by-vendor/spent-by-vendor.component';
+import { SpentByVendorByPaymentOptionComponent } from './components/statistics/spent-by-vendor-by-payment-option/spent-by-vendor-by-payment-option.component';
+import { SpentByPaymentOptionComponent } from './components/statistics/spent-by-payment-option/spent-by-payment-option.component';
 
 const routes: Routes = [
   {
