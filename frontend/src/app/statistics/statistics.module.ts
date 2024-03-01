@@ -14,6 +14,7 @@ import { SpentByVendorFilterComponent } from './components/filters/spent-by-vend
 import { SpentByVendorByPaymentOptionComponent } from './components/spent-by-vendor-by-payment-option/spent-by-vendor-by-payment-option.component';
 import { SpentByVendorByPaymentOptionFilterComponent } from './components/filters/spent-by-vendor-by-payment-option-filter/spent-by-vendor-by-payment-option-filter.component';
 import { SpentByPaymentOptionComponent } from './components/spent-by-payment-option/spent-by-payment-option.component';
+import { SpentByPaymentOptionFilterComponent } from './components/filters/spent-by-payment-option-filter/spent-by-payment-option-filter.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SpentByPaymentOptionComponent } from './components/spent-by-payment-opt
     SpentByVendorFilterComponent,
     SpentByVendorByPaymentOptionComponent,
     SpentByVendorByPaymentOptionFilterComponent,
-    SpentByPaymentOptionComponent
+    SpentByPaymentOptionComponent,
+    SpentByPaymentOptionFilterComponent
   ],
   imports: [
     CommonModule,
