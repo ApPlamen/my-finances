@@ -1,5 +1,6 @@
 package com.myfinances.statistics.infrastructure;
 
+import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
@@ -114,6 +115,43 @@ public class PaymentsRepo {
                 """);
 
         Query query = entityManager.createNativeQuery(sql.toString(), "SpentByVendorByPaymentOption");
+
+        query.setParameter("userId", request.getUserId());
+        if (request.getStartDate() != null) {
+            query.setParameter("startDate", request.getStartDate());
+        }
+        if (request.getEndDate() != null) {
+            Date endDate = DateUtil.addDays(request.getEndDate(),1);
+            query.setParameter("endDate", endDate);
+        }
+
+        return query.getResultList();
+    }
+
+    public List<KeyValuePair> getSpentByPaymentOption(SpentByPaymentOptionStatisticRequest request) {
+        StringBuilder sql = new StringBuilder("""
+                SELECT SUM(ABS(p.amount)) AS value, po.description AS name
+                FROM payments AS p
+                JOIN payment_options AS po
+                	ON p.payment_option = po.id
+                WHERE p.user_id = :userId
+                AND p.active = TRUE
+                AND p.amount < 0
+                """);
+
+        if (request.getStartDate() != null) {
+            sql.append("AND p.date_time >= :startDate").append("\n");
+        }
+        if (request.getEndDate() != null) {
+            sql.append("AND p.date_time <= :endDate").append("\n");
+        }
+
+        sql.append("""
+                GROUP BY po.description
+                ORDER BY po.description;
+                """);
+
+        Query query = entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
 
         query.setParameter("userId", request.getUserId());
         if (request.getStartDate() != null) {

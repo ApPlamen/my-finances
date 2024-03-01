@@ -1,5 +1,6 @@
 package com.myfinances.statistics.controllers;
 
+import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
@@ -37,6 +38,12 @@ public class StatisticsController {
     @PostMapping("spent-by-vendor-by-payment-option")
     public ResponseEntity<List<ListOfKeyValuePairs>> getSpentByVendorByPaymentOption(@Valid @RequestBody SpentByVendorByPaymentOptionStatisticRequest request) {
         List<ListOfKeyValuePairs> response = this.service.getSpentByVendorByPaymentOption(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("spent-by-payment-option")
+    public ResponseEntity<List<KeyValuePair>> getSpentByPaymentOption(@Valid @RequestBody SpentByPaymentOptionStatisticRequest request) {
+        List<KeyValuePair> response = this.service.getSpentByPaymentOption(request);
         return ResponseEntity.ok(response);
     }
 }
