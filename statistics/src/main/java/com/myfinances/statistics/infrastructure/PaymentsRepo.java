@@ -42,14 +42,14 @@ public class PaymentsRepo {
                     ORDER BY date);
                 """);
 
-        Query query = entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
+        Query query = createKeyValuePairNativeQuery(sql);
 
         query.setParameter("userId", request.getUserId());
         if (request.getStartDate() != null) {
             query.setParameter("startDate", request.getStartDate());
         }
         if (request.getEndDate() != null) {
-            Date endDate = DateUtil.addDays(request.getEndDate(),1);
+            Date endDate = DateUtil.addDays(request.getEndDate(), 1);
             query.setParameter("endDate", endDate);
         }
 
@@ -77,14 +77,14 @@ public class PaymentsRepo {
                 ORDER BY vendor;
                 """);
 
-        Query query = entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
+        Query query = createKeyValuePairNativeQuery(sql);
 
         query.setParameter("userId", request.getUserId());
         if (request.getStartDate() != null) {
             query.setParameter("startDate", request.getStartDate());
         }
         if (request.getEndDate() != null) {
-            Date endDate = DateUtil.addDays(request.getEndDate(),1);
+            Date endDate = DateUtil.addDays(request.getEndDate(), 1);
             query.setParameter("endDate", endDate);
         }
 
@@ -121,7 +121,7 @@ public class PaymentsRepo {
             query.setParameter("startDate", request.getStartDate());
         }
         if (request.getEndDate() != null) {
-            Date endDate = DateUtil.addDays(request.getEndDate(),1);
+            Date endDate = DateUtil.addDays(request.getEndDate(), 1);
             query.setParameter("endDate", endDate);
         }
 
@@ -151,17 +151,21 @@ public class PaymentsRepo {
                 ORDER BY po.description;
                 """);
 
-        Query query = entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
+        Query query = createKeyValuePairNativeQuery(sql);
 
         query.setParameter("userId", request.getUserId());
         if (request.getStartDate() != null) {
             query.setParameter("startDate", request.getStartDate());
         }
         if (request.getEndDate() != null) {
-            Date endDate = DateUtil.addDays(request.getEndDate(),1);
+            Date endDate = DateUtil.addDays(request.getEndDate(), 1);
             query.setParameter("endDate", endDate);
         }
 
         return query.getResultList();
+    }
+
+    private Query createKeyValuePairNativeQuery(StringBuilder sql) {
+        return entityManager.createNativeQuery(sql.toString(), "KeyValuePair");
     }
 }
