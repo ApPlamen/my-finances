@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUpdateDTO, UserViewDTO> {
@@ -46,9 +45,7 @@ public class UserService extends CRUDService<User, Integer, UserInputDTO, UserUp
     }
 
     public List<UserBoardItemViewDTO> getBoard() {
-        return this.repo.findAllByOrderByIdAsc().stream()
-                .map(UserBoardItemViewDTO::create)
-                .collect(Collectors.toList());
+        return this.repo.getUserBoard();
     }
 
     public void setActive(UserActiveInputDTO request) {
