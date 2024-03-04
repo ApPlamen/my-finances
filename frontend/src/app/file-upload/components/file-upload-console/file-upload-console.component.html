@@ -4,7 +4,11 @@
 
       <div class="mb-3">
         <label for="formFile" class="form-label">File to upload</label>
-        <input class="form-control" type="file" id="formFile" [disabled]="isDisabled">
+        <input class="form-control"
+               type="file"
+               id="formFile"
+               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+               [disabled]="isDisabled">
       </div>
 
       <app-button type='submit'
