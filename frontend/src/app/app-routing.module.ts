@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./statistics/statistics.module').then(m => m.StatisticsModule),
   },
   {
+    path: 'file-upload',
+    loadChildren: () => import('./file-upload/file-upload.module').then(m => m.FileUploadModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
   },

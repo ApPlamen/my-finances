@@ -34,6 +34,15 @@
           </a>
         </li>
 
+        <li class="nav-item" *ngIf="hasAccessRole([rolesEnum.user])">
+          <a class="nav-link active"
+             aria-current="page"
+             routerLink="file-upload">
+            <i class="bi bi-upload"></i>
+            File Upload
+          </a>
+        </li>
+
         <li class="nav-item" *ngIf="hasAccessRole([rolesEnum.admin])">
           <a class="nav-link active"
              aria-current="page"
