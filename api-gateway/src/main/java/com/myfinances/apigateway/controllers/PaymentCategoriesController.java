@@ -1,8 +1,8 @@
 package com.myfinances.apigateway.controllers;
 
 import com.myfinances.apigateway.configs.OpenAPI30Config;
-import com.myfinances.apigateway.models.response.finances.PaymentOptionResponse;
-import com.myfinances.apigateway.services.PaymentOptionsService;
+import com.myfinances.apigateway.models.response.finances.PaymentCategoryResponse;
+import com.myfinances.apigateway.services.PaymentCategoriesService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -15,15 +15,15 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/payment-options")
-@Tag(name = "Payment Options Controller")
+@RequestMapping("api/payment-categories")
+@Tag(name = "Payment Categories Controller")
 @SecurityRequirement(name = OpenAPI30Config.securitySchemeName)
-public class PaymentOptionsController {
-    private PaymentOptionsService service;
+public class PaymentCategoriesController {
+    private PaymentCategoriesService service;
 
     @GetMapping("options")
-    public ResponseEntity<List<PaymentOptionResponse>> getPaymentOptionsOptions() {
-        List<PaymentOptionResponse> options = service.getPaymentOptionsOptions();
+    public ResponseEntity<List<PaymentCategoryResponse>> getPaymentCategoriesOptions() {
+        List<PaymentCategoryResponse> options = service.getPaymentCategoriesOptions();
         return ResponseEntity.ok(options);
     }
 }
