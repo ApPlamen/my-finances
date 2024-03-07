@@ -40,4 +40,8 @@ public class Payment implements EntityModel {
     @ManyToOne
     @JoinColumn(name="paymentOption")
     private PaymentOption paymentOption;
+
+    @ManyToOne
+    @JoinColumn(name="paymentCategory")
+    private PaymentCategory paymentCategory;
 }
