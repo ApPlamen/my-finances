@@ -3,6 +3,7 @@ package com.myfinances.finances.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class PaymentCategory implements EntityModel {
     @Column(name = "description")
     private String description;
     @Column(name = "isDefault")
+    @ColumnDefault("false")
     private boolean isDefault;
 
     @OneToMany(mappedBy="id")
