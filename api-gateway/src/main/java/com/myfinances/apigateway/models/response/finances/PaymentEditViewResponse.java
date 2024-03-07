@@ -15,4 +15,5 @@ public class PaymentEditViewResponse {
     private Date dateTime;
     private boolean income;
     private int paymentOption;
+    private int paymentCategory;
 }

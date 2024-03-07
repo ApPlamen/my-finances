@@ -9,6 +9,7 @@ import com.myfinances.finances.dtos.views.PaymentBoardItemViewDTO;
 import com.myfinances.finances.dtos.views.PaymentEditViewDTO;
 import com.myfinances.finances.dtos.views.PaymentViewDTO;
 import com.myfinances.finances.entities.Payment;
+import com.myfinances.finances.entities.PaymentCategory;
 import com.myfinances.finances.entities.PaymentOption;
 import com.myfinances.finances.infrastructure.PaymentRepo;
 import com.myfinances.finances.specifications.PaymentsSpecifications;
@@ -24,26 +25,30 @@ import java.util.stream.Collectors;
 public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputDTO, PaymentUpdateDTO, PaymentViewDTO> {
     private final PaymentRepo repo;
     private final PaymentOptionsService paymentOptionsService;
+    private final PaymentCategoriesService paymentCategoriesService;
 
-    public PaymentsService(PaymentRepo repo, PaymentOptionsService paymentOptionsService) {
+    public PaymentsService(PaymentRepo repo,
+                           PaymentOptionsService paymentOptionsService,
+                           PaymentCategoriesService paymentCategoriesService) {
         super(repo);
         this.repo = repo;
         this.paymentOptionsService = paymentOptionsService;
+        this.paymentCategoriesService = paymentCategoriesService;
     }
 
     public List<PaymentBoardItemViewDTO> getBoard(BoardPaymentsRequest request) {
         Specification<Payment> spec = Specification.where(PaymentsSpecifications.userId(request.getUserId()));
 
-        if(!StringUtils.isBlank(request.getDescription())){
+        if (!StringUtils.isBlank(request.getDescription())) {
             spec = spec.and(PaymentsSpecifications.descriptionLike(request.getDescription()));
         }
-        if(!StringUtils.isBlank(request.getVendor())){
+        if (!StringUtils.isBlank(request.getVendor())) {
             spec = spec.and(PaymentsSpecifications.vendorLike(request.getVendor()));
         }
-        if(request.getStartDate() != null){
+        if (request.getStartDate() != null) {
             spec = spec.and(PaymentsSpecifications.dateTimeIsGreaterThanOrEqualTo(request.getStartDate()));
         }
-        if(request.getEndDate() != null){
+        if (request.getEndDate() != null) {
             spec = spec.and(PaymentsSpecifications.dateTimeIsLessThanOrEqualTo(request.getEndDate()));
         }
 
@@ -67,6 +72,9 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
 
         PaymentOption paymentOption = paymentOptionsService.findById(request.getPaymentOption());
         entity.setPaymentOption(paymentOption);
+
+        PaymentCategory paymentCategory = paymentCategoriesService.findById(request.getPaymentCategory());
+        entity.setPaymentCategory(paymentCategory);
 
         this.repo.save(entity);
     }

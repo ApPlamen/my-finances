@@ -16,6 +16,7 @@ public class PaymentEditViewDTO {
     private Date dateTime;
     private boolean income;
     private int paymentOption;
+    private int paymentCategory;
 
     public static PaymentEditViewDTO create(Payment payment) {
         PaymentEditViewDTO dto = new PaymentEditViewDTO();
@@ -24,6 +25,7 @@ public class PaymentEditViewDTO {
         dto.setDescription(payment.getDescription());
         dto.setVendor(payment.getVendor());
         dto.setPaymentOption(payment.getPaymentOption().getId());
+        dto.setPaymentCategory(payment.getPaymentCategory().getId());
         dto.setDateTime(payment.getDateTime());
 
         float amount = payment.getAmount();
