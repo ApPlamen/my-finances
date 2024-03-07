@@ -15,6 +15,7 @@ export class EditPaymentForm extends BaseFormModel<CreateEditPaymentModel> {
       amount: [0, [Validators.required, Validators.min(0)]],
       income: [null, Validators.required],
       paymentOption: [null, Validators.required],
+      paymentCategory: [null],
       dateTime: [new Date(), Validators.required]
     });
   }
