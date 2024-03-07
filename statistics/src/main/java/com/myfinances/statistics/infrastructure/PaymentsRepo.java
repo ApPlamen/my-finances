@@ -174,7 +174,7 @@ public class PaymentsRepo {
 
     public List<AmountByMonthAndYearSQLResponse> getEarnedByMonth(EarnedByMonthStatisticRequest request) {
         String sql = """
-                SELECT SUM(amount) AS amount, to_char(date_time, 'MONTH') AS month, to_char(date_time, 'YYYY') AS year
+                SELECT SUM(amount) AS amount, to_char(date_time, 'MM') AS month, to_char(date_time, 'YYYY') AS year
                 FROM payments
                 WHERE user_id = :userId
                 AND amount > 0
@@ -192,7 +192,7 @@ public class PaymentsRepo {
 
     public List<AmountByMonthAndYearSQLResponse> getSpentByMonth(SpentByMonthStatisticRequest request) {
         String sql = """
-                SELECT SUM(ABS(amount)) AS amount, to_char(date_time, 'MONTH') AS month, to_char(date_time, 'YYYY') AS year
+                SELECT SUM(ABS(amount)) AS amount, to_char(date_time, 'MM') AS month, to_char(date_time, 'YYYY') AS year
                 FROM payments
                 WHERE user_id = :userId
                 AND amount < 0

@@ -27,5 +27,9 @@
                 {{item.displayValue}}
             </label>
         </ng-template>
+        <label *ngIf="items == null || items?.length <= 0"
+               class="list-group-item disabled">
+            No values available
+        </label>
     </div>
 </div>
