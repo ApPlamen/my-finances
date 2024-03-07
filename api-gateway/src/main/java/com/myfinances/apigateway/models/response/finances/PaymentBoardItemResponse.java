@@ -15,5 +15,6 @@ public class PaymentBoardItemResponse {
     private Date dateTime;
     private boolean income;
     private String paymentOption;
+    private String paymentCategory;
     private boolean active;
 }
