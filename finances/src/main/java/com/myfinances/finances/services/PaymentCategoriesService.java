@@ -1,8 +1,8 @@
 package com.myfinances.finances.services;
 
-import com.myfinances.finances.dtos.views.PaymentOptionViewDTO;
-import com.myfinances.finances.entities.PaymentOption;
-import com.myfinances.finances.infrastructure.PaymentOptionsRepo;
+import com.myfinances.finances.dtos.views.PaymentCategoryViewDTO;
+import com.myfinances.finances.entities.PaymentCategory;
+import com.myfinances.finances.infrastructure.PaymentCategoriesRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +11,17 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class PaymentOptionsService {
-    private final PaymentOptionsRepo repo;
+public class PaymentCategoriesService {
+    private final PaymentCategoriesRepo repo;
 
-    public PaymentOption findById(int id) {
+    public PaymentCategory findById(int id) {
         return this.repo.findById(id).orElseThrow();
     }
 
-    public List<PaymentOptionViewDTO> getPaymentOptionsOptions() {
+    public List<PaymentCategoryViewDTO> getPaymentCategoriesOptions() {
         return this.repo.findAll()
                 .stream()
-                .map(option -> PaymentOptionViewDTO.builder()
+                .map(option -> PaymentCategoryViewDTO.builder()
                         .value(option.getId())
                         .displayValue(option.getDescription())
                         .build())

@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "PaymentCategory")
+@Table(name = "PaymentCategories")
 @Getter
 @Setter
 public class PaymentCategory implements EntityModel {
