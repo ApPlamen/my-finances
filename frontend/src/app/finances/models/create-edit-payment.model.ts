@@ -5,6 +5,6 @@ export class CreateEditPaymentModel {
   amount: number;
   income: boolean;
   paymentOption: number;
-  paymentCategory: number;
+  paymentCategory: number | null;
   dateTime: Date;
 }

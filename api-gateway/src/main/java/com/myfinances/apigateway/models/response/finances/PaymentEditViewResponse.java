@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -15,5 +16,5 @@ public class PaymentEditViewResponse {
     private Date dateTime;
     private boolean income;
     private int paymentOption;
-    private int paymentCategory;
+    private Optional<Integer> paymentCategory;
 }

@@ -27,7 +27,7 @@ public class CreateEditPaymentInputDTO extends UpdateDTO<Payment, Optional<Integ
     private int userId;
     @NotNull
     private int paymentOption;
-    private int paymentCategory;
+    private Optional<Integer> paymentCategory;
 
     @Override
     public Payment toEntity(Payment payment) {

@@ -73,8 +73,10 @@ public class PaymentsService extends CRUDService<Payment, Integer, PaymentInputD
         PaymentOption paymentOption = paymentOptionsService.findById(request.getPaymentOption());
         entity.setPaymentOption(paymentOption);
 
-        PaymentCategory paymentCategory = paymentCategoriesService.findById(request.getPaymentCategory());
-        entity.setPaymentCategory(paymentCategory);
+        if (request.getPaymentCategory().isPresent()) {
+            PaymentCategory paymentCategory = paymentCategoriesService.findById(request.getPaymentCategory().get());
+            entity.setPaymentCategory(paymentCategory);
+        }
 
         this.repo.save(entity);
     }
