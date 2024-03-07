@@ -26,4 +26,5 @@ public class CreateEditPaymentRequest {
     private int userId;
     @NotNull
     private int paymentOption;
+    private Optional<Integer> paymentCategory;
 }

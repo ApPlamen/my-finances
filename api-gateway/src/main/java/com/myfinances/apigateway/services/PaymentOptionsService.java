@@ -1,6 +1,6 @@
 package com.myfinances.apigateway.services;
 
-import com.myfinances.apigateway.models.response.users.RolesOptionResponse;
+import com.myfinances.apigateway.models.response.finances.PaymentOptionResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ public class PaymentOptionsService extends BaseRestService {
         super(baseUrl, "payment-options");
     }
 
-    public List<RolesOptionResponse> getPaymentOptions() {
+    public List<PaymentOptionResponse> getPaymentOptionsOptions() {
         return restClient.get()
                 .uri("/options")
                 .retrieve()

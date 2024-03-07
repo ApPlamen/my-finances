@@ -1,7 +1,7 @@
 package com.myfinances.finances.controllers;
 
-import com.myfinances.finances.dtos.views.PaymentOptionViewDTO;
-import com.myfinances.finances.services.PaymentOptionsService;
+import com.myfinances.finances.dtos.views.PaymentCategoryViewDTO;
+import com.myfinances.finances.services.PaymentCategoriesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/payment-options")
-public class PaymentOptionsController {
-    private PaymentOptionsService service;
+@RequestMapping("api/payment-categories")
+public class PaymentCategoriesController {
+    private PaymentCategoriesService service;
 
     @GetMapping("options")
-    public ResponseEntity<List<PaymentOptionViewDTO>> getPaymentOptionsOptions() {
-        List<PaymentOptionViewDTO> options = service.getPaymentOptionsOptions();
+    public ResponseEntity<List<PaymentCategoryViewDTO>> getPaymentCategoriesOptions() {
+        List<PaymentCategoryViewDTO> options = service.getPaymentCategoriesOptions();
         return ResponseEntity.ok(options);
     }
 }

@@ -6,5 +6,6 @@ export class PaymentBoardViewModel {
   dateTime: Date;
   income: boolean;
   paymentOption: string;
+  paymentCategory: string;
   active: boolean;
 }
