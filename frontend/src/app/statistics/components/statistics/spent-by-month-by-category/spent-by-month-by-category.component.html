@@ -23,6 +23,15 @@
         Stacked vertical bar chart
       </a>
     </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        role="tab"
+        id="ex1-tab-3"
+        (click)="openTab('ex1-tab-3', 'ex1-tabs-3')">
+        Normalized vertical bar chart
+      </a>
+    </li>
   </ul>
   <!-- Tabs navs -->
 
@@ -42,7 +51,7 @@
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
+        [yAxisLabel]="yAxisLabelAmount"
         [animations]="animations"
         [legendTitle]="legendTitle">
       </ngx-charts-bar-vertical-2d>
@@ -57,10 +66,25 @@
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
+        [yAxisLabel]="yAxisLabelAmount"
         [animations]="animations"
         [legendTitle]="legendTitle">
       </ngx-charts-bar-vertical-stacked>
+    </div>
+    <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+      <ngx-charts-bar-vertical-normalized
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabelPercentage"
+        [animations]="animations"
+        [legendTitle]="legendTitle">
+      </ngx-charts-bar-vertical-normalized>
     </div>
   </div>
   <!-- Tabs content -->
