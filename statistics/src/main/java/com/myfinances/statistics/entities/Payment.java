@@ -2,6 +2,7 @@ package com.myfinances.statistics.entities;
 
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.sql.AmountByMonthAndYearSQLResponse;
+import com.myfinances.statistics.models.sql.SpentByMonthByCategorySQLResponse;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
@@ -47,6 +48,15 @@ import java.sql.Timestamp;
                         @ColumnResult(name = "year")
                 })
 })
+@SqlResultSetMapping(name = "SpentByMonthByCategorySQLResponse", classes = {
+        @ConstructorResult(targetClass = SpentByMonthByCategorySQLResponse.class,
+                columns = {
+                        @ColumnResult(name = "amount"),
+                        @ColumnResult(name = "paymentCategory"),
+                        @ColumnResult(name = "month"),
+                        @ColumnResult(name = "year")
+                })
+})
 public class Payment implements EntityModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,4 +79,8 @@ public class Payment implements EntityModel {
     @ManyToOne
     @JoinColumn(name="paymentOption")
     private PaymentOption paymentOption;
+
+    @ManyToOne
+    @JoinColumn(name="paymentCategory")
+    private PaymentCategory paymentCategory;
 }

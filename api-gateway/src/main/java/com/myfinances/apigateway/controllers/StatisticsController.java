@@ -63,4 +63,10 @@ public class StatisticsController {
         List<ListOfKeyValuePairs> response = this.service.getSpentByMonth();
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("spent-by-month-by-category")
+    public ResponseEntity<List<ListOfKeyValuePairs>> getSpentByMonthByCategory() {
+        List<ListOfKeyValuePairs> response = this.service.getSpentByMonthByCategory();
+        return ResponseEntity.ok(response);
+    }
 }

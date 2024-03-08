@@ -2,12 +2,14 @@ package com.myfinances.statistics.infrastructure;
 
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByMonthByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.sql.AmountByMonthAndYearSQLResponse;
+import com.myfinances.statistics.models.sql.SpentByMonthByCategorySQLResponse;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import com.myfinances.statistics.utils.DateUtil;
 import jakarta.persistence.EntityManager;
@@ -202,6 +204,26 @@ public class PaymentsRepo {
                 """;
 
         Query query = entityManager.createNativeQuery(sql, "AmountByMonthAndYearSQLResponse");
+
+        query.setParameter("userId", request.getUserId());
+
+        return query.getResultList();
+    }
+
+    public List<SpentByMonthByCategorySQLResponse> getSpentByMonthByCategory(SpentByMonthByCategoryStatisticRequest request) {
+        String sql = """
+                SELECT SUM(ABS(p.amount)) AS amount, pc.description AS paymentCategory, to_char(p.date_time, 'MM') AS month, to_char(p.date_time, 'YYYY') AS year
+                FROM payments AS p
+                JOIN payment_categories AS pc
+                    ON p.payment_category = pc.id
+                WHERE p.user_id = :userId
+                AND p.amount < 0
+                AND p.active = TRUE
+                GROUP BY month, year, pc.description
+                ORDER BY month, year;
+                """;
+
+        Query query = entityManager.createNativeQuery(sql, "SpentByMonthByCategorySQLResponse");
 
         query.setParameter("userId", request.getUserId());
 
