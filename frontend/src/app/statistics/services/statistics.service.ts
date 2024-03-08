@@ -41,4 +41,8 @@ export class StatisticsService {
   getSpentByMonth() {
     return this.http.get<ListOfKeyValuePairs[]>(BASE_URL + '/spent-by-month');
   }
+
+  getSpentByMonthByCategory(): Observable<ListOfKeyValuePairs[]> {
+    return this.http.get<ListOfKeyValuePairs[]>(BASE_URL + '/spent-by-month-by-category');
+  }
 }
