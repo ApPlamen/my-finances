@@ -14,11 +14,11 @@ export class SpentByMonthByCategoryComponent implements OnInit {
   gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Vendor';
+  xAxisLabel: string = 'Month';
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Amount';
+  yAxisLabel: string = 'Spent';
   animations: boolean = true;
-  legendTitle: string = 'Payment option';
+  legendTitle: string = 'Payment category';
 
   constructor(private statisticsService: StatisticsService) { }
 

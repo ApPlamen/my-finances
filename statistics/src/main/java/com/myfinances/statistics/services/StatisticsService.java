@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,10 +102,10 @@ public class StatisticsService {
         List<ListOfKeyValuePairs> data = new ArrayList<>();
 
         response.stream()
-                .collect(Collectors.groupingBy(SpentByMonthByCategorySQLResponse::getPaymentCategory))
+                .collect(Collectors.groupingBy(g -> g.getMonth() + "." + g.getYear(), LinkedHashMap::new, Collectors.toList()))
                 .forEach((key, value) -> {
                     List<KeyValuePair> series = new ArrayList<>();
-                    value.forEach(v -> series.add(new KeyValuePair(v.getMonth() + "." + v.getYear(), v.getAmount())));
+                    value.forEach(v -> series.add(new KeyValuePair(v.getPaymentCategory(), v.getAmount())));
                     data.add(new ListOfKeyValuePairs(key, series));
                 });
 
