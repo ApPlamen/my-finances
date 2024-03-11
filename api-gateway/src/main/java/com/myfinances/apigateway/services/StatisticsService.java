@@ -3,6 +3,7 @@ package com.myfinances.apigateway.services;
 import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.EarnedByMonthStatisticInternalRequest;
+import com.myfinances.apigateway.models.internal.statistics.SpentByMonthByCategoryStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByMonthStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorByPaymentOptionStatisticInternalRequest;
@@ -111,6 +112,20 @@ public class StatisticsService extends BaseRestService {
 
         return restClient.post()
                 .uri("/spent-by-month")
+                .body(body)
+                .retrieve()
+                .body(List.class);
+    }
+
+    public List<ListOfKeyValuePairs> getSpentByMonthByCategory() {
+        int userId = SecurityContextHelper.getUserId();
+
+        SpentByMonthByCategoryStatisticInternalRequest body = SpentByMonthByCategoryStatisticInternalRequest.builder()
+                .userId(userId)
+                .build();
+
+        return restClient.post()
+                .uri("/spent-by-month-by-category")
                 .body(body)
                 .retrieve()
                 .body(List.class);

@@ -3,6 +3,7 @@ package com.myfinances.statistics.services;
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByMonthByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByVendorByPaymentOptionStatisticRequest;
@@ -10,11 +11,13 @@ import com.myfinances.statistics.models.request.SpentByVendorStatisticRequest;
 import com.myfinances.statistics.models.response.KeyValuePair;
 import com.myfinances.statistics.models.response.ListOfKeyValuePairs;
 import com.myfinances.statistics.models.sql.AmountByMonthAndYearSQLResponse;
+import com.myfinances.statistics.models.sql.SpentByMonthByCategorySQLResponse;
 import com.myfinances.statistics.models.sql.SpentByVendorByPaymentOptionSQLResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +50,7 @@ public class StatisticsService {
         List<ListOfKeyValuePairs> data = new ArrayList<>();
 
         response.stream()
-                .collect(Collectors.groupingBy(r -> r.getVendor()))
+                .collect(Collectors.groupingBy(SpentByVendorByPaymentOptionSQLResponse::getVendor))
                 .forEach((key, value) -> {
                     List<KeyValuePair> series = new ArrayList<>();
                     value.forEach(v -> series.add(new KeyValuePair(v.getPaymentOption(), v.getAmount())));
@@ -87,6 +90,22 @@ public class StatisticsService {
                 .forEach((key, value) -> {
                     List<KeyValuePair> series = new ArrayList<>();
                     value.forEach(v -> series.add(new KeyValuePair(v.getMonth(), v.getAmount())));
+                    data.add(new ListOfKeyValuePairs(key, series));
+                });
+
+        return data;
+    }
+
+    public List<ListOfKeyValuePairs> getSpentByMonthByCategory(SpentByMonthByCategoryStatisticRequest request) {
+        List<SpentByMonthByCategorySQLResponse> response = repo.getSpentByMonthByCategory(request);
+
+        List<ListOfKeyValuePairs> data = new ArrayList<>();
+
+        response.stream()
+                .collect(Collectors.groupingBy(g -> g.getMonth() + "." + g.getYear(), LinkedHashMap::new, Collectors.toList()))
+                .forEach((key, value) -> {
+                    List<KeyValuePair> series = new ArrayList<>();
+                    value.forEach(v -> series.add(new KeyValuePair(v.getPaymentCategory(), v.getAmount())));
                     data.add(new ListOfKeyValuePairs(key, series));
                 });
 

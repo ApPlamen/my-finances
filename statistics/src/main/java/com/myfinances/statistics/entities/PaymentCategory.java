@@ -1,4 +1,4 @@
-package com.myfinances.finances.entities;
+package com.myfinances.statistics.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
