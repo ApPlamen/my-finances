@@ -18,6 +18,8 @@ import { SpentByPaymentOptionFilterComponent } from './components/filters/spent-
 import { EarnedByMonthComponent } from './components/statistics/earned-by-month/earned-by-month.component';
 import { SpentByMonthComponent } from './components/statistics/spent-by-month/spent-by-month.component';
 import { SpentByMonthByCategoryComponent } from './components/statistics/spent-by-month-by-category/spent-by-month-by-category.component';
+import { SpentByCategoryComponent } from './components/statistics/spent-by-category/spent-by-category.component';
+import { SpentByCategoryFilterComponent } from './components/filters/spent-by-category-filter/spent-by-category-filter.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SpentByMonthByCategoryComponent } from './components/statistics/spent-b
     SpentByPaymentOptionFilterComponent,
     EarnedByMonthComponent,
     SpentByMonthComponent,
-    SpentByMonthByCategoryComponent
+    SpentByMonthByCategoryComponent,
+    SpentByCategoryComponent,
+    SpentByCategoryFilterComponent
   ],
   imports: [
     CommonModule,

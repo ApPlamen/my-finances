@@ -2,6 +2,7 @@ package com.myfinances.apigateway.controllers;
 
 import com.myfinances.apigateway.configs.OpenAPI30Config;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
+import com.myfinances.apigateway.models.request.statistics.SpentByCategoryStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorStatisticRequest;
@@ -67,6 +68,12 @@ public class StatisticsController {
     @GetMapping("spent-by-month-by-category")
     public ResponseEntity<List<ListOfKeyValuePairs>> getSpentByMonthByCategory() {
         List<ListOfKeyValuePairs> response = this.service.getSpentByMonthByCategory();
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("spent-by-category")
+    public ResponseEntity<List<KeyValuePair>> getSpentByCategory(@RequestBody SpentByCategoryStatisticRequest request) {
+        List<KeyValuePair> response = this.service.getSpentByCategory(request);
         return ResponseEntity.ok(response);
     }
 }

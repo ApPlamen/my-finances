@@ -3,12 +3,14 @@ package com.myfinances.apigateway.services;
 import com.myfinances.apigateway.helpers.SecurityContextHelper;
 import com.myfinances.apigateway.models.internal.statistics.ChangeByDateStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.EarnedByMonthStatisticInternalRequest;
+import com.myfinances.apigateway.models.internal.statistics.SpentByCategoryStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByMonthByCategoryStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByMonthStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorByPaymentOptionStatisticInternalRequest;
 import com.myfinances.apigateway.models.internal.statistics.SpentByVendorStatisticInternalRequest;
 import com.myfinances.apigateway.models.request.statistics.ChangeByDateStatisticRequest;
+import com.myfinances.apigateway.models.request.statistics.SpentByCategoryStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByPaymentOptionStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorByPaymentOptionStatisticRequest;
 import com.myfinances.apigateway.models.request.statistics.SpentByVendorStatisticRequest;
@@ -126,6 +128,22 @@ public class StatisticsService extends BaseRestService {
 
         return restClient.post()
                 .uri("/spent-by-month-by-category")
+                .body(body)
+                .retrieve()
+                .body(List.class);
+    }
+
+    public List<KeyValuePair> getSpentByCategory(SpentByCategoryStatisticRequest request) {
+        int userId = SecurityContextHelper.getUserId();
+
+        SpentByCategoryStatisticInternalRequest body = SpentByCategoryStatisticInternalRequest.builder()
+                .userId(userId)
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .build();
+
+        return restClient.post()
+                .uri("/spent-by-category")
                 .body(body)
                 .retrieve()
                 .body(List.class);

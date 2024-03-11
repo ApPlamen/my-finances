@@ -2,6 +2,7 @@ package com.myfinances.statistics.controllers;
 
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
@@ -33,7 +34,7 @@ public class StatisticsController {
     }
 
     @PostMapping("spent-by-vendor")
-    public ResponseEntity<List<KeyValuePair>> getChangeByDate(@Valid @RequestBody SpentByVendorStatisticRequest request) {
+    public ResponseEntity<List<KeyValuePair>> getSpentByVendor(@Valid @RequestBody SpentByVendorStatisticRequest request) {
         List<KeyValuePair> response = this.service.getSpentByVendor(request);
         return ResponseEntity.ok(response);
     }
@@ -65,6 +66,12 @@ public class StatisticsController {
     @PostMapping("spent-by-month-by-category")
     public ResponseEntity<List<ListOfKeyValuePairs>> getSpentByMonthByCategory(@Valid @RequestBody SpentByMonthByCategoryStatisticRequest request) {
         List<ListOfKeyValuePairs> response = this.service.getSpentByMonthByCategory(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("spent-by-category")
+    public ResponseEntity<List<KeyValuePair>> getSpentByCategory(@Valid @RequestBody SpentByCategoryStatisticRequest request) {
+        List<KeyValuePair> response = this.service.getSpentByCategory(request);
         return ResponseEntity.ok(response);
     }
 }
