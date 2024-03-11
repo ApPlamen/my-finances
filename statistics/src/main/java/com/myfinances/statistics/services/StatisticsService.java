@@ -3,6 +3,7 @@ package com.myfinances.statistics.services;
 import com.myfinances.statistics.infrastructure.PaymentsRepo;
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
@@ -110,5 +111,9 @@ public class StatisticsService {
                 });
 
         return data;
+    }
+
+    public List<KeyValuePair> getSpentByCategory(SpentByCategoryStatisticRequest request) {
+        return repo.getSpentByCategory(request);
     }
 }

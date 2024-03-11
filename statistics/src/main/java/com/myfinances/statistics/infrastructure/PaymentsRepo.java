@@ -2,6 +2,7 @@ package com.myfinances.statistics.infrastructure;
 
 import com.myfinances.statistics.models.request.ChangeByDateStatisticRequest;
 import com.myfinances.statistics.models.request.EarnedByMonthStatisticRequest;
+import com.myfinances.statistics.models.request.SpentByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthByCategoryStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByMonthStatisticRequest;
 import com.myfinances.statistics.models.request.SpentByPaymentOptionStatisticRequest;
@@ -226,6 +227,43 @@ public class PaymentsRepo {
         Query query = entityManager.createNativeQuery(sql, "SpentByMonthByCategorySQLResponse");
 
         query.setParameter("userId", request.getUserId());
+
+        return query.getResultList();
+    }
+
+    public List<KeyValuePair> getSpentByCategory(SpentByCategoryStatisticRequest request) {
+        StringBuilder sql = new StringBuilder("""
+                SELECT SUM(ABS(p.amount)) AS value, pc.description AS name
+                FROM payments AS p
+                JOIN payment_categories AS pc
+                	ON p.payment_category = pc.id
+                WHERE p.user_id = :userId
+                AND p.amount < 0
+                AND p.active = TRUE
+                """);
+
+        if (request.getStartDate() != null) {
+            sql.append("AND p.date_time >= :startDate").append("\n");
+        }
+        if (request.getEndDate() != null) {
+            sql.append("AND p.date_time <= :endDate").append("\n");
+        }
+
+        sql.append("""
+                GROUP BY pc.description
+                ORDER BY pc.description;
+                """);
+
+        Query query = createKeyValuePairNativeQuery(sql);
+
+        query.setParameter("userId", request.getUserId());
+        if (request.getStartDate() != null) {
+            query.setParameter("startDate", request.getStartDate());
+        }
+        if (request.getEndDate() != null) {
+            Date endDate = DateUtil.addDays(request.getEndDate(), 1);
+            query.setParameter("endDate", endDate);
+        }
 
         return query.getResultList();
     }
